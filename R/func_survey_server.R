@@ -123,26 +123,38 @@ get_question_id <- function(num_options, input, form) {
 
 }
 
+#' Convert GUI type to proper form
+#'
+#' @param value The question input type
+#'
+#' @keywords internal
+#' @return
+#'
+
+convert_type <- function(value) {
+
+  switch(value,
+         "Multiple Choice" = "mc",
+         "Select" = "select",
+         "Numeric" = "numeric",
+         "Text" = "text",
+         "Yes/No" = "y/n")
+}
+
 make_question_dataframe <- function(input, form) {
 
   options_per_question <- purrr::map(.x = 1:form$num_questions,
                               ~get_num_options_per_question(input, question_num = .x))
 
   questions <- get_questions(num_options = options_per_question, input = input, form = form)
-  print(questions)
   options <- get_question_options(input = input, form = form)
-  print(options)
   type <- get_question_type(num_options = options_per_question, input = input, form = form)
-  print(type)
+  type <- purrr::map_df(.x = type$input_type,
+                        ~base::list(input_type = convert_type(.x)))
   input_id <- get_question_id(num_options = options_per_question, input = input, form = form)
-  print(input_id)
   dependence <- rep(NA, nrow(questions))
-  print(dependence)
   dependence_value <- rep(NA, nrow(questions))
-  print(dependence_value)
   required <- get_question_required(num_options = options_per_question, input = input, form = form)
-  print(required)
-
 
   output <- data.frame("question" = questions,
                        "option" = options,
