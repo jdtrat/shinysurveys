@@ -10,22 +10,29 @@ sass::sass(
     output = "www/survey.css"
 )
 
-ui <- shiny::fluidPage(
+ui <- shiny::fillPage(
+    tags$head(
+        tags$link(rel = "stylesheet", type = "text/css", href = "survey.css")
+    ),
     shinyjs::useShinyjs(),
-    shiny::sidebarPanel(
-        shiny::actionButton("add_option", "Add an option"),
-        shiny::actionButton(
-            "create_question",
-            "Create a Question"
-        ),
-        shiny::actionButton(
-            "submit",
-            "Submit"
+    div(class = "NA",
+        shiny::tagList(
+            shiny::actionButton("add_option", "Add an option"),
+            shiny::actionButton(
+                "create_question",
+                "Create a Question"
+            ),
+            shiny::actionButton(
+                "submit",
+                "Submit"
+            )
         )
     ),
-    shiny::mainPanel(
-        #default question
-        flex_form_question_ui(question_number = 1)
+    div(class = "grid",
+        div(class = "survey",
+            #default question
+            flex_form_question_ui(question_number = 1),
+        )
     )
 
 )
@@ -34,7 +41,7 @@ server <- function(input, output, session) {
     # Have a question already present
     # Have options as 0 by default
     form <- reactiveValues(num_questions = 1,
-                           num_options = 0)
+                           num_options = 1)
 
 
     # # IF DEPENDENCE IS NOT NA IT WILL BE HIDDEN SO IT WILL "WORK" BUT NOT
@@ -62,20 +69,36 @@ server <- function(input, output, session) {
     })
 
     observeEvent(input$create_question, {
-        # add new question
-        form$num_questions <-  form$num_questions + 1
+
         #reset option numbers
-        form$num_options <- 0
-        form$questions <- tagList(form$questions, flex_form_question_ui(form$num_questions))
+        form$num_options <- 1
+        # add new question
+        form$num_questions <- form$num_questions + 1
+
+        # create a new question
         insertUI(
-            selector = paste0("#question_", form$num_questions),
-            ui = flex_form_question_ui(form$num_questions)
+            selector = paste0("#question_", form$num_questions - 1),
+            ui = flex_form_question_ui(form$num_questions),
+            where = "afterEnd"
         )
+
     })
 
     observeEvent(input$submit, {
         # Right now, it won't print out a question if there are no options for it.
-        print(make_question_dataframe(input, form))
+        # print(make_question_dataframe(input, form))
+        write.csv(make_question_dataframe(input, form), '~/Downloads/test_gui_survey.csv')
+    })
+
+
+    shiny::observe({
+
+        # purrr::walk(.x = 1:form$num_questions,
+        #             ~ disable_text_type_questions(input, .x))
+
+        purrr::walk(.x = 1:form$num_questions,
+                    ~ remove_questions(input, .x))
+
     })
 
 

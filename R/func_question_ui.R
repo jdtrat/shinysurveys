@@ -8,7 +8,7 @@
 #' @export
 
 flex_form_question_ui <- function(question_number) {
-  shiny::tagList(div(class = "survey",
+  shiny::tagList(div(id = paste0("question_", question_number),
                      shiny::fluidRow(
                        shiny::column(
                          width = 4,
@@ -31,11 +31,10 @@ flex_form_question_ui <- function(question_number) {
                                                         )
                                      )
                        ),
-                       shiny::div(id = "option_placeholder_1",
+                       shiny::div(id = paste0("option_placeholder_", question_number),
                                   shiny::textInput(inputId = "question_1_option_1",
                                                    label = "Option 1",
                                                    value = "Placeholder")),
-                       shiny::div(id = paste0("option_placeholder_", question_number)),
                      ),
                      shiny::fluidRow(
                        shiny::column(
@@ -55,8 +54,8 @@ flex_form_question_ui <- function(question_number) {
                                        labelWidth = "60px"
                                      )
                        )
-                     ),
-                     shiny::div(id = paste0("question_", c(question_number + 1)))
-  )
+                     )
+                 ),
+                     # shiny::div(id = paste0("question_", c(question_number + 1)))
   )
 }

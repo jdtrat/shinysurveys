@@ -27,18 +27,18 @@ $dark: darken($color, 15%);
   /* border: 1px solid black; */
   grid-column-start: 2;
   grid-column-end: 2;
-  justify-items: center;
-  justify-self: center;
+  /* justify-items: center;
+  justify-self: center; */
   position: center;
   background-color: $little_light;
 }
 
 .input-pane {
   grid-column-start: 1;
+  padding: 20px;
+  border: 1px solid black;
   grid-column-end: 1;
-  justify-items: center;
-  justify-self: center;
-  position: center;
+  position: fixed;
   background-color: $middle_light;
 }
 

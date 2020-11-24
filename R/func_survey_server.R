@@ -167,3 +167,45 @@ make_question_dataframe <- function(input, form) {
   return(output)
 
 }
+
+
+
+#' Get input individual question options parameter
+#'
+#' @param input The Shiny input
+#' @param question_num The question number
+#' @keywords internal
+#'
+#'
+#'
+disable_text_type_questions <- function(input, question_num) {
+
+  if (input[[paste0("question_", question_num, "_type")]] == "Text") {
+    # shiny::updateTextInput(session = session,
+    #                        inputId = paste0("question_", question_num, "_option_1"),
+    #                        value = "Text Input Placeholder")
+    shinyjs::disable(id = paste0("question_", question_num, "_option_1"))
+  }
+
+}
+
+
+
+#' Remove questions
+#'
+#' @param input The Shiny input
+#' @param question_num The question number
+#'
+#' @return
+#' @export
+#'
+#' @examples
+remove_questions <- function(input, question_num) {
+
+  observeEvent(input[[paste0("question_", question_num, "_title_remove")]], {
+    removeUI(selector = paste0("#option_placeholder_", question_num))
+
+    removeUI(selector = paste0("#question_", question_num))
+  })
+
+}
