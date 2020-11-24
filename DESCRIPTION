@@ -24,4 +24,11 @@ Imports:
     snakecase,
     rlang,
     dplyr,
-    tidyr
+    tidyr,
+    tibble
+Depends: 
+    R (>= 2.10)
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

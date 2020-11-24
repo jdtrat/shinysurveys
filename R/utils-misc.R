@@ -4,9 +4,7 @@
 #'
 #' @keywords internal
 #' @return Old UI
-#' @export
 #'
-#' @examples
 form_question_ui <- function(form) {
   shiny::div(
     class = "binder",
