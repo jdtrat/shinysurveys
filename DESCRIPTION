@@ -15,6 +15,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1.9000
 Imports: 
     shiny,
+    usethis,
     shinyWidgets,
     shinyjs,
     magrittr,
@@ -25,7 +26,8 @@ Imports:
     rlang,
     dplyr,
     tidyr,
-    tibble
+    tibble,
+    whisker
 Depends: 
     R (>= 2.10)
 Suggests: 
