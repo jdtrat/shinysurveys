@@ -32,7 +32,7 @@ flex_form_question_ui <- function(question_number) {
                                      )
                        ),
                        shiny::div(id = paste0("option_placeholder_", question_number),
-                                  shiny::textInput(inputId = "question_1_option_1",
+                                  shiny::textInput(inputId = paste0("question_", question_number, "_option_1"),
                                                    label = "Option 1",
                                                    value = "Placeholder")),
                      ),
@@ -56,6 +56,5 @@ flex_form_question_ui <- function(question_number) {
                        )
                      )
                  ),
-                     # shiny::div(id = paste0("question_", c(question_number + 1)))
   )
 }
