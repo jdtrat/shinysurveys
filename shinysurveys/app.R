@@ -5,19 +5,20 @@ library(rdrop2)
 library(glue)
 library(whisker)
 
-#establish SASS file
-sass::sass(
-    sass::sass_file("www/survey.scss"),
-    output = "www/survey.css"
-)
+# sass::sass(
+#     sass::sass_file("www/survey.scss"),
+#     output = "www/survey.css"
+# )
 
 ui <- shiny::fillPage(
-    tags$head(
-        tags$link(rel = "stylesheet", type = "text/css", href = "survey.css")
-    ),
+    # tags$head(
+    #     tags$link(rel = "stylesheet", type = "text/css", href = "survey.css")
+    # ),
     shinyjs::useShinyjs(),
+    uiOutput("sass"),
     div(class = "NA",
         shiny::tagList(
+            colourpicker::colourInput("survey_color", "Survey Color", value = "#add8e6"),
             shiny::actionButton("add_option", "Add an option"),
             shiny::actionButton(
                 "create_question",
@@ -40,6 +41,132 @@ ui <- shiny::fillPage(
 )
 
 server <- function(input, output, session) {
+
+    output$sass <- renderUI({
+        tags$head(tags$style(css()))
+    })
+
+    css <- reactive({
+        sass::sass(list(
+            list(color = input$survey_color),
+            "
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat|Raleway');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+$little_dark: darken($color, 5%);
+$little_light: lighten($color, 5%);
+$middle_light: lighten($color, 10%);
+$light: lighten($color, 15%);
+$dark: darken($color, 15%);
+
+.grid {
+  display: grid;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: $light;
+
+}
+
+.container-fluid {
+  background-color: $little_light;
+}
+
+.survey {
+  padding: 20px;
+  /* border: 1px solid black; */
+  grid-column-start: 2;
+  grid-column-end: 2;
+  /* justify-items: center;
+  justify-self: center; */
+  position: center;
+  background-color: $little_light;
+}
+
+.input-pane {
+  grid-column-start: 1;
+  padding: 20px;
+  border: 1px solid black;
+  grid-column-end: 1;
+  position: fixed;
+  background-color: $middle_light;
+}
+
+body {
+	font-family: 'Raleway', sans-serif;
+	background-color: $light;
+}
+
+code {
+	font-family: 'Source Code Pro', monospace;
+	font-size: 14px;
+}
+
+.console {
+	font-family: 'Inconsolata', monospace;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: black;
+	opacity: .8;
+	padding: 20px;
+	color: white;
+	z-index: 99999;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #333;
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+	text-transform: uppercase;
+	text-align: left;
+	letter-spacing: .1em;
+	line-height: 1.2;
+}
+
+h1 {
+	margin: 36px 0;
+}
+
+h1.title{
+	color: #416983;
+}
+
+
+h3 {
+	font-style: italic;
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+p {
+	color: #333;
+	margin: 35px;
+	margin-bottom: 10px;
+}
+
+li.l {
+  margin-left: 40px;
+  margin-right: 35px;
+}
+
+            "
+        ))
+    })
+
+    # observe({
+    #     #establish SASS file
+    #     sass::sass(list(
+    #         list(color = input$survey_color),
+    #                sass::sass_file("www/survey.scss"),
+    #                output = "www/survey.css"
+    #     ))
+    # })
+
+
     # Have a question already present
     # Have options as 0 by default
     form <- reactiveValues(num_questions = 1,
@@ -87,18 +214,40 @@ server <- function(input, output, session) {
     })
 
     output$download_app <- shiny::downloadHandler(
-        filename = "yes.csv",
+        filename = "survey.zip",
         content = function(file) {
 
-            # template <- readLines("www/template.R")
-            # data <- list("survey_title" = input$survey_title)
-            # fs::dir_create(path = path)
-            write.csv(make_question_dataframe(input, form), file)
-            # base::writeLines(whisker::whisker.render(template, data), paste0(file, "/app.R"))
-            # fs::dir_create(path = paste0(path, "/www/"))
-            #fs::file_copy(path = "www/survey.scss", new_path = paste0(file, "/www/survey.scss"))
+            # Create the app and sass templates and fill in the data parameters with the GUI inputs.
+            app_template <- readLines("www/template.R")
+            sass_template <- readLines("www/survey_template.scss")
+            app_data <- list("survey_title" = paste0('"', input$survey_title, '"'))
+            sass_data <- list("survey_color" = input$survey_color)
+
+            # Create a temp directory and set it as the working directory
+            tmp <- tempdir()
+            setwd(tmp)
+            dir.create(path = "survey/")
+            dir.create(path = "survey/survey_app/")
+            dir.create(path = "survey/survey_app/www/")
+
+            # Create a project file for the survey
+            usethis::create_project("survey", open = FALSE)
+
+            # Write the app, sass file, and survey questions csv
+            base::writeLines(whisker::whisker.render(app_template, app_data), "survey/survey_app/app.R")
+            base::writeLines(whisker::whisker.render(sass_template, sass_data), "survey/survey_app/www/survey.scss")
+            write.csv(make_question_dataframe(input, form), "survey/survey_app/www/survey_questions.csv")
+
+            # Zip the files and unlink tmp directory
+            zip(zipfile = file,
+                files = c("survey",
+                          "survey/survey_app/app.R",
+                          "survey/survey_app/www/survey.scss",
+                          "survey/survey_app/www/survey_questions.csv"))
+            unlink(tmp)
+
         },
-        contentType = "text/csv"
+        contentType = "application/zip"
     )
 
     shiny::observe({

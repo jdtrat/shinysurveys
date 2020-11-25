@@ -1,0 +1,55 @@
+"","question","option","input_type","input_id","dependence","dependence_value","required"
+"1","What's your age?","25","numeric","age",NA,NA,TRUE
+"2","Which best describes your gender?","Female","mc","gender",NA,NA,TRUE
+"3","Which best describes your gender?","Male","mc","gender",NA,NA,TRUE
+"4","Which best describes your gender?","Prefer not to say","mc","gender",NA,NA,TRUE
+"5","Which best describes your gender?","Prefer to self describe","mc","gender",NA,NA,TRUE
+"6","Which best describes your gender?",NA,"text","self_describe_gender","gender","Prefer to self describe",FALSE
+"7","What is the highest level of education you have attained?","Did not attend high school","select","education_attained",NA,NA,FALSE
+"8","What is the highest level of education you have attained?","Some high school","select","education_attained",NA,NA,FALSE
+"9","What is the highest level of education you have attained?","High school graduate","select","education_attained",NA,NA,FALSE
+"10","What is the highest level of education you have attained?","Some college","select","education_attained",NA,NA,FALSE
+"11","What is the highest level of education you have attained?","College","select","education_attained",NA,NA,FALSE
+"12","What is the highest level of education you have attained?","Graduate Work","select","education_attained",NA,NA,FALSE
+"13","What was your first language?","Arabic","select","first_language",NA,NA,FALSE
+"14","What was your first language?","Armenian","select","first_language",NA,NA,FALSE
+"15","What was your first language?","Chinese","select","first_language",NA,NA,FALSE
+"16","What was your first language?","English","select","first_language",NA,NA,FALSE
+"17","What was your first language?","French","select","first_language",NA,NA,FALSE
+"18","What was your first language?","Creole","select","first_language",NA,NA,FALSE
+"19","What was your first language?","German","select","first_language",NA,NA,FALSE
+"20","What was your first language?","Greek","select","first_language",NA,NA,FALSE
+"21","What was your first language?","Gujarati","select","first_language",NA,NA,FALSE
+"22","What was your first language?","Hebrew","select","first_language",NA,NA,FALSE
+"23","What was your first language?","Hindi","select","first_language",NA,NA,FALSE
+"24","What was your first language?","Italian","select","first_language",NA,NA,FALSE
+"25","What was your first language?","Japanese","select","first_language",NA,NA,FALSE
+"26","What was your first language?","Other","select","first_language",NA,NA,FALSE
+"27","What was your first language?",NA,"text","first_language_other","first_language","Other",FALSE
+"28","In what language do you read most often?","Arabic","select","read_language",NA,NA,FALSE
+"29","In what language do you read most often?","Armenian","select","read_language",NA,NA,FALSE
+"30","In what language do you read most often?","Chinese","select","read_language",NA,NA,FALSE
+"31","In what language do you read most often?","English","select","read_language",NA,NA,FALSE
+"32","In what language do you read most often?","French","select","read_language",NA,NA,FALSE
+"33","In what language do you read most often?","Creole","select","read_language",NA,NA,FALSE
+"34","In what language do you read most often?","German","select","read_language",NA,NA,FALSE
+"35","In what language do you read most often?","Greek","select","read_language",NA,NA,FALSE
+"36","In what language do you read most often?","Gujarati","select","read_language",NA,NA,FALSE
+"37","In what language do you read most often?","Hebrew","select","read_language",NA,NA,FALSE
+"38","In what language do you read most often?","Hindi","select","read_language",NA,NA,FALSE
+"39","In what language do you read most often?","Italian","select","read_language",NA,NA,FALSE
+"40","In what language do you read most often?","Japanese","select","read_language",NA,NA,FALSE
+"41","In what language do you read most often?","Other","select","read_language",NA,NA,FALSE
+"42","In what language do you read most often?",NA,"text","read_language_other","read_language","Other",FALSE
+"43","Have you ever learned to program in R?","Yes","y/n","learned_r",NA,NA,TRUE
+"44","Have you ever learned to program in R?","No","y/n","learned_r",NA,NA,TRUE
+"45","If yes, how many years have you been using R?","5","numeric","years_using_r","learned_r","Yes",FALSE
+"46","Have you ever learned a programming language (other than R)?","Yes","y/n","learned_programming_not_r",NA,NA,TRUE
+"47","Have you ever learned a programming language (other than R)?","No","y/n","learned_programming_not_r",NA,NA,TRUE
+"48","If yes, which language(s) and how many years have you been using each language?",NA,"text","years_programming_not_r","learned_programming_not_r","Yes",FALSE
+"49","Have you ever completed a data analysis?","Yes","y/n","completed_data_analysis",NA,NA,TRUE
+"50","Have you ever completed a data analysis?","No","y/n","completed_data_analysis",NA,NA,TRUE
+"51","If yes, approximately how many data analyses have you completed?","0 to 5","mc","number_completed_data_analysis","completed_data_analysis","Yes",FALSE
+"52","If yes, approximately how many data analyses have you completed?","5 to 10","mc","number_completed_data_analysis","completed_data_analysis","Yes",FALSE
+"53","If yes, approximately how many data analyses have you completed?","10 to 15","mc","number_completed_data_analysis","completed_data_analysis","Yes",FALSE
+"54","If yes, approximately how many data analyses have you completed?","15+","mc","number_completed_data_analysis","completed_data_analysis","Yes",FALSE
