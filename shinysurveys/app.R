@@ -3,6 +3,7 @@ library(shinyjs)
 library(shinyalert)
 library(rdrop2)
 library(glue)
+library(whisker)
 
 #establish SASS file
 sass::sass(
@@ -22,14 +23,15 @@ ui <- shiny::fillPage(
                 "create_question",
                 "Create a Question"
             ),
-            shiny::actionButton(
-                "submit",
-                "Submit"
-            )
+            shiny::actionButton("submit", "Submit"),
+            shiny::downloadButton("download_app", "Download App")
         )
     ),
     div(class = "grid",
         div(class = "survey",
+            shiny::textInput("survey_title",
+                             "Survey Title",
+                             "Untitled"),
             #default question
             flex_form_question_ui(question_number = 1),
         )
@@ -84,12 +86,20 @@ server <- function(input, output, session) {
 
     })
 
-    observeEvent(input$submit, {
-        # Right now, it won't print out a question if there are no options for it.
-        # print(make_question_dataframe(input, form))
-        write.csv(make_question_dataframe(input, form), '~/Downloads/test_gui_survey.csv')
-    })
+    output$download_app <- shiny::downloadHandler(
+        filename = "yes.csv",
+        content = function(file) {
 
+            # template <- readLines("www/template.R")
+            # data <- list("survey_title" = input$survey_title)
+            # fs::dir_create(path = path)
+            write.csv(make_question_dataframe(input, form), file)
+            # base::writeLines(whisker::whisker.render(template, data), paste0(file, "/app.R"))
+            # fs::dir_create(path = paste0(path, "/www/"))
+            #fs::file_copy(path = "www/survey.scss", new_path = paste0(file, "/www/survey.scss"))
+        },
+        contentType = "text/csv"
+    )
 
     shiny::observe({
 
