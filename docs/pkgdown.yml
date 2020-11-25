@@ -1,7 +1,0 @@
-pandoc: 2.9.2.1
-pkgdown: 1.6.1
-pkgdown_sha: ~
-articles:
-  add-surveys: add-surveys.html
-last_built: 2020-11-25T23:20Z
-
