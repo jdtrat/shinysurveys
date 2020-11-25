@@ -2,11 +2,17 @@ Package: shinysurveys
 Title: Create and deploy surveys in Shiny
 Version: 0.0.0.9000
 Authors@R: 
+    c(
     person(given = "Jonathan",
            family = "Trattner",
            role = c("aut", "cre"),
            email = "code@jdtrat.com",
-           comment = c(ORCID = "0000-0002-1097-7603"))
+           comment = c(ORCID = "0000-0002-1097-7603")),
+    person(given = "Lucy", 
+           family = c("D'Agostino McGowan"), 
+           role = c("aut"),
+           email = "mcgowald@wfu.edu")
+    )
 Description: Provides easy-to-use code for creating and deploying surveys in Shiny.
 License: MIT + file LICENSE
 Encoding: UTF-8
