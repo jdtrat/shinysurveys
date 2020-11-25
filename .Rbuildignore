@@ -3,3 +3,6 @@
 ^LICENSE\.md$
 ^shinysurveys$
 ^R/create_survey_questions\.R$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
