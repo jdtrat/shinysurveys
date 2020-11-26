@@ -8,7 +8,8 @@
 #' @export
 
 flex_form_question_ui <- function(question_number) {
-  shiny::tagList(div(id = paste0("question_", question_number),
+  shiny::tagList(shiny::div(
+    id = paste0("question_", question_number),
                      shiny::fluidRow(
                        shiny::column(
                          width = 4,

@@ -1,19 +1,12 @@
 library(shiny)
+library(shinysurveys)
 library(shinyjs)
 library(shinyalert)
 library(rdrop2)
 library(glue)
 library(whisker)
 
-# sass::sass(
-#     sass::sass_file("www/survey.scss"),
-#     output = "www/survey.css"
-# )
-
 ui <- shiny::fillPage(
-    # tags$head(
-    #     tags$link(rel = "stylesheet", type = "text/css", href = "survey.css")
-    # ),
     shinyjs::useShinyjs(),
     uiOutput("sass"),
     div(class = "NA",
@@ -157,16 +150,6 @@ li.l {
         ))
     })
 
-    # observe({
-    #     #establish SASS file
-    #     sass::sass(list(
-    #         list(color = input$survey_color),
-    #                sass::sass_file("www/survey.scss"),
-    #                output = "www/survey.css"
-    #     ))
-    # })
-
-
     # Have a question already present
     # Have options as 0 by default
     form <- reactiveValues(num_questions = 1,
@@ -236,7 +219,7 @@ li.l {
             # Write the app, sass file, and survey questions csv
             base::writeLines(whisker::whisker.render(app_template, app_data), "survey/survey_app/app.R")
             base::writeLines(whisker::whisker.render(sass_template, sass_data), "survey/survey_app/www/survey.scss")
-            write.csv(make_question_dataframe(input, form), "survey/survey_app/www/survey_questions.csv")
+            write.csv(shinysurveys:::make_question_dataframe(input, form), "survey/survey_app/www/survey_questions.csv")
 
             # Zip the files and unlink tmp directory
             zip(zipfile = file,
@@ -256,11 +239,9 @@ li.l {
         #             ~ disable_text_type_questions(input, .x))
 
         purrr::walk(.x = 1:form$num_questions,
-                    ~ remove_questions(input, .x))
+                    ~ shinysurveys:::remove_questions(input, .x))
 
     })
-
-
 
 }
 

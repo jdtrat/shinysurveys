@@ -6,9 +6,6 @@
 #'
 #' It requires shiny, shinyjs, and shinyWidgets.
 #'
-#' @param questions A dataframe of questions of which to create a demographic
-#'   form.
-#'
 #' @return A Shiny App
 #' @export
 #'
@@ -19,9 +16,9 @@
 #' }
 demo_survey <- function() {
 
-  require("shiny")
-  require("shinyjs")
-  require("shinyWidgets")
+  requireNamespace("shiny")
+  requireNamespace("shinyjs")
+  requireNamespace("shinyWidgets")
 
   ui <- shiny::fluidPage(
     shiny::tags$head(
@@ -123,21 +120,21 @@ li.l {
 ')
       )
     ),
-div(class = "grid",
-    div(class = "survey",
-        h1("Sample Survey"),
-        surveyOutput(teaching_r_questions)
+shiny::div(class = "grid",
+    shiny::div(class = "survey",
+        shiny::h1("Sample Survey"),
+        surveyOutput(shinysurveys::teaching_r_questions)
         )
     )
   )
 
   server <- function(input, output, session) {
 
-    renderSurvey(input = input, df = teaching_r_questions, session = session)
+    renderSurvey(input = input, df = shinysurveys::teaching_r_questions, session = session)
 
     shiny::observeEvent(input$submit, {
 
-      showModal(modalDialog(
+      shiny::showModal(shiny::modalDialog(
         title = "Congrats, you submitted your first shinysurvey!",
         "You can customize what actions happen when a user finishes a survey using input$submit."
       ))

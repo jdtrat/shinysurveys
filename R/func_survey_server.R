@@ -128,7 +128,6 @@ get_question_id <- function(num_options, input, form) {
 #' @param value The question input type
 #'
 #' @keywords internal
-#' @return
 #'
 
 convert_type <- function(value) {
@@ -141,6 +140,13 @@ convert_type <- function(value) {
          "Yes/No" = "y/n")
 }
 
+
+#' Make question dataframe
+#'
+#' @param input The Shiny input
+#' @param form The form reactiveValues object
+#' @keywords internal
+#'
 make_question_dataframe <- function(input, form) {
 
   options_per_question <- purrr::map(.x = 1:form$num_questions,
@@ -195,17 +201,14 @@ disable_text_type_questions <- function(input, question_num) {
 #'
 #' @param input The Shiny input
 #' @param question_num The question number
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' @keywords internal
+
 remove_questions <- function(input, question_num) {
 
-  observeEvent(input[[paste0("question_", question_num, "_title_remove")]], {
-    removeUI(selector = paste0("#option_placeholder_", question_num))
+  shiny::observeEvent(input[[paste0("question_", question_num, "_title_remove")]], {
+    shiny::removeUI(selector = paste0("#option_placeholder_", question_num))
 
-    removeUI(selector = paste0("#question_", question_num))
+    shiny::removeUI(selector = paste0("#question_", question_num))
   })
 
 }

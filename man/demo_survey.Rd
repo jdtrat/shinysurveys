@@ -4,11 +4,7 @@
 \alias{demo_survey}
 \title{Demo Survey over multiple pages}
 \usage{
-demo_survey(questions)
-}
-\arguments{
-\item{questions}{A dataframe of questions of which to create a demographic
-form.}
+demo_survey()
 }
 \value{
 A Shiny App
@@ -24,6 +20,6 @@ It requires shiny, shinyjs, and shinyWidgets.
 \examples{
 
 \dontrun{
-demo_survey_page(teaching_r_questions)
+demo_survey()
 }
 }
