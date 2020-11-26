@@ -9,7 +9,7 @@ library(whisker)
 ui <- shiny::fillPage(
     shinyjs::useShinyjs(),
     uiOutput("sass"),
-    div(class = "NA",
+    div(class = "binder",
         shiny::tagList(
             colourpicker::colourInput("survey_color", "Survey Color", value = "#add8e6"),
             shiny::actionButton("add_option", "Add an option"),
