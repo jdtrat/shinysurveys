@@ -3,6 +3,7 @@ library(shinysurveys)
 library(shinyjs)
 library(shinyalert)
 library(rdrop2)
+library(usethis)
 library(glue)
 library(whisker)
 
@@ -212,6 +213,8 @@ li.l {
             dir.create(path = "survey/")
             dir.create(path = "survey/survey_app/")
             dir.create(path = "survey/survey_app/www/")
+            on.exit(unlink("survey/"))
+            on.exit(unlink(tmp))
 
             # Create a project file for the survey
             usethis::create_project("survey", open = FALSE)
@@ -227,7 +230,6 @@ li.l {
                           "survey/survey_app/app.R",
                           "survey/survey_app/www/survey.scss",
                           "survey/survey_app/www/survey_questions.csv"))
-            unlink(tmp)
 
         },
         contentType = "application/zip"
