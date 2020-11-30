@@ -12,7 +12,7 @@ The goal of shinysurveys is to provide an easy to use framework for developing a
 You can install the development version of shinysurveys on from Github as follows:
 
 ``` r
-# Install/update discord with the development version from GitHub. 
+# Install/update shinysurveys with the development version from GitHub. 
 # If devtools is not installed, uncomment the line below.
 # install.packages("devtools")
 devtools::install_github("jdtrat/shinysurveys")
