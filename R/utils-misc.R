@@ -29,3 +29,39 @@ form_question_ui <- function(form) {
     )
   )
 }
+
+
+#' Manual Creation of a .Rproj file
+#'
+#' @param path The file path to save .Rproj file
+#'
+#' @keywords internal
+create_project_manual <- function(path) {
+
+  if (!grepl(".Rproj", path)) {
+    path <- paste0(path, ".Rproj")
+  }
+
+  project <- "
+
+Version: 1.0
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 2
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+
+AutoAppendNewline: Yes
+StripTrailingWhitespace: Yes
+
+  "
+
+  writeLines(project, path)
+}
