@@ -12,14 +12,14 @@ flex_form_question_ui <- function(question_number) {
     id = paste0("question_", question_number),
                      shiny::fluidRow(
                        shiny::column(
-                         width = 4,
+                         width = 8,
                          offset = 0,
                          shiny::textInput(paste0("question_", question_number, "_title"),
                                           "",
                                           "Untitled Question",
                                           width = "600px"),
                        ),
-                       shiny::column(width = 2,
+                       shiny::column(width = 3,
                                      offset = 0.5,
                                      shiny::selectInput(paste0("question_", question_number, "_type"),
                                                         "",
@@ -35,20 +35,21 @@ flex_form_question_ui <- function(question_number) {
                        shiny::div(id = paste0("option_placeholder_", question_number),
                                   shiny::textInput(inputId = paste0("question_", question_number, "_option_1"),
                                                    label = "Option 1",
-                                                   value = "Placeholder")),
+                                                   value = "Placeholder",
+                                                   width = "69%")),
                      ),
                      shiny::fluidRow(
                        shiny::column(
-                         width = 1,
-                         offset = 2,
+                         width = 2,
+                         offset = 5,
                          shiny::actionButton(
-                           inputId = paste0("question_", question_number, "_title_", "remove"),
-                           label = "Remove",
+                           inputId = paste0("question_", question_number, "_title_delete"),
+                           label = "Delete",
                            icon = shiny::icon("trash")
                          )
                        ),
-                       shiny::column(width = 1,
-                                     offset = 2.9,
+                       shiny::column(width = 2,
+                                     offset = 0,
                                      shinyWidgets::switchInput(
                                        inputId = paste0("question_", question_number, "_title_", "required"),
                                        label = "Required",
