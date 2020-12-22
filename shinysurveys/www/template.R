@@ -2,8 +2,6 @@ library(shiny)
 library(shinysurveys)
 library(shinyjs)
 library(shinyalert)
-library(rdrop2)
-library(glue)
 
 #establish SASS file
 sass::sass(

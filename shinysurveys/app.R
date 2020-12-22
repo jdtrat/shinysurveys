@@ -2,9 +2,6 @@ library(shiny)
 library(shinysurveys)
 library(shinyjs)
 library(shinyalert)
-library(rdrop2)
-library(usethis)
-library(glue)
 library(whisker)
 
 ui <- shiny::fillPage(
@@ -25,8 +22,8 @@ ui <- shiny::fillPage(
     div(class = "grid",
         div(class = "survey",
             shiny::textInput("survey_title",
-                             "Survey Title",
-                             "Untitled"),
+                             "",
+                             "Untitled Survey"),
             #default question
             flex_form_question_ui(question_number = 1),
         )
@@ -61,6 +58,10 @@ $dark: darken($color, 15%);
   grid-template-columns: 1fr 1fr 1fr;
   background-color: $light;
 
+}
+
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100%;
 }
 
 .container-fluid {
@@ -147,6 +148,27 @@ li.l {
   margin-right: 35px;
 }
 
+#survey_title {
+height: 50px;
+font-size: 24pt;
+}
+
+input[type=text]:focus {
+border-bottom: 1.5px solid $little_dark;
+-webkit-box-shadow: none
+}
+
+input[type=text] {
+border: none;
+box-shadow: none;
+border-radius: 0;
+border-bottom: 1px dashed rgba(0,0,0,0.12);
+padding: 15px;
+outline: none;
+color: #3A506B;
+background-color: $little_light;
+}
+
             "
         ))
     })
@@ -213,20 +235,18 @@ li.l {
             dir.create(path = "survey/")
             dir.create(path = "survey/survey_app/")
             dir.create(path = "survey/survey_app/www/")
-            on.exit(unlink("survey/"))
-            on.exit(unlink(tmp))
 
             # Create a project file for the survey
-            usethis::create_project("survey", open = FALSE)
+            shinysurveys:::create_project_manual(path = paste0("survey/", input$survey_title, ".Rproj"))
 
             # Write the app, sass file, and survey questions csv
             base::writeLines(whisker::whisker.render(app_template, app_data), "survey/survey_app/app.R")
             base::writeLines(whisker::whisker.render(sass_template, sass_data), "survey/survey_app/www/survey.scss")
-            write.csv(shinysurveys:::make_question_dataframe(input, form), "survey/survey_app/www/survey_questions.csv")
+            readr::write_csv(shinysurveys:::make_question_dataframe(input, form), "survey/survey_app/www/survey_questions.csv")
 
             # Zip the files and unlink tmp directory
             zip(zipfile = file,
-                files = c("survey",
+                files = c(paste0("survey/", input$survey_title, ".Rproj"),
                           "survey/survey_app/app.R",
                           "survey/survey_app/www/survey.scss",
                           "survey/survey_app/www/survey_questions.csv"))
@@ -240,8 +260,10 @@ li.l {
         # purrr::walk(.x = 1:form$num_questions,
         #             ~ disable_text_type_questions(input, .x))
 
-        purrr::walk(.x = 1:form$num_questions,
-                    ~ shinysurveys:::remove_questions(input, .x))
+
+      shinyjs::onclick(id = "question_1")
+      purrr::walk(.x = 1:form$num_questions,
+                  ~ shinysurveys:::delete_questions(input, .x))
 
     })
 
