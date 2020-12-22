@@ -197,15 +197,15 @@ disable_text_type_questions <- function(input, question_num) {
 
 
 
-#' Remove questions
+#' Delete questions
 #'
 #' @param input The Shiny input
 #' @param question_num The question number
 #' @keywords internal
 
-remove_questions <- function(input, question_num) {
+delete_questions <- function(input, question_num) {
 
-  shiny::observeEvent(input[[paste0("question_", question_num, "_title_remove")]], {
+  shiny::observeEvent(input[[paste0("question_", question_num, "_title_delete")]], {
     shiny::removeUI(selector = paste0("#option_placeholder_", question_num))
 
     shiny::removeUI(selector = paste0("#question_", question_num))
