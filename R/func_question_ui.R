@@ -8,7 +8,7 @@
 #' @export
 
 flex_form_question_ui <- function(question_number) {
-  shiny::tagList(shiny::div(
+  shiny::tagList(shiny::div(class = "questions",
     id = paste0("question_", question_number),
                      shiny::fluidRow(
                        shiny::column(
@@ -34,7 +34,7 @@ flex_form_question_ui <- function(question_number) {
                        ),
                        shiny::div(id = paste0("option_placeholder_", question_number),
                                   shiny::textInput(inputId = paste0("question_", question_number, "_option_1"),
-                                                   label = "Option 1",
+                                                   label = "",
                                                    value = "Placeholder",
                                                    width = "69%")),
                      ),
@@ -44,7 +44,7 @@ flex_form_question_ui <- function(question_number) {
                          offset = 5,
                          shiny::actionButton(
                            inputId = paste0("question_", question_number, "_title_delete"),
-                           label = "Delete",
+                           label = "",
                            icon = shiny::icon("trash")
                          )
                        ),

@@ -9,24 +9,38 @@ ui <- shiny::fillPage(
     uiOutput("sass"),
     div(class = "binder",
         shiny::tagList(
-            colourpicker::colourInput("survey_color", "Survey Color", value = "#add8e6"),
-            shiny::actionButton("add_option", "Add an option"),
-            shiny::actionButton(
-                "create_question",
-                "Create a Question"
+          fluidRow(
+            column(width = 2,
+                   offset = 6,
+            colourpicker::colourInput("survey_color", "", value = "#add8e6", palette = "limited")
             ),
-            shiny::actionButton("submit", "Submit"),
-            shiny::downloadButton("download_app", "Download App")
+            column(width = 2,
+                   offset = 0,
+                   shiny::actionButton("add_option", "Add an option"),
+                   shiny::actionButton(
+                     "create_question",
+                     "Create a Question"
+                   ),
+            shiny::downloadButton("download_app", "Download App", style = "margin-top: 20px;")
         )
+          )
+    )
     ),
     div(class = "grid",
         div(class = "survey",
+            div(class = "title-description",
             shiny::textInput("survey_title",
                              "",
                              "Untitled Survey"),
+            shiny::textInput("survey_description",
+                             "",
+                             "Survey description")
+            ),
             #default question
             flex_form_question_ui(question_number = 1),
-        )
+        ),
+        div(class = "footer",
+            "Designed by Jonathan Trattner. Github link. Other stuff.")
     )
 
 )
@@ -47,8 +61,15 @@ server <- function(input, output, session) {
 $little_dark: darken($color, 5%);
 $little_light: lighten($color, 5%);
 $middle_light: lighten($color, 10%);
+$questions_background: $middle_light;
 $light: lighten($color, 15%);
 $dark: darken($color, 15%);
+
+.binder {
+  background-color: white;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid $dark;
+}
 
 .grid {
   display: grid;
@@ -57,6 +78,16 @@ $dark: darken($color, 15%);
   height: 100%;
   grid-template-columns: 1fr 1fr 1fr;
   background-color: $light;
+  padding-bottom: 200px;
+}
+
+.footer {
+
+visibility: hidden;
+grid-column-start: 1;
+grid-column-end: 4;
+background-color: white;
+border-top: 0.5px solid $dark;
 
 }
 
@@ -76,8 +107,24 @@ $dark: darken($color, 15%);
   /* justify-items: center;
   justify-self: center; */
   position: center;
-  background-color: $little_light;
+  background-color: transparent;
 }
+
+.questions {
+  background-color: white;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.title-description {
+  background-color: white;
+  border-radius: 20px;
+  border-top: 20px solid $little_light;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
 
 .input-pane {
   grid-column-start: 1;
@@ -151,6 +198,7 @@ li.l {
 #survey_title {
 height: 50px;
 font-size: 24pt;
+background-color: transparent;
 }
 
 input[type=text]:focus {
@@ -166,7 +214,17 @@ border-bottom: 1px dashed rgba(0,0,0,0.12);
 padding: 15px;
 outline: none;
 color: #3A506B;
-background-color: $little_light;
+background-color: transparent;
+}
+
+
+input[id^='question_'][id$='_title'] {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+div[id^='option_placeholder'] {
+  margin-left: 26px;
 }
 
             "
@@ -199,8 +257,9 @@ background-color: $little_light;
         form$num_options <- form$num_options + 1
         insertUI(selector = paste0("#option_placeholder_", form$num_questions),
                  ui = textInput(inputId = paste0("question_", form$num_questions, "_option_", form$num_options),
-                                label = paste0("Option ", form$num_options),
-                                value = "Placeholder"))
+                                label = "",
+                                value = "Placeholder",
+                                width = "69%"))
     })
 
     observeEvent(input$create_question, {
