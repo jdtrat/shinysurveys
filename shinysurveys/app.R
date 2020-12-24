@@ -11,18 +11,16 @@ ui <- shiny::fillPage(
         shiny::tagList(
           fluidRow(
             column(width = 2,
-                   offset = 6,
-            colourpicker::colourInput("survey_color", "", value = "#add8e6", palette = "limited")
-            ),
+                   offset = 8,
+                   fluidRow(
+                shiny::tags$i(id = "palette-icon", class = "fas fa-palette"),
+                colourpicker::colourInput("survey_color", "", value = "#add8e6", palette = "limited")
+                ))),
+          fluidRow(
             column(width = 2,
-                   offset = 0,
-                   shiny::actionButton("add_option", "Add an option"),
-                   shiny::actionButton(
-                     "create_question",
-                     "Create a Question"
-                   ),
-            shiny::downloadButton("download_app", "Download App", style = "margin-top: 20px;")
-        )
+                   offset = 8,
+            shiny::downloadButton("download_app", "Download App", style = "margin-left: -30px;")
+          )
           )
     )
     ),
@@ -59,6 +57,7 @@ server <- function(input, output, session) {
 @import url('https://fonts.googleapis.com/css?family=Inconsolata');
 
 $little_dark: darken($color, 5%);
+$middle_dark: darken($color, 10%);
 $little_light: lighten($color, 5%);
 $middle_light: lighten($color, 10%);
 $questions_background: $middle_light;
@@ -83,11 +82,11 @@ $dark: darken($color, 15%);
 
 .footer {
 
-visibility: hidden;
-grid-column-start: 1;
-grid-column-end: 4;
-background-color: white;
-border-top: 0.5px solid $dark;
+  visibility: hidden;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  background-color: white;
+  border-top: 0.5px solid $dark;
 
 }
 
@@ -119,12 +118,11 @@ border-top: 0.5px solid $dark;
 .title-description {
   background-color: white;
   border-radius: 20px;
-  border-top: 20px solid $little_light;
+  border-top: 20px solid $middle_dark;
   padding-left: 10px;
   padding-bottom: 10px;
   margin-bottom: 12px;
 }
-
 
 .input-pane {
   grid-column-start: 1;
@@ -196,35 +194,58 @@ li.l {
 }
 
 #survey_title {
-height: 50px;
-font-size: 24pt;
-background-color: transparent;
+  height: 50px;
+  font-size: 24pt;
+  background-color: transparent;
+  width: 91%;
+}
+
+#survey_description {
+  width: 91%;
 }
 
 input[type=text]:focus {
-border-bottom: 1.5px solid $little_dark;
--webkit-box-shadow: none
+  border-bottom: 1.5px solid $little_dark;
+  -webkit-box-shadow: none
 }
 
 input[type=text] {
-border: none;
-box-shadow: none;
-border-radius: 0;
-border-bottom: 1px dashed rgba(0,0,0,0.12);
-padding: 15px;
-outline: none;
-color: #3A506B;
-background-color: transparent;
+  font-size: 12pt;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom: 1px dashed rgba(0,0,0,0.12);
+  padding: 15px;
+  outline: none;
+  color: #3A506B;
+  background-color: transparent;
 }
 
 
 input[id^='question_'][id$='_title'] {
   margin-left: 10px;
-  font-size: 16px;
+  font-size: 14pt;
 }
 
 div[id^='option_placeholder'] {
   margin-left: 26px;
+}
+
+.colourpicker-input-container {
+  background-image: none;
+  padding-left: 45px;
+  margin-top: -52px;
+}
+
+#survey_color {
+  width: 20px;
+}
+
+#palette-icon {
+  color: $color;
+  font-size: 2em;
+  padding-top: 22px;
+  padding-left: 10px;
 }
 
             "

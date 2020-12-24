@@ -41,17 +41,18 @@ flex_form_question_ui <- function(question_number) {
                      shiny::fluidRow(
                        shiny::column(
                          width = 2,
-                         offset = 5,
+                         offset = 6,
                          shiny::actionButton(
                            inputId = paste0("question_", question_number, "_title_delete"),
                            label = "",
-                           icon = shiny::icon("trash")
+                           icon = shiny::icon("trash"),
+                           style = "margin-left: 50px;"
                          )
                        ),
                        shiny::column(width = 2,
                                      offset = 0,
                                      shinyWidgets::switchInput(
-                                       inputId = paste0("question_", question_number, "_title_", "required"),
+                                       inputId = paste0("question_", question_number, "_title_required"),
                                        label = "Required",
                                        labelWidth = "60px"
                                      )
