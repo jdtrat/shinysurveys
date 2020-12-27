@@ -102,7 +102,10 @@ surveyOutput_individual <- function(df) {
     output <- shinyjs::hidden(output)
   }
 
-  return(list(output))
+  return(shiny::tagList(
+    shiny::div(class = "questions",
+               output))
+  )
 
 }
 
