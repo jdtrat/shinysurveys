@@ -4,18 +4,18 @@
 \alias{demo_survey}
 \title{Demo Survey over multiple pages}
 \usage{
-demo_survey()
+demo_survey(theme = "#63B8FF")
+}
+\arguments{
+\item{theme}{A valid hex color such as #63B8FF (default)}
 }
 \value{
 A Shiny App
 }
 \description{
 This function runs a Shiny app that shows an example of running a demographic
-survey in Shiny. Upon submission, it saves the responses to your downloads
-folder.
-}
-\details{
-It requires shiny, shinyjs, and shinyWidgets.
+survey in Shiny. It has a sample title and description and its theme color
+can be customized using a hex color code.
 }
 \examples{
 

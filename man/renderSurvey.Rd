@@ -4,14 +4,18 @@
 \alias{renderSurvey}
 \title{Server code for adding survey questions}
 \usage{
-renderSurvey(input, df, session)
+renderSurvey(input, output, df, session, theme = "#63B8FF")
 }
 \arguments{
 \item{input}{Input from server}
 
+\item{output}{Output from server}
+
 \item{df}{A user supplied dataframe in the format of teaching_r_questions.}
 
 \item{session}{Session from server}
+
+\item{theme}{A valid hex color such as #63B8FF (default)}
 }
 \value{
 NA; server code

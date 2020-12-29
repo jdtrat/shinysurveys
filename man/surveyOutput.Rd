@@ -4,10 +4,14 @@
 \alias{surveyOutput}
 \title{Generate the UI Code for demoraphic questions}
 \usage{
-surveyOutput(df, ...)
+surveyOutput(df, survey_title, survey_description, ...)
 }
 \arguments{
 \item{df}{A user supplied dataframe in the format of teaching_r_questions.}
+
+\item{survey_title}{(Optional) user supplied title for the survey}
+
+\item{survey_description}{(Optional) user supplied description for the survey}
 
 \item{...}{Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.}
 }
@@ -20,6 +24,8 @@ question (input) types include numeric, text, multiple choice, or selection.
 }
 \examples{
 \dontrun{
-surveyOutput(teaching_r_questions)
+surveyOutput(teaching_r_questions,
+"Teaching R Questions",
+"Survey used in the Teaching R Study (McGowan et al., 2021)")
 }
 }
