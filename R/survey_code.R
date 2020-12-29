@@ -99,16 +99,51 @@ surveyOutput_individual <- function(df) {
   }
 
   if (!base::is.na(df$dependence[1])) {
-    output <- shinyjs::hidden(output)
+    # output <- shinyjs::hidden(output)
+    output <-
+      shinyjs::hidden(
+      shiny::div(class = "questions dependence",
+                 id = df$input_id[1],
+                 div(class = "question-input",
+                 output))
+        )
+  } else if (base::is.na(df$dependence[1])) {
+    output <- shiny::div(class = "questions",
+                         div(class = "question-input",
+                         output))
   }
 
-  return(shiny::tagList(
-    shiny::div(class = "questions",
-               output))
-  )
+  return(output)
 
 }
 
+
+
+#' Check survey metadata
+#'
+#' Returns title/description HTML tags as needed.
+#'
+#' @keywords internal
+#' @noRd
+#'
+check_survey_metadata <- function(survey_description, survey_title) {
+  if (!missing(survey_description) && missing(survey_title)) {
+    stop("Must provide a survey title in order to provide a survey description.")
+  } else if (missing(survey_title) && missing(survey_description)) {
+    return()
+  } else if (!missing(survey_title) && missing(survey_description)) {
+    return(
+      shiny::div(class = "title-description",
+                 shiny::h1(id = "survey-title", survey_title))
+    )
+  } else if (!missing(survey_title) && !missing(survey_description)) {
+    return(
+      shiny::div(class = "title-description",
+                 shiny::h1(id = "survey-title", survey_title),
+                 shiny::p(id = "survey-description", survey_description))
+    )
+  }
+}
 
 #' Generate the UI Code for demoraphic questions
 #'
@@ -116,6 +151,8 @@ surveyOutput_individual <- function(df) {
 #' question (input) types include numeric, text, multiple choice, or selection.
 #'
 #' @param df A user supplied dataframe in the format of teaching_r_questions.
+#' @param survey_title (Optional) user supplied title for the survey
+#' @param survey_description (Optional) user supplied description for the survey
 #' @param ... Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.
 #'
 #' @return UI Code for a Shiny App.
@@ -123,21 +160,25 @@ surveyOutput_individual <- function(df) {
 #'
 #' @examples
 #' \dontrun{
-#' surveyOutput(teaching_r_questions)
+#' surveyOutput(teaching_r_questions, "Teaching R Questions", "Survey used in the Teaching R Study (McGowan et al., 2021)")
 #' }
-surveyOutput <- function(df, ...) {
+surveyOutput <- function(df, survey_title, survey_description, ...) {
 
   nested <- nestUniqueQuestions(df)
 
   shiny::tagList(shinyjs::useShinyjs(),
-                 shinyjs::inlineCSS(".required { color: red; }"),
-                 shinyjs::hidden(shiny::textInput(inputId = "userID",
-                                                  label = "Enter your username.",
-                                                  value = "NO_USER_ID")),
-                 purrr::map(nested$data, ~surveyOutput_individual(.x)),
-                 shiny::actionButton("submit",
-                                     "Submit",
-                                     ...))
+                 shiny::div(class = "grid",
+                            shiny::div(class = "survey",
+                                       shiny::uiOutput("sass"),
+                                       shinyjs::hidden(shiny::textInput(inputId = "userID",
+                                                                        label = "Enter your username.",
+                                                                        value = "NO_USER_ID")),
+                                       check_survey_metadata(survey_title = survey_title,
+                                                             survey_description = survey_description),
+                                       purrr::map(nested$data, ~surveyOutput_individual(.x)),
+                                       shiny::actionButton("submit",
+                                                           "Submit",
+                                                           ...))))
 
 }
 
@@ -161,8 +202,10 @@ showDependence <- function(input = input, df) {
     # show the question.
     if (input[[df$dependence[1]]] == df$dependence_value[1]) {
       shinyjs::show(df$input_id[1])
+      shinyjs::removeClass(df$input_id[1], class = "dependence")
       df$required <- TRUE
     } else {
+      shinyjs::addClass(df$input_id[1], class = "dependence")
       shinyjs::hide(df$input_id[1])
       df$required <- FALSE
     }
@@ -229,12 +272,28 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #'
 #' @param df A user supplied dataframe in the format of teaching_r_questions.
 #' @param input Input from server
+#' @param output Output from server
 #' @param session Session from server
+#' @param theme A valid hex color such as #63B8FF (default)
 #'
 #' @return NA; server code
 #' @export
 #'
-renderSurvey <- function(input, df, session) {
+renderSurvey <- function(input, output, df, session, theme = "#63B8FF") {
+
+  output$sass <- shiny::renderUI({
+    shiny::tags$head(
+      shiny::tags$style(
+        css())
+      )
+  })
+
+  css <- shiny::reactive({
+    sass::sass(list(
+      list(color = theme),
+      readLines("inst/render_survey.scss")
+    ))
+  })
 
   nested <- nestUniqueQuestions(df)
   required_vec <- getRequired_internal(nested$data)
