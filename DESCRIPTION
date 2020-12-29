@@ -33,7 +33,8 @@ Imports:
     dplyr,
     tidyr,
     tibble,
-    whisker
+    whisker,
+    sass
 Depends: 
     R (>= 2.10)
 Suggests: 
