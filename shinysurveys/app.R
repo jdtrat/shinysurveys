@@ -37,6 +37,17 @@ ui <- shiny::fillPage(
             #default question
             flex_form_question_ui(question_number = 1),
         ),
+        shinyjs::hidden(
+          div(id = "options_binding",
+              class = "options",
+              shiny::actionButton("add_option",
+                                  "Add an option"),
+              shiny::actionButton(
+                "create_question",
+                label = "",
+                icon = icon("plus")
+              ))
+          ),
         div(class = "footer",
             "Designed by Jonathan Trattner. Github link. Other stuff.")
     )
@@ -60,23 +71,6 @@ server <- function(input, output, session) {
     # Have options as 0 by default
     form <- reactiveValues(num_questions = 1,
                            num_options = 1)
-
-
-    # # IF DEPENDENCE IS NOT NA IT WILL BE HIDDEN SO IT WILL "WORK" BUT NOT
-    # shiny::observe({
-    #
-    #     if (input$dependency == TRUE) {
-    #         shinyjs::show(id = "question_dependence")
-    #         shiny::updateSelectInput(session, "question_dependence", choices = "question")
-    #         shinyjs::show(id = "question_dependence_value")
-    #         shiny::updateSelectInput(session, "question_dependence_value",
-    #                                  label = paste0("For what value of ", input$question_dependence, " should this question appear?")
-    #         )
-    #     } else {
-    #         shinyjs::hide(id = "question_dependence")
-    #         shinyjs::hide(id = "question_dependence_value")
-    #     }
-    # })
 
     observeEvent(input$add_option, {
         form$num_options <- form$num_options + 1
@@ -109,9 +103,9 @@ server <- function(input, output, session) {
 
             # Create the app and sass templates and fill in the data parameters with the GUI inputs.
             app_template <- readLines("www/template.R")
-            sass_template <- readLines("www/survey_template.scss")
-            app_data <- list("survey_title" = paste0('"', input$survey_title, '"'))
-            sass_data <- list("survey_color" = input$survey_color)
+            app_data <- list("survey_title" = paste0('"', input$survey_title, '"'),
+                             "survey_description" = paste0('"', input$survey_description, '"'),
+                             "theme_color" = paste0('"', input$survey_color, '"'))
 
             # Create a temp directory and set it as the working directory
             tmp <- tempdir()
@@ -121,18 +115,16 @@ server <- function(input, output, session) {
             dir.create(path = "survey/survey_app/www/")
 
             # Create a project file for the survey
-            shinysurveys:::create_project_manual(path = paste0("survey/", input$survey_title, ".Rproj"))
+            shinysurveys:::create_project_manual(path = paste0("survey/", sanitize_file_name(input$survey_title), ".Rproj"))
 
             # Write the app, sass file, and survey questions csv
             base::writeLines(whisker::whisker.render(app_template, app_data), "survey/survey_app/app.R")
-            base::writeLines(whisker::whisker.render(sass_template, sass_data), "survey/survey_app/www/survey.scss")
             readr::write_csv(shinysurveys:::make_question_dataframe(input, form), "survey/survey_app/www/survey_questions.csv")
 
             # Zip the files and unlink tmp directory
             zip(zipfile = file,
-                files = c(paste0("survey/", input$survey_title, ".Rproj"),
+                files = c(paste0("survey/", sanitize_file_name(input$survey_title), ".Rproj"),
                           "survey/survey_app/app.R",
-                          "survey/survey_app/www/survey.scss",
                           "survey/survey_app/www/survey_questions.csv"))
 
         },
@@ -145,7 +137,9 @@ server <- function(input, output, session) {
         #             ~ disable_text_type_questions(input, .x))
 
 
-      shinyjs::onclick(id = "question_1")
+      shinyjs::onclick(id = "question_1",
+                       shinyjs::show(id = "options_binding"))
+
       purrr::walk(.x = 1:form$num_questions,
                   ~ shinysurveys:::delete_questions(input, .x))
 

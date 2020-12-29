@@ -65,3 +65,16 @@ StripTrailingWhitespace: Yes
 
   writeLines(project, path)
 }
+
+
+#' Sanitize filenames
+#'
+#' Convert to all lowercase and replace spaces with underscores
+#'
+#' @param string
+#' @noRd
+sanitize_file_name <- function(string) {
+  out <- gsub(" ", "_", string)
+  out <- tolower(out)
+  return(out)
+}

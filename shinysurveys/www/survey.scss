@@ -101,3 +101,20 @@ li.l {
   margin-left: 40px;
   margin-right: 35px;
 }
+
+#survey_title {
+border: none;
+box-shadow: none;
+border-radius: 0;
+border-bottom: 1px dashed rgba(0,0,0,0.12);
+width: 90%;
+height: 50px;
+padding: 15px;
+font-size: 24pt;
+outline: none;
+color: #3A506B;
+}
+
+#survey_title:focus {
+ border-bottom: 1.5px solid $little_dark;
+}
