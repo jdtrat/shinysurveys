@@ -104,12 +104,12 @@ surveyOutput_individual <- function(df) {
       shinyjs::hidden(
       shiny::div(class = "questions dependence",
                  id = df$input_id[1],
-                 div(class = "question-input",
+                 shiny::div(class = "question-input",
                  output))
         )
   } else if (base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions",
-                         div(class = "question-input",
+                         shiny::div(class = "question-input",
                          output))
   }
 
@@ -160,7 +160,9 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #'
 #' @examples
 #' \dontrun{
-#' surveyOutput(teaching_r_questions, "Teaching R Questions", "Survey used in the Teaching R Study (McGowan et al., 2021)")
+#' surveyOutput(teaching_r_questions,
+#' "Teaching R Questions",
+#' "Survey used in the Teaching R Study (McGowan et al., 2021)")
 #' }
 surveyOutput <- function(df, survey_title, survey_description, ...) {
 
@@ -291,7 +293,10 @@ renderSurvey <- function(input, output, df, session, theme = "#63B8FF") {
   css <- shiny::reactive({
     sass::sass(list(
       list(color = theme),
-      readLines("inst/render_survey.scss")
+      readLines(
+        system.file("render_survey.scss",
+                    package = "shinysurveys")
+        )
     ))
   })
 
