@@ -12,11 +12,11 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(tidyverse)
 ```
 
 ```{r setup, message = FALSE}
 library(shinysurveys)
-library(tidyverse)
 ```
 
 # Introduction {#introduction}
@@ -57,8 +57,8 @@ A good example of a numeric input is the first question: "What's your age?":
 shinysurveys::teaching_r_questions %>%
   dplyr::filter(input_id == "age")
 ```
-uset
-As we noted in the [introduction](#Introduction), this row shows us that the question is "What's your age?". We know we are expecting a numeric input by looking at the `input_type` column, and the default value is equal to 25 according to the `option` column.
+
+uset As we noted in the [introduction](#Introduction), this row shows us that the question is "What's your age?". We know we are expecting a numeric input by looking at the `input_type` column, and the default value is equal to 25 according to the `option` column.
 
 > It is important to note that the `option` column for numeric inputs provides the default value, but for other types -- as we will see -- provides the possible options for a question.
 
