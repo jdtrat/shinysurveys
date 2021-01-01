@@ -6,7 +6,6 @@ library(whisker)
 
 ui <- shiny::fillPage(
     shinyjs::useShinyjs(),
-    uiOutput("sass"),
     div(class = "binder",
         shiny::tagList(
           fluidRow(
@@ -37,17 +36,6 @@ ui <- shiny::fillPage(
             #default question
             flex_form_question_ui(question_number = 1),
         ),
-        shinyjs::hidden(
-          div(id = "options_binding",
-              class = "options",
-              shiny::actionButton("add_option",
-                                  "Add an option"),
-              shiny::actionButton(
-                "create_question",
-                label = "",
-                icon = icon("plus")
-              ))
-          ),
         div(class = "footer",
             "Designed by Jonathan Trattner. Github link. Other stuff.")
     )
@@ -56,8 +44,16 @@ ui <- shiny::fillPage(
 
 server <- function(input, output, session) {
 
-    output$sass <- renderUI({
-      tags$head(tags$style(css()))
+  num_tag <- reactiveVal(0)
+
+  observeEvent(input$survey_color, {
+    num_tag(num_tag() + 1)
+    shiny::insertUI(
+      selector = "head",
+      where = "beforeEnd",
+      ui = tags$style(id = paste0("survey_color_", num_tag()),
+                      css()))
+    shiny::removeUI(selector = paste0("#survey_color_", (num_tag() - 1)))
     })
 
      css <- reactive({
