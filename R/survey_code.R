@@ -214,6 +214,19 @@ showDependence <- function(input = input, df) {
   }
 }
 
+
+#' Get required IDs
+#'
+#' @keywords internal
+#' @noRd
+getID <- function(df) {
+  if (df$required[1] == TRUE) {
+    base::unique(df$input_id)
+  } else {
+    return(NA)
+  }
+}
+
 #' Get a character vector of required questions
 #'
 #' @param df The output of \code{\link{nestUniqueQuestions}} (indexing into the data column).
@@ -222,12 +235,6 @@ showDependence <- function(input = input, df) {
 #' @export
 #'
 getRequired_internal <- function(df) {
-
-  getID <- function(df) {
-    if (df$required[1] == TRUE) {
-      base::unique(df$input_id)
-    }
-  }
 
   out <- purrr::map_df(df, ~base::list("required_id" = getID(.x)))
   out <- out$required_id
@@ -262,6 +269,9 @@ checkIndividual <- function(input = input, input_id) {
 #'
 
 checkRequired_internal <- function(input = input, required_inputs_vector) {
+  if (all(is.na(required_inputs_vector))) {
+    return()
+  }
   all(purrr::map_lgl(.x = required_inputs_vector, ~checkIndividual(input = input, input_id = .x)))
 }
 
