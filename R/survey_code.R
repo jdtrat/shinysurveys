@@ -271,6 +271,8 @@ checkIndividual <- function(input = input, input_id) {
 checkRequired_internal <- function(input = input, required_inputs_vector) {
   if (all(is.na(required_inputs_vector))) {
     return(TRUE)
+  } else {
+    required_inputs_vector <- required_inputs_vector[!is.na(required_inputs_vector)]
   }
   all(purrr::map_lgl(.x = required_inputs_vector, ~checkIndividual(input = input, input_id = .x)))
 }
