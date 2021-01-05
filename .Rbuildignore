@@ -1,13 +1,5 @@
 ^shinysurveys\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^shinysurveys$
-^R/create_survey_questions\.R$
-^_pkgdown\.yml$
-^docs$
-^pkgdown$
-^\.travis\.yml$
-^url_user_tracking$
 ^\.github$
-^doc$
-^Meta$
+
