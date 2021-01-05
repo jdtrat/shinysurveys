@@ -1,6 +1,6 @@
 Package: shinysurveys
 Title: Create and deploy surveys in Shiny
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(
     person(given = "Jonathan",
@@ -21,23 +21,16 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1.9000
 Imports: 
     shiny,
-    usethis,
-    shinyWidgets,
     shinyjs,
     magrittr,
     purrr,
     stringr,
-    janitor,
-    snakecase,
     rlang,
     dplyr,
     tidyr,
-    tibble,
-    whisker,
     sass
 Depends: 
     R (>= 2.10)
 Suggests: 
     knitr,
     rmarkdown
-VignetteBuilder: knitr
