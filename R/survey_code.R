@@ -54,13 +54,11 @@ surveyOutput_individual <- function(df) {
   inputType <- base::unique(df$input_type)
 
   if (inputType ==  "select") {
-    output <-
-      shinyWidgets::pickerInput(
+      output <-
+      shiny::selectInput(
         inputId = base::unique(df$input_id),
         label = addRequiredUI_internal(df),
         choices = df$option,
-        options = list(
-          title = "Placeholder")
       )
   } else if (inputType == "numeric") {
 
