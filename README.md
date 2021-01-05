@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![GitHub version](https://badge.fury.io/gh/jdtrat%2Fshinysurveys.svg)](https://badge.fury.io/gh/jdtrat%2Fshinysurveys)
+[![R-CMD-check](https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg)](https://github.com/jdtrat/shinysurveys/actions)
 <!-- badges: end -->
 
 The goal of shinysurveys is to provide an easy to use framework for developing and deploying surveys in R. 

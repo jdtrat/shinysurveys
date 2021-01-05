@@ -8,3 +8,4 @@
 ^pkgdown$
 ^\.travis\.yml$
 ^url_user_tracking$
+^\.github$
