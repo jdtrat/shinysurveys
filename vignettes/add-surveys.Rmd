@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(tidyverse)
+# library(tidyverse)
 ```
 
 ```{r setup, message = FALSE}
