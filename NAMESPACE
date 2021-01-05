@@ -2,7 +2,6 @@
 
 export("%>%")
 export(demo_survey)
-export(flex_form_question_ui)
 export(getRequired_internal)
 export(renderSurvey)
 export(surveyOutput)
