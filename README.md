@@ -10,20 +10,21 @@ Easily create and deploy surveys in Shiny
 
 </h4>
 
-::: {align="center"}
+<p align="center">
+
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg)](https://github.com/jdtrat/shinysurveys/actions) [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 <!-- badges: end -->
-:::
+
+</p>
 
 ------------------------------------------------------------------------
 
-<img src="https://jdtrat.com/packages/shinysurveys/hex/shinysurveys_hex-final.png" width="328" height="378" style="float: right;"/>
+<img src="https://jdtrat.com/packages/shinysurveys/hex/shinysurveys_hex-final.png" width="328" height="378" align="right"/>
 
-::: {style="margin-top: 25px;"}
-> {shinyscreenshot} provides easy-to-use, minimalistic code for creating and deploying surveys in Shiny. Originally inspired by Dean Attali's [shinyforms](https://github.com/daattali/shinyforms), our package provides a framework for robust surveys, similar to Google Forms, in R with [Shiny](http://github.com/rstudio/shiny/).
+{shinyscreenshot} provides easy-to-use, minimalistic code for creating and deploying surveys in Shiny. Originally inspired by Dean Attali's [shinyforms](https://github.com/daattali/shinyforms), our package provides a framework for robust surveys, similar to Google Forms, in R with [Shiny](http://github.com/rstudio/shiny/).
 
 ## Table of contents
 
@@ -33,11 +34,14 @@ Easily create and deploy surveys in Shiny
 -   [Advanced Surveys](#advanced-surveys)
 -   [Further Reading](#further-reading)
 -   [Feedback](#feedback)
-:::
 
 ------------------------------------------------------------------------
 
-## Installation {#installation}
+<h2 id="installation">
+
+Installation
+
+</h2>
 
 You can install the development version of shinysurveys on from Github as follows:
 
@@ -51,7 +55,11 @@ devtools::install_github("jdtrat/shinysurveys")
 library(shinysurveys)
 ```
 
-## Demos {#demos}
+<h2 id="demos">
+
+Demos
+
+</h2>
 
 A survey made with our package might look like this:
 
@@ -59,7 +67,11 @@ A survey made with our package might look like this:
 
 You can run a demo survey with the function `shinysurveys::demo_survey()`.
 
-## Getting started {#getting-started}
+<h2 id="getting-started">
+
+Getting started
+
+</h2>
 
 Aside from `demo_survey()`, {shinysurveys} exports two functions: `surveyOutput()` and `renderSurvey()`. The former goes in the UI portion of a Shiny app, and the latter goes in the server portion. To create a survey, you can build a data frame with your questions. The following columns are required.
 
@@ -111,14 +123,26 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-## Advanced surveys {#advanced-surveys}
+<h2 id="advanced-surveys">
+
+Advanced surveys
+
+</h2>
 
 {Documentation coming soon...}
 
-## Further reading {#further-reading}
+<h2 id="further-reading">
+
+Further reading
+
+</h2>
 
 For a more thorough explanation of shinysurveys functions, please see the vignette on the [official package website](https://jdtrat.com/packages/shinysurveys/)
 
-## Feedback {#feedback}
+<h2 id="feedback">
+
+Feedback
+
+</h2>
 
 If you want to see a feature, or report a bug, please [file an issue](https://github.com/jdtrat/shinysurveys/issues) or open a [pull-request](https://github.com/jdtrat/shinysurveys/pulls)! As this package is just getting off the ground, we welcome all feedback and contributions.
