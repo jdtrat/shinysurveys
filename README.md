@@ -13,11 +13,9 @@ Easily create and deploy surveys in Shiny
 
 <p align="center">
 
-<!-- badges: start -->
+<a href="https://github.com/jdtrat/shinysurveys/actions"><img src="https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg" alt="R-CMD-check" style="max-width:100%;"></a>
 
-[![R-CMD-check](https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg)](https://github.com/jdtrat/shinysurveys/actions) [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-
-<!-- badges: end -->
+<a href="https://www.tidyverse.org/lifecycle/#maturing" rel="nofollow"><img src="https://camo.githubusercontent.com/ae2f538d678a8e76c5493d870c59fbf928b14906e41227a07af5bbf3566b5068/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6966656379636c652d6d61747572696e672d626c75652e737667" alt="Lifecycle: maturing" data-canonical-src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" style="max-width:100%;"></a>
 
 </p>
 
