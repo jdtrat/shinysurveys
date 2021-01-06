@@ -19,13 +19,12 @@ surveyOutput(df, survey_title, survey_description, ...)
 UI Code for a Shiny App.
 }
 \description{
-Create the UI code for a Shiny app based on user-supplied questions. Possible
-question (input) types include numeric, text, multiple choice, or selection.
+Create the UI code for a Shiny app based on user-supplied questions.
 }
 \examples{
 \dontrun{
-surveyOutput(teaching_r_questions,
-"Teaching R Questions",
-"Survey used in the Teaching R Study (McGowan et al., 2021)")
+surveyOutput(df = shinysurveys::teaching_r_questions,
+survey_title = "Teaching R Questions",
+survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")
 }
 }

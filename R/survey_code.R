@@ -145,8 +145,7 @@ check_survey_metadata <- function(survey_description, survey_title) {
 
 #' Generate the UI Code for demoraphic questions
 #'
-#' Create the UI code for a Shiny app based on user-supplied questions. Possible
-#' question (input) types include numeric, text, multiple choice, or selection.
+#' Create the UI code for a Shiny app based on user-supplied questions.
 #'
 #' @param df A user supplied dataframe in the format of teaching_r_questions.
 #' @param survey_title (Optional) user supplied title for the survey
@@ -158,9 +157,9 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #'
 #' @examples
 #' \dontrun{
-#' surveyOutput(teaching_r_questions,
-#' "Teaching R Questions",
-#' "Survey used in the Teaching R Study (McGowan et al., 2021)")
+#' surveyOutput(df = shinysurveys::teaching_r_questions,
+#' survey_title = "Teaching R Questions",
+#' survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")
 #' }
 surveyOutput <- function(df, survey_title, survey_description, ...) {
 
@@ -279,8 +278,7 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 
 #' Server code for adding survey questions
 #'
-#' Create the UI code for a Shiny app based on user-supplied questions. Possible
-#' question (input) types include numeric, text, multiple choice, or selection.
+#' Include server-side logic for shinysurveys.
 #'
 #' @param df A user supplied dataframe in the format of teaching_r_questions.
 #' @param input Input from server
@@ -291,7 +289,17 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #' @return NA; server code
 #' @export
 #'
-renderSurvey <- function(input, output, df, session, theme = "#63B8FF") {
+#' @examples
+#'
+#' \dontrun{
+#' renderSurvey(df = shinysurveys::teaching_r_questions,
+#' input = input,
+#' output = output,
+#' session = session,
+#' theme = "#63B8FF")
+#' }
+#'
+renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
 
   output$sass <- shiny::renderUI({
     shiny::tags$head(

@@ -4,14 +4,14 @@
 \alias{renderSurvey}
 \title{Server code for adding survey questions}
 \usage{
-renderSurvey(input, output, df, session, theme = "#63B8FF")
+renderSurvey(df, input, output, session, theme = "#63B8FF")
 }
 \arguments{
+\item{df}{A user supplied dataframe in the format of teaching_r_questions.}
+
 \item{input}{Input from server}
 
 \item{output}{Output from server}
-
-\item{df}{A user supplied dataframe in the format of teaching_r_questions.}
 
 \item{session}{Session from server}
 
@@ -21,6 +21,16 @@ renderSurvey(input, output, df, session, theme = "#63B8FF")
 NA; server code
 }
 \description{
-Create the UI code for a Shiny app based on user-supplied questions. Possible
-question (input) types include numeric, text, multiple choice, or selection.
+Include server-side logic for shinysurveys.
+}
+\examples{
+
+\dontrun{
+renderSurvey(df = shinysurveys::teaching_r_questions,
+input = input,
+output = output,
+session = session,
+theme = "#63B8FF")
+}
+
 }
