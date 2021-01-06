@@ -1,3 +1,4 @@
+<p align = "center">
 <h1 align="center">
 
 shinysurveys
@@ -17,6 +18,8 @@ Easily create and deploy surveys in Shiny
 [![R-CMD-check](https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg)](https://github.com/jdtrat/shinysurveys/actions) [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 <!-- badges: end -->
+
+</p>
 
 </p>
 
