@@ -325,8 +325,7 @@ renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
 
       query <- shiny::parseQueryString(session$clientData$url_search)
       if (!base::is.null(query[["user_id"]])) {
-        new_value <- stringr::str_extract(string = query[["user_id"]],
-                                          pattern = "[^*/]+")
+        new_value <- base_extract_user_id(query)
         shiny::updateTextInput(session, inputId = "userID", value = new_value)
       }
 
