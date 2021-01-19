@@ -7,7 +7,7 @@
 surveyOutput_individual(df)
 }
 \arguments{
-\item{df}{A nested dataframe.}
+\item{df}{One element (a dataframe) in the list of unique questions.}
 }
 \value{
 UI Code for a Shiny App.

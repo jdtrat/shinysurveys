@@ -7,7 +7,7 @@
 addRequiredUI_internal(df)
 }
 \arguments{
-\item{df}{The output of \code{\link{nestUniqueQuestions}}.}
+\item{df}{One element (a dataframe) in the list of unique questions.}
 }
 \value{
 A label with or without an asterisk to signify it is required.
@@ -17,3 +17,4 @@ This function is for internal use. It will check if a question in the
 user-supplied questions dataframe is required. If so, it will add the label
 with an asterisk. If not, it will just return the label.
 }
+\keyword{internal}

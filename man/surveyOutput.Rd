@@ -2,12 +2,12 @@
 % Please edit documentation in R/survey_code.R
 \name{surveyOutput}
 \alias{surveyOutput}
-\title{Generate the UI Code for demoraphic questions}
+\title{Generate the UI Code for demographic questions}
 \usage{
 surveyOutput(df, survey_title, survey_description, ...)
 }
 \arguments{
-\item{df}{A user supplied dataframe in the format of teaching_r_questions.}
+\item{df}{A user supplied data frame in the format of teaching_r_questions.}
 
 \item{survey_title}{(Optional) user supplied title for the survey}
 

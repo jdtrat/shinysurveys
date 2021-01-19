@@ -17,3 +17,4 @@ TRUE if the input has a value; false otherwise.
 \description{
 Check if individual inputs have a value
 }
+\keyword{internal}

@@ -7,7 +7,7 @@
 getRequired_internal(df)
 }
 \arguments{
-\item{df}{The output of \code{\link{nestUniqueQuestions}} (indexing into the data column).}
+\item{df}{One element (a dataframe) in the list of unique questions.}
 }
 \value{
 A character vectors with the input ID of required questions.
@@ -15,3 +15,4 @@ A character vectors with the input ID of required questions.
 \description{
 Get a character vector of required questions
 }
+\keyword{internal}

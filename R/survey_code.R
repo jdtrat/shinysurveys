@@ -1,26 +1,29 @@
-#' Get Unique Questions in a Nested Dataframe
+#' Convert dataframe of questions to list for use in Shiny UI
 #'
 #' @param df A user supplied dataframe in the format of teaching_r_questions.
+#' @keywords internal
 #'
-#' @return A nested dataframe.
+#' @return A list of unique questions for each UI element
 #'
-#' @importFrom rlang .data
-#'
-nestUniqueQuestions <- function(df) {
-  # nest the sample data
-  # replace any NA with "placeholder"
-  # I've added the question_number but there has to be a better way to do this...
-  df %>%
-    dplyr::mutate(option = tidyr::replace_na(.data$option, "Placeholder")) %>%
-    dplyr::group_by(.data$question, .data$dependence) %>%
-    tidyr::nest() %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(question_number = dplyr::row_number(), .before = .data$question) %>%
-    tidyr::unnest(.data$data) %>%
-    dplyr::group_by(.data$question_number) %>%
-    tidyr::nest() %>%
-    dplyr::ungroup()
+listUniqueQuestions <- function(df) {
+
+  # Replace any NAs in the option column with "Placeholder"
+  df[["option"]][is.na(df[["option"]])] <- "Placeholder"
+
+  # separate unique questions partially -- some in nested list
+  partial <- purrr::map(get_questions(df), ~split_dependence(.x))
+
+  # pull each element so every UI element (dependence/question combo) is in one list
+  output <- NULL
+
+  for (question in 1:length(partial)) {
+    output <- c(output, purrr::pluck(partial, question))
+  }
+
+  return(output)
 }
+
+
 
 #' Check if a question is required
 #'
@@ -28,8 +31,8 @@ nestUniqueQuestions <- function(df) {
 #' user-supplied questions dataframe is required. If so, it will add the label
 #' with an asterisk. If not, it will just return the label.
 #'
-#' @param df The output of \code{\link{nestUniqueQuestions}}.
-#'
+#' @param df One element (a dataframe) in the list of unique questions.
+#' @keywords internal
 #' @return A label with or without an asterisk to signify it is required.
 #'
 #'
@@ -45,7 +48,7 @@ addRequiredUI_internal <- function(df) {
 
 #' Generate the UI Code for demoraphic questions
 #'
-#' @param df A nested dataframe.
+#' @param df One element (a dataframe) in the list of unique questions.
 #' @keywords internal
 #' @return UI Code for a Shiny App.
 #'
@@ -97,7 +100,6 @@ surveyOutput_individual <- function(df) {
   }
 
   if (!base::is.na(df$dependence[1])) {
-    # output <- shinyjs::hidden(output)
     output <-
       shinyjs::hidden(
       shiny::div(class = "questions dependence",
@@ -143,11 +145,11 @@ check_survey_metadata <- function(survey_description, survey_title) {
   }
 }
 
-#' Generate the UI Code for demoraphic questions
+#' Generate the UI Code for demographic questions
 #'
 #' Create the UI code for a Shiny app based on user-supplied questions.
 #'
-#' @param df A user supplied dataframe in the format of teaching_r_questions.
+#' @param df A user supplied data frame in the format of teaching_r_questions.
 #' @param survey_title (Optional) user supplied title for the survey
 #' @param survey_description (Optional) user supplied description for the survey
 #' @param ... Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.
@@ -163,7 +165,7 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #' }
 surveyOutput <- function(df, survey_title, survey_description, ...) {
 
-  nested <- nestUniqueQuestions(df)
+  unique_questions <- listUniqueQuestions(df)
 
   shiny::tagList(shinyjs::useShinyjs(),
                  shiny::div(class = "grid",
@@ -174,7 +176,7 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
                                                                         value = "NO_USER_ID")),
                                        check_survey_metadata(survey_title = survey_title,
                                                              survey_description = survey_description),
-                                       purrr::map(nested$data, ~surveyOutput_individual(.x)),
+                                       purrr::map(unique_questions, ~surveyOutput_individual(.x)),
                                        shiny::actionButton("submit",
                                                            "Submit",
                                                            ...))))
@@ -184,8 +186,9 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
 #' Show dependence questions
 #'
 #' @param input Input from server
-#' @param df The output of \code{\link{nestUniqueQuestions}} (indexed into the data column)..
+#' @param df One element (a dataframe) in the list of unique questions.
 #'
+#' @keywords internal
 #' @return NA; shows a dependence question in the UI.
 #'
 showDependence <- function(input = input, df) {
@@ -226,8 +229,8 @@ getID <- function(df) {
 
 #' Get a character vector of required questions
 #'
-#' @param df The output of \code{\link{nestUniqueQuestions}} (indexing into the data column).
-#'
+#' @param df One element (a dataframe) in the list of unique questions.
+#' @keywords internal
 #' @return A character vectors with the input ID of required questions.
 #' @export
 #'
@@ -247,6 +250,7 @@ getRequired_internal <- function(df) {
 #' @param input Input from server
 #' @param input_id The input_id to check
 #'
+#' @keywords internal
 #' @return TRUE if the input has a value; false otherwise.
 #'
 checkIndividual <- function(input = input, input_id) {
@@ -261,6 +265,7 @@ checkIndividual <- function(input = input, input_id) {
 #'
 #' @param input Input from server
 #' @param required_inputs_vector The output of \code{\link{getRequired_internal}}.
+#' @keywords internal
 #'
 #' @return TRUE if all required questions have been answered. FALSE otherwise.
 #'
@@ -318,8 +323,8 @@ renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
     ))
   })
 
-  nested <- nestUniqueQuestions(df)
-  required_vec <- getRequired_internal(nested$data)
+  unique_questions <- listUniqueQuestions(df)
+  required_vec <- getRequired_internal(unique_questions)
 
   shiny::observe({
 
@@ -329,7 +334,7 @@ renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
         shiny::updateTextInput(session, inputId = "userID", value = new_value)
       }
 
-    purrr::walk(nested$data, ~showDependence(input = input, df = .x))
+    purrr::walk(unique_questions, ~showDependence(input = input, df = .x))
     shinyjs::toggleState(id = "submit",
                          condition = checkRequired_internal(input = input,
                                                             required_inputs_vector = required_vec))

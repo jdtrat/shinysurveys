@@ -1,3 +1,7 @@
+# shinysurveys 0.1.1
+
+-   Removed `dplyr`, `tidyr`, `rlang`, and `magrittr` dependencies.
+
 # shinysurveys 0.1.0
 
 ## New Features

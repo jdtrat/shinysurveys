@@ -9,7 +9,7 @@ showDependence(input = input, df)
 \arguments{
 \item{input}{Input from server}
 
-\item{df}{The output of \code{\link{nestUniqueQuestions}} (indexed into the data column)..}
+\item{df}{One element (a dataframe) in the list of unique questions.}
 }
 \value{
 NA; shows a dependence question in the UI.
@@ -17,3 +17,4 @@ NA; shows a dependence question in the UI.
 \description{
 Show dependence questions
 }
+\keyword{internal}
