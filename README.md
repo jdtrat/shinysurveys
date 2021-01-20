@@ -25,11 +25,7 @@
 
 ------------------------------------------------------------------------
 
-<h2 id="installation">
-
-Installation
-
-</h2>
+## Installation
 
 You can install the development version of shinysurveys on from Github as follows:
 
@@ -43,11 +39,7 @@ devtools::install_github("jdtrat/shinysurveys")
 library(shinysurveys)
 ```
 
-<h2 id="demos">
-
-Demos
-
-</h2>
+## Demos
 
 A survey made with our package might look like this:
 
@@ -55,20 +47,16 @@ A survey made with our package might look like this:
 
 You can run a demo survey with the function `shinysurveys::demo_survey()`.
 
-<h2 id="getting-started">
-
-Getting started
-
-</h2>
+## Getting Started
 
 Aside from `demo_survey()`, {shinysurveys} exports two functions: `surveyOutput()` and `renderSurvey()`. The former goes in the UI portion of a Shiny app, and the latter goes in the server portion. To create a survey, you can build a data frame with your questions. The following columns are required.
 
 -   *question*: The question to be asked.
 -   *option*: A possible response to the question. In multiple choice questions, for example, this would be the possible answers. For questions without discrete answers, such as a numeric input, this would be the default option shown on the input.
--   *input\_type*: What type of response is expected? Currently supported types include `numeric`, `mc` for multiple choice, `text`, `select`, and `y/n` for yes/no questions.
--   *input\_id*: The id for Shiny inputs.
--   *dependence*: Does this question (row) depend on another? That is, should it only appear if a different question has a specific value? This column contains the input\_id of whatever question this one depends upon.
--   *dependence\_value*: This column contains the specific value that the dependence question must take for this question (row) to be shown.
+-   *input_type*: What type of response is expected? Currently supported types include `numeric`, `mc` for multiple choice, `text`, `select`, and `y/n` for yes/no questions.
+-   *input_id*: The id for Shiny inputs.
+-   *dependence*: Does this question (row) depend on another? That is, should it only appear if a different question has a specific value? This column contains the input_id of whatever question this one depends upon.
+-   *dependence_value*: This column contains the specific value that the dependence question must take for this question (row) to be shown.
 -   *required*: logical TRUE/FALSE signifying if a question is required. Surveys can only be submitted when all required questions are answered.
 
 Our demo survey can be created as follows:
@@ -111,26 +99,18 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-<h2 id="advanced-surveys">
+## Advanced Surveys
 
-Advanced surveys
+-   **Dependencies** can be added so a specific question will appear based on a participant's answer to preceding questions. The `dependence` column takes an input_id of a preceding question and, if the participant answers with the value in `dependence_value`, the new question will be shown.
 
-</h2>
+-   **Required questions** can be specified by adding the value `TRUE` to the `required` column. If a required question is not answered, the user will not be able to submit their responses.
 
-{Documentation coming soon...}
+-   **URL-based user tracking** functionality lets you keep track of participants easily and systematically. If you deploy your survey on [shinyapps.io](shinyapps.io), or run it locally in a browser, you can add a URL parameter after the backslash as follows: `?user_id=12345`. A live demo can be found here: <https://jdtrat-apps.shinyapps.io/shinysurveys_survey_user_tracking/?user_id=hadley>
 
-<h2 id="further-reading">
+## Further Reading
 
-Further reading
+For a more in-depth explanation of {shinysurveys}, please see the vignette [*A survey of {shinysurveys}*](https://jdtrat.com/packages/shinysurveys/articles/surveying-shinysurveys.html).
 
-</h2>
-
-For a more thorough explanation of shinysurveys functions, please see the vignette on the [official package website](https://jdtrat.com/packages/shinysurveys/)
-
-<h2 id="feedback">
-
-Feedback
-
-</h2>
+## Feedback
 
 If you want to see a feature, or report a bug, please [file an issue](https://github.com/jdtrat/shinysurveys/issues) or open a [pull-request](https://github.com/jdtrat/shinysurveys/pulls)! As this package is just getting off the ground, we welcome all feedback and contributions.
