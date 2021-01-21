@@ -12,7 +12,7 @@
 
 <img src="https://jdtrat.com/packages/shinysurveys/hex/shinysurveys_hex-final.png" width="328" height="378" align="right"/>
 
-{shinyscreenshot} provides easy-to-use, minimalistic code for creating and deploying surveys in Shiny. Originally inspired by Dean Attali's [shinyforms](https://github.com/daattali/shinyforms), our package provides a framework for robust surveys, similar to Google Forms, in R with [Shiny](http://github.com/rstudio/shiny/).
+{shinysurveys} provides easy-to-use, minimalistic code for creating and deploying surveys in Shiny. Originally inspired by Dean Attali's [shinyforms](https://github.com/daattali/shinyforms), our package provides a framework for robust surveys, similar to Google Forms, in R with [Shiny](http://github.com/rstudio/shiny/).
 
 ## Table of contents
 
