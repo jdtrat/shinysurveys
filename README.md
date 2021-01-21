@@ -105,7 +105,7 @@ shinyApp(ui, server)
 
 -   **Required questions** can be specified by adding the value `TRUE` to the `required` column. If a required question is not answered, the user will not be able to submit their responses.
 
--   **URL-based user tracking** functionality lets you keep track of participants easily and systematically. If you deploy your survey on [shinyapps.io](shinyapps.io), or run it locally in a browser, you can add a URL parameter after the backslash as follows: `?user_id=UNIQUE_ID`. A live demo can be found here: <https://jdtrat-apps.shinyapps.io/shinysurveys_survey_user_tracking/?user_id=hadley>
+-   **URL-based user tracking** functionality lets you keep track of participants easily and systematically. If you deploy your survey on [shinyapps.io](shinyapps.io), or run it locally in a browser, you can add a URL parameter after the backslash as follows: `?user_id=UNIQUE_ID`. A live demo can be found here: <https://jdtrat-apps.shinyapps.io/shinysurveys_user_tracking/?user_id=hadley>
 
 ## Further Reading
 
