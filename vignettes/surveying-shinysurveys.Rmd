@@ -151,7 +151,7 @@ server <- function(input, output, session) {
 shiny::shinyApp(ui = ui, server = server)
 ```
 
-Please note that the UI comes with a "Submit" button included. Survey designers can customize actions by using the call `input$submit`. Some examples would be saving or displaying user responses. An example of that can be found [here](https://jdtrat-apps.shinyapps.io/shinysurveys_survey_submit).
+Please note that the UI comes with a "Submit" button included. Survey designers can customize actions by using the call `input$submit`. Some examples would be saving or displaying user responses, or displaying a message as seen on the [gif here](https://www.jdtrat.com/packages/shinysurveys/index.html#demos).
 
 ## Advanced Features
 
