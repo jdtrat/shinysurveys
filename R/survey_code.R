@@ -232,7 +232,6 @@ getID <- function(df) {
 #' @param df One element (a dataframe) in the list of unique questions.
 #' @keywords internal
 #' @return A character vectors with the input ID of required questions.
-#' @export
 #'
 getRequired_internal <- function(df) {
 
