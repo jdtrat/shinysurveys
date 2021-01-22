@@ -229,7 +229,7 @@ getID <- function(df) {
 
 #' Get a character vector of required questions
 #'
-#' @param questions The list of unique questions from \code{\ref{listUniqueQuestions}}.
+#' @param questions The list of unique questions from \code{\link{listUniqueQuestions}}.
 #' @keywords internal
 #' @return A character vectors with the input ID of required questions.
 #'

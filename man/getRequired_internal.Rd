@@ -4,10 +4,10 @@
 \alias{getRequired_internal}
 \title{Get a character vector of required questions}
 \usage{
-getRequired_internal(df)
+getRequired_internal(questions)
 }
 \arguments{
-\item{df}{One element (a dataframe) in the list of unique questions.}
+\item{questions}{The list of unique questions from \code{\link{listUniqueQuestions}}.}
 }
 \value{
 A character vectors with the input ID of required questions.
