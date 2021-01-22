@@ -229,13 +229,22 @@ getID <- function(df) {
 
 #' Get a character vector of required questions
 #'
-#' @param df One element (a dataframe) in the list of unique questions.
+#' @param questions The list of unique questions from \code{\ref{listUniqueQuestions}}.
 #' @keywords internal
 #' @return A character vectors with the input ID of required questions.
 #'
-getRequired_internal <- function(df) {
+getRequired_internal <- function(questions) {
 
-  out <- purrr::map_df(df, ~base::list("required_id" = getID(.x)))
+  out <- as.data.frame(
+    do.call(
+      rbind,
+      lapply(questions, getID)
+    ),
+    stringsAsFactors = FALSE
+  )
+
+  names(out) <- "required_id"
+
   out <- out$required_id
 
   return(out)
@@ -340,4 +349,5 @@ renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
   })
 
 }
+
 
