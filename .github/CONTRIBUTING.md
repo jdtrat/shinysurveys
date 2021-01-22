@@ -1,6 +1,6 @@
 # Contributing to shinysurveys
 
-Howdy :wave:! The guidelines below outline how to propose a change to shinysurveys. They are based on (i.e. the same as) the `tidyverse` contribution guidelines. If you have any additional questions, please [open an issue](https://github.com/jdtrat/shinysurveys/issues) or send me a [message on Twitter](https://twitter.com/jdtrat).
+Howdy :wave:! Thanks for your interest in making {shinysurveys} better! The guidelines below outline how to propose a change to shinysurveys. They are based on (i.e. the same as) the `tidyverse` contribution guidelines. If you have any additional questions, please [open an issue](https://github.com/jdtrat/shinysurveys/issues) or send me a [message on Twitter](https://twitter.com/jdtrat).
 
 ## Fixing typos
 
