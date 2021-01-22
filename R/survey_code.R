@@ -17,7 +17,7 @@ listUniqueQuestions <- function(df) {
   output <- NULL
 
   for (question in 1:length(partial)) {
-    output <- c(output, purrr::pluck(partial, question))
+    output <- c(output, pluck_by_index(partial, question))
   }
 
   return(output)
@@ -309,7 +309,7 @@ renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
     shiny::tags$head(
       shiny::tags$style(
         css())
-      )
+    )
   })
 
   css <- shiny::reactive({
