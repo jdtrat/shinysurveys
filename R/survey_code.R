@@ -11,7 +11,7 @@ listUniqueQuestions <- function(df) {
   df[["option"]][is.na(df[["option"]])] <- "Placeholder"
 
   # separate unique questions partially -- some in nested list
-  partial <- purrr::map(get_questions(df), ~split_dependence(.x))
+  partial <- lapply(get_questions(df), split_dependence)
 
   # pull each element so every UI element (dependence/question combo) is in one list
   output <- NULL
@@ -176,7 +176,7 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
                                                                         value = "NO_USER_ID")),
                                        check_survey_metadata(survey_title = survey_title,
                                                              survey_description = survey_description),
-                                       purrr::map(unique_questions, ~surveyOutput_individual(.x)),
+                                       lapply(unique_questions, surveyOutput_individual),
                                        shiny::actionButton("submit",
                                                            "Submit",
                                                            ...))))
