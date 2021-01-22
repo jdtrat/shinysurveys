@@ -46,3 +46,13 @@ split_dependence <- function(df) {
   }
 }
 
+#' Simple pluck
+#'
+#' simple and specific version of purrr::pluck to meet use-case
+#' @param list A list object
+#' @param index A numeric index
+#'
+#' @keywords internal
+pluck_by_index <- function(list, index) {
+  list[[index]]
+}
