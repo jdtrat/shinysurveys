@@ -22,6 +22,7 @@
 -   [Advanced Surveys](#advanced-surveys)
 -   [Further Reading](#further-reading)
 -   [Feedback](#feedback)
+-   [Code of Conduct](#code-of-conduct)
 
 ------------------------------------------------------------------------
 
@@ -113,4 +114,8 @@ For a more in-depth explanation of {shinysurveys}, please see the vignette [*A s
 
 ## Feedback
 
-If you want to see a feature, or report a bug, please [file an issue](https://github.com/jdtrat/shinysurveys/issues) or open a [pull-request](https://github.com/jdtrat/shinysurveys/pulls)! As this package is just getting off the ground, we welcome all feedback and contributions.
+If you want to see a feature, or report a bug, please [file an issue](https://github.com/jdtrat/shinysurveys/issues) or open a [pull-request](https://github.com/jdtrat/shinysurveys/pulls)! As this package is just getting off the ground, we welcome all feedback and contributions. See our [contribution guidelines](CONTRIBUTING.md) for more details on getting involved!
+
+## Code of Conduct
+
+Please note that the shinysurveys project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
