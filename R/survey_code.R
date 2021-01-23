@@ -251,8 +251,6 @@ getRequired_internal <- function(questions) {
 
 }
 
-
-
 #' Check if individual inputs have a value
 #'
 #' @param input Input from server
@@ -342,12 +340,12 @@ renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
         shiny::updateTextInput(session, inputId = "userID", value = new_value)
       }
 
-    purrr::walk(unique_questions, ~showDependence(input = input, df = .x))
+    # Update the dependencies
+    for (id in seq_along(unique_questions)) showDependence(input = input, df = unique_questions[[id]])
+
     shinyjs::toggleState(id = "submit",
                          condition = checkRequired_internal(input = input,
                                                             required_inputs_vector = required_vec))
   })
 
 }
-
-
