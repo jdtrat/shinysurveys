@@ -292,27 +292,22 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #' Include server-side logic for shinysurveys.
 #'
 #' @param df A user supplied dataframe in the format of teaching_r_questions.
-#' @param input Input from server
-#' @param output Output from server
-#' @param session Session from server
-#' @param theme A valid hex color such as #63B8FF (default)
+#' @param theme A valid R color: predefined such as "red" or "blue"; hex colors such as #63B8FF (default)
 #'
-#' @return NA; server code
 #' @export
 #'
 #' @examples
 #'
 #' \dontrun{
 #' renderSurvey(df = shinysurveys::teaching_r_questions,
-#' input = input,
-#' output = output,
-#' session = session,
 #' theme = "#63B8FF")
 #' }
 #'
-renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
+renderSurvey <- function(df, theme = "#63B8FF") {
 
-  output$sass <- shiny::renderUI({
+  session <- shiny::getDefaultReactiveDomain()
+
+  session$output$sass <- shiny::renderUI({
     shiny::tags$head(
       shiny::tags$style(
         css())
@@ -341,10 +336,10 @@ renderSurvey <- function(df, input, output, session, theme = "#63B8FF") {
       }
 
     # Update the dependencies
-    for (id in seq_along(unique_questions)) showDependence(input = input, df = unique_questions[[id]])
+    for (id in seq_along(unique_questions)) showDependence(input = session$input, df = unique_questions[[id]])
 
     shinyjs::toggleState(id = "submit",
-                         condition = checkRequired_internal(input = input,
+                         condition = checkRequired_internal(input = session$input,
                                                             required_inputs_vector = required_vec))
   })
 

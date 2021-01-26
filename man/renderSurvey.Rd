@@ -4,21 +4,12 @@
 \alias{renderSurvey}
 \title{Server code for adding survey questions}
 \usage{
-renderSurvey(df, input, output, session, theme = "#63B8FF")
+renderSurvey(df, theme = "#63B8FF")
 }
 \arguments{
 \item{df}{A user supplied dataframe in the format of teaching_r_questions.}
 
-\item{input}{Input from server}
-
-\item{output}{Output from server}
-
-\item{session}{Session from server}
-
-\item{theme}{A valid hex color such as #63B8FF (default)}
-}
-\value{
-NA; server code
+\item{theme}{A valid R color: predefined such as "red" or "blue"; hex colors such as #63B8FF (default)}
 }
 \description{
 Include server-side logic for shinysurveys.
@@ -27,9 +18,6 @@ Include server-side logic for shinysurveys.
 
 \dontrun{
 renderSurvey(df = shinysurveys::teaching_r_questions,
-input = input,
-output = output,
-session = session,
 theme = "#63B8FF")
 }
 

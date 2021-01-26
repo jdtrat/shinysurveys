@@ -24,10 +24,7 @@ demo_survey <- function(theme = "#63B8FF") {
 
   server <- function(input, output, session) {
 
-    renderSurvey(input = input,
-                 output = output,
-                 df = shinysurveys::teaching_r_questions,
-                 session = session,
+    renderSurvey(df = shinysurveys::teaching_r_questions,
                  theme = theme)
 
     shiny::observeEvent(input$submit, {

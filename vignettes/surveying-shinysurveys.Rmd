@@ -127,7 +127,7 @@ subset(teaching_r_questions, input_id == "learned_r")
 
 ### Server Function
 
-`renderSurvey()` takes in a data frame of the form described above. It also takes in the input, output, and session arguments that allow it to interface with the Shiny app. Lastly, it takes in a `theme` color to style your survey. Typical names such as "red" or "blue" work, as well as hex color codes such as "\#63B8FF" (the default theme). The documentation for it can be accessed by typing `?shinysurveys::renderSurvey()` in the console.
+`renderSurvey()` takes in a data frame of the form described above. It also takes in a `theme` color to style your survey. Typical names such as "red" or "blue" work, as well as hex color codes such as "\#63B8FF" (the default theme). The documentation for it can be accessed by typing `?shinysurveys::renderSurvey()` in the console.
 
 ## Basic Survey
 
@@ -142,10 +142,7 @@ ui <- shiny::fluidPage(
 )
 
 server <- function(input, output, session) {
-  shinysurveys::renderSurvey(df = shinysurveys::teaching_r_questions,
-                             input = input, 
-                             output = output,
-                             session = session)
+  shinysurveys::renderSurvey(df = shinysurveys::teaching_r_questions)
 }
 
 shiny::shinyApp(ui = ui, server = server)
