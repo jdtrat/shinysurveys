@@ -11,7 +11,11 @@ Authors@R:
     person(given = "Lucy", 
            family = c("D'Agostino McGowan"), 
            role = c("aut"),
-           email = "mcgowald@wfu.edu")
+           email = "mcgowald@wfu.edu"),
+    person(given = "Paul",
+           family = c("Le Grand"),
+           role = c("ctb"),
+           email = "ptlegrand1@gmail.com")
     )
 Description: Provides easy-to-use code for creating and deploying surveys in Shiny.
 License: MIT + file LICENSE
