@@ -8,117 +8,9 @@ $questions_background: $middle_light;
 $light: lighten($color, 15%);
 $dark: darken($color, 15%);
 
-
-.required {
-  color: red;
-}
-
-.dependence {
-  padding: 0px;
-}
-
-.binder {
-  background-color: white;
-  padding-bottom: 10px;
-  border-bottom: 0.5px solid $dark;
-}
-
-.grid {
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-columns: repeat(8, 1fr);
-  background-color: $light;
-  padding-bottom: 200px;
-}
-
-.footer {
-
-  visibility: hidden;
-  grid-column-start: 1;
-  grid-column-end: 9;
-  background-color: white;
-  border-top: 0.5px solid $dark;
-
-}
-
-.question-input {
-  margin: auto;
-  width: 100%;
-}
-
-.container-fluid {
-  background-color: $little_light;
-}
-
-.survey {
-  padding: 20px;
-  grid-column-start: 3;
-  grid-column-end: 7;
-  position: center;
-  background-color: transparent;
-}
-
-.questions {
-  display: grid;
-  background-color: white;
-  border: 0.5px solid #CCCCCC;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  padding-top: 10px;
-  padding-bottom: 1px;
-  padding-left: 10px;
-  min-height: 138px;
-}
-
-.title-description {
-  background-color: white;
-  border-radius: 20px;
-  border-top: 20px solid $middle_dark;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 12px;
-}
-
-#survey-description {
-  margin: 2px;
-  font-size: 11pt;
-}
-
-#survey-title {
-  margin-top: 20px;
-  margin-bottom: 12px;
-}
-
-.input-pane {
-  grid-column-start: 1;
-  padding: 20px;
-  border: 1px solid black;
-  grid-column-end: 1;
-  position: fixed;
-  background-color: $middle_light;
-}
-
 body {
 	font-family: 'Raleway', sans-serif;
 	background-color: $light;
-}
-
-code {
-	font-family: 'Source Code Pro', monospace;
-	font-size: 14px;
-}
-
-.console {
-	font-family: 'Inconsolata', monospace;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	background: black;
-	opacity: .8;
-	padding: 20px;
-	color: white;
-	z-index: 99999;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -135,12 +27,11 @@ h1, h2, h3 {
 
 h1 {
 	margin: 36px 0;
-}
 
-h1.title{
-	color: #416983;
+	&.title {
+	  color: #416983;;
+	}
 }
-
 
 h3 {
 	font-style: italic;
@@ -157,17 +48,6 @@ p {
 li.l {
   margin-left: 40px;
   margin-right: 35px;
-}
-
-#survey_title {
-  height: 50px;
-  font-size: 24pt;
-  background-color: transparent;
-  width: 91%;
-}
-
-#survey_description {
-  width: 91%;
 }
 
 input[type=text]:focus {
@@ -189,4 +69,84 @@ input[type=text] {
 
 label {
   margin-bottom: 10px;
+}
+
+.container-fluid {
+  background-color: $little_light;
+
+  .grid {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(8, 1fr);
+    background-color: $light;
+    padding-bottom: 200px;
+
+    .survey {
+      padding: 20px;
+      grid-column-start: 3;
+      grid-column-end: 7;
+      position: center;
+      background-color: transparent;
+
+      @media (max-width: 767px) {
+        grid-column-start: 2;
+        grid-column-end: 8;
+      }
+      @media (max-width: 575px) {
+        grid-column-start: 1;
+        grid-column-end: 9;
+      }
+
+      .title-description {
+        background-color: white;
+        border-radius: 20px;
+        border-top: 20px solid $middle_dark;
+        padding: {
+          left: 5%;
+          right: 5%;
+          bottom: 10px;
+        }
+        margin-bottom: 12px;
+
+        #survey-description {
+          margin: 2px;
+          font-size: 11pt;
+        }
+
+        #survey-title {
+          margin-top: 20px;
+          margin-bottom: 12px;
+        }
+      }
+
+      .questions {
+        display: grid;
+        background-color: white;
+        border: 0.5px solid #CCCCCC;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        padding: 10px;
+        min-height: 138px;
+
+        &.dependence {
+          padding: 0;
+        }
+
+        .question-input {
+          margin: auto;
+          width: 100%;
+
+          .shiny-input-container {
+            width: 100%;
+            padding: 0;
+
+            .required {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
 }
