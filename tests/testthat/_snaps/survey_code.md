@@ -4,7 +4,7 @@
       <div class="survey">
         <div id="sass" class="shiny-html-output"></div>
         <div class="form-group shiny-input-container shinyjs-hide">
-          <label class="control-label" for="userID">Enter your username.</label>
+          <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
           <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
         </div>
         <div class="title-description">
@@ -14,7 +14,7 @@
         <div class="questions">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="age">
+              <label class="control-label" id="age-label" for="age">
                 What's your age?
                 <span class="required">*</span>
               </label>
@@ -24,8 +24,8 @@
         </div>
         <div class="questions">
           <div class="question-input">
-            <div id="gender" class="form-group shiny-input-radiogroup shiny-input-container">
-              <label class="control-label" for="gender">
+            <div id="gender" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="gender-label">
+              <label class="control-label" id="gender-label" for="gender">
                 Which best describes your gender?
                 <span class="required">*</span>
               </label>
@@ -61,15 +61,15 @@
         <div class="questions dependence shinyjs-hide" id="self_describe_gender">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="self_describe_gender">Which best describes your gender?</label>
-              <input id="self_describe_gender" type="text" class="form-control" value="Placeholder"/>
+              <label class="control-label" id="self_describe_gender-label" for="self_describe_gender">Which best describes your gender?</label>
+              <input id="self_describe_gender" type="text" class="form-control" value="" placeholder="Placeholder"/>
             </div>
           </div>
         </div>
         <div class="questions">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="education_attained">What is the highest level of education you have attained?</label>
+              <label class="control-label" id="education_attained-label" for="education_attained">What is the highest level of education you have attained?</label>
               <div>
                 <select id="education_attained"><option value="Did not attend high school" selected>Did not attend high school</option>
     <option value="Some high school">Some high school</option>
@@ -77,7 +77,7 @@
     <option value="Some college">Some college</option>
     <option value="College">College</option>
     <option value="Graduate Work">Graduate Work</option></select>
-                <script type="application/json" data-for="education_attained" data-nonempty="">{}</script>
+                <script type="application/json" data-for="education_attained" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@
         <div class="questions">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="first_language">What was your first language?</label>
+              <label class="control-label" id="first_language-label" for="first_language">What was your first language?</label>
               <div>
                 <select id="first_language"><option value="Arabic" selected>Arabic</option>
     <option value="Armenian">Armenian</option>
@@ -101,7 +101,7 @@
     <option value="Italian">Italian</option>
     <option value="Japanese">Japanese</option>
     <option value="Other">Other</option></select>
-                <script type="application/json" data-for="first_language" data-nonempty="">{}</script>
+                <script type="application/json" data-for="first_language" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
               </div>
             </div>
           </div>
@@ -109,15 +109,15 @@
         <div class="questions dependence shinyjs-hide" id="first_language_other">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="first_language_other">What was your first language?</label>
-              <input id="first_language_other" type="text" class="form-control" value="Placeholder"/>
+              <label class="control-label" id="first_language_other-label" for="first_language_other">What was your first language?</label>
+              <input id="first_language_other" type="text" class="form-control" value="" placeholder="Placeholder"/>
             </div>
           </div>
         </div>
         <div class="questions">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="read_language">In what language do you read most often?</label>
+              <label class="control-label" id="read_language-label" for="read_language">In what language do you read most often?</label>
               <div>
                 <select id="read_language"><option value="Arabic" selected>Arabic</option>
     <option value="Armenian">Armenian</option>
@@ -133,7 +133,7 @@
     <option value="Italian">Italian</option>
     <option value="Japanese">Japanese</option>
     <option value="Other">Other</option></select>
-                <script type="application/json" data-for="read_language" data-nonempty="">{}</script>
+                <script type="application/json" data-for="read_language" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
               </div>
             </div>
           </div>
@@ -141,15 +141,15 @@
         <div class="questions dependence shinyjs-hide" id="read_language_other">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="read_language_other">In what language do you read most often?</label>
-              <input id="read_language_other" type="text" class="form-control" value="Placeholder"/>
+              <label class="control-label" id="read_language_other-label" for="read_language_other">In what language do you read most often?</label>
+              <input id="read_language_other" type="text" class="form-control" value="" placeholder="Placeholder"/>
             </div>
           </div>
         </div>
         <div class="questions">
           <div class="question-input">
-            <div id="learned_r" class="form-group shiny-input-radiogroup shiny-input-container">
-              <label class="control-label" for="learned_r">
+            <div id="learned_r" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="learned_r-label">
+              <label class="control-label" id="learned_r-label" for="learned_r">
                 Have you ever learned to program in R?
                 <span class="required">*</span>
               </label>
@@ -173,15 +173,15 @@
         <div class="questions dependence shinyjs-hide" id="years_using_r">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="years_using_r">If yes, how many years have you been using R?</label>
+              <label class="control-label" id="years_using_r-label" for="years_using_r">If yes, how many years have you been using R?</label>
               <input id="years_using_r" type="number" class="form-control" value="5"/>
             </div>
           </div>
         </div>
         <div class="questions">
           <div class="question-input">
-            <div id="learned_programming_not_r" class="form-group shiny-input-radiogroup shiny-input-container">
-              <label class="control-label" for="learned_programming_not_r">
+            <div id="learned_programming_not_r" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="learned_programming_not_r-label">
+              <label class="control-label" id="learned_programming_not_r-label" for="learned_programming_not_r">
                 Have you ever learned a programming language (other than R)?
                 <span class="required">*</span>
               </label>
@@ -205,15 +205,15 @@
         <div class="questions dependence shinyjs-hide" id="years_programming_not_r">
           <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" for="years_programming_not_r">If yes, which language(s) and how many years have you been using each language?</label>
-              <input id="years_programming_not_r" type="text" class="form-control" value="Placeholder"/>
+              <label class="control-label" id="years_programming_not_r-label" for="years_programming_not_r">If yes, which language(s) and how many years have you been using each language?</label>
+              <input id="years_programming_not_r" type="text" class="form-control" value="" placeholder="Placeholder"/>
             </div>
           </div>
         </div>
         <div class="questions">
           <div class="question-input">
-            <div id="completed_data_analysis" class="form-group shiny-input-radiogroup shiny-input-container">
-              <label class="control-label" for="completed_data_analysis">
+            <div id="completed_data_analysis" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="completed_data_analysis-label">
+              <label class="control-label" id="completed_data_analysis-label" for="completed_data_analysis">
                 Have you ever completed a data analysis?
                 <span class="required">*</span>
               </label>
@@ -236,8 +236,8 @@
         </div>
         <div class="questions dependence shinyjs-hide" id="number_completed_data_analysis">
           <div class="question-input">
-            <div id="number_completed_data_analysis" class="form-group shiny-input-radiogroup shiny-input-container">
-              <label class="control-label" for="number_completed_data_analysis">If yes, approximately how many data analyses have you completed?</label>
+            <div id="number_completed_data_analysis" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="number_completed_data_analysis-label">
+              <label class="control-label" id="number_completed_data_analysis-label" for="number_completed_data_analysis">If yes, approximately how many data analyses have you completed?</label>
               <div class="shiny-options-group">
                 <div class="radio">
                   <label>
@@ -278,7 +278,7 @@
         <div class="survey">
           <div id="sass" class="shiny-html-output"></div>
           <div class="form-group shiny-input-container shinyjs-hide">
-            <label class="control-label" for="userID">Enter your username.</label>
+            <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
             <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
           </div>
           <div class="title-description">
@@ -288,73 +288,73 @@
           <div class="questions">
             <div class="question-input">
               <div class="form-group shiny-input-container">
-                <label class="control-label" for="name">
+                <label class="control-label" id="name-label" for="name">
                   What is your name?
                   <span class="required">*</span>
                 </label>
-                <input id="name" type="text" class="form-control" value="Your Answer"/>
+                <input id="name" type="text" class="form-control" value="" placeholder="Your Answer"/>
               </div>
             </div>
           </div>
           <div class="questions dependence shinyjs-hide" id="advisor">
             <div class="question-input">
               <div class="form-group shiny-input-container">
-                <label class="control-label" for="advisor">Who's your advisor?</label>
-                <input id="advisor" type="text" class="form-control" value="Your Answer"/>
+                <label class="control-label" id="advisor-label" for="advisor">Who's your advisor?</label>
+                <input id="advisor" type="text" class="form-control" value="" placeholder="Your Answer"/>
               </div>
             </div>
           </div>
           <div class="questions">
             <div class="question-input">
               <div class="form-group shiny-input-container">
-                <label class="control-label" for="interests">What are your research interests?</label>
-                <input id="interests" type="text" class="form-control" value="Your Answer"/>
+                <label class="control-label" id="interests-label" for="interests">What are your research interests?</label>
+                <input id="interests" type="text" class="form-control" value="" placeholder="Your Answer"/>
               </div>
             </div>
           </div>
           <div class="questions">
             <div class="question-input">
               <div class="form-group shiny-input-container">
-                <label class="control-label" for="goals">What are your long term career goals?</label>
-                <input id="goals" type="text" class="form-control" value="Your Answer"/>
+                <label class="control-label" id="goals-label" for="goals">What are your long term career goals?</label>
+                <input id="goals" type="text" class="form-control" value="" placeholder="Your Answer"/>
               </div>
             </div>
           </div>
           <div class="questions">
             <div class="question-input">
               <div class="form-group shiny-input-container">
-                <label class="control-label" for="other_courses">
+                <label class="control-label" id="other_courses-label" for="other_courses">
                   What other courses are you taking / other big commitments?
                   <span class="required">*</span>
                 </label>
-                <input id="other_courses" type="text" class="form-control" value="Your Answer"/>
+                <input id="other_courses" type="text" class="form-control" value="" placeholder="Your Answer"/>
               </div>
             </div>
           </div>
           <div class="questions">
             <div class="question-input">
               <div class="form-group shiny-input-container">
-                <label class="control-label" for="current_understanding">How would you rate your current understanding of the topics in this course (data science, exploratory data analysis, graphical data analysis)?</label>
-                <input id="current_understanding" type="text" class="form-control" value="Your Answer"/>
+                <label class="control-label" id="current_understanding-label" for="current_understanding">How would you rate your current understanding of the topics in this course (data science, exploratory data analysis, graphical data analysis)?</label>
+                <input id="current_understanding" type="text" class="form-control" value="" placeholder="Your Answer"/>
               </div>
             </div>
           </div>
           <div class="questions">
             <div class="question-input">
               <div class="form-group shiny-input-container">
-                <label class="control-label" for="experience_with_r">How much experience have you already had with R?</label>
-                <input id="experience_with_r" type="text" class="form-control" value="Your Answer"/>
+                <label class="control-label" id="experience_with_r-label" for="experience_with_r">How much experience have you already had with R?</label>
+                <input id="experience_with_r" type="text" class="form-control" value="" placeholder="Your Answer"/>
               </div>
             </div>
           </div>
           <div class="questions">
             <div class="question-input">
               <div class="form-group shiny-input-container">
-                <label class="control-label" for="programming_experience">
+                <label class="control-label" id="programming_experience-label" for="programming_experience">
                   In general, how much programming experience have you had?
                   <span class="required">*</span>
                 </label>
-                <input id="programming_experience" type="text" class="form-control" value="Your Answer"/>
+                <input id="programming_experience" type="text" class="form-control" value="" placeholder="Your Answer"/>
               </div>
             </div>
           </div>
