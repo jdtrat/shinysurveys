@@ -9,9 +9,10 @@ A data frame with 54 rows and 6 columns:
 \describe{
 \itemize{
 \item question: The question to be asked.
-\item option: A possible response to the question.
-In multiple choice questions, for example, this would be the possible answers.
-For questions without discrete answers, this would be the default option shown on the input.
+\item option: A possible response to the question. In multiple choice questions,
+for example, this would be the possible answers. For questions without
+discrete answers, such as a numeric input, this would be the default option
+shown on the input. For text inputs, it is the placeholder value.
 \item input_type: What type of response is expected? Numeric, multiple choice, text, etc...
 \item input_id: The input id for Shiny inputs.
 \item dependence: Does this question (row) depend on another?

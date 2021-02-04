@@ -6,9 +6,10 @@
 #' @format A data frame with 54 rows and 6 columns:
 #' \describe{
 #' * question: The question to be asked.
-#' * option: A possible response to the question.
-#' In multiple choice questions, for example, this would be the possible answers.
-#' For questions without discrete answers, this would be the default option shown on the input.
+#' * option: A possible response to the question. In multiple choice questions,
+#' for example, this would be the possible answers. For questions without
+#' discrete answers, such as a numeric input, this would be the default option
+#' shown on the input. For text inputs, it is the placeholder value.
 #' * input_type: What type of response is expected? Numeric, multiple choice, text, etc...
 #' * input_id: The input id for Shiny inputs.
 #' * dependence: Does this question (row) depend on another?

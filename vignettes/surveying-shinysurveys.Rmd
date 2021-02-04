@@ -38,7 +38,7 @@ unique(shinysurveys::teaching_r_questions$question)
 Each question has seven variables that dictate how it functions within the survey. They are described in the data set documentation, accessed by calling `?shinysurveys::teaching_r_questions` in your console, as follows:
 
 -   *question*: The question to be asked.
--   *option*: A possible response to the question. In multiple choice questions, for example, this would be the possible answers. For questions without discrete answers, such as a numeric input, this would be the default option shown on the input.
+-   *option*: A possible response to the question. In multiple choice questions, for example, this would be the possible answers. For questions without discrete answers, such as a numeric input, this would be the default option shown on the input. For text inputs, it is the placeholder value.
 -   *input_type*: What type of response is expected? Currently supported types include `numeric`, `mc` for multiple choice, `text`, `select`,and `y/n` for yes/no questions.
 -   *input_id*: The input id for Shiny inputs.
 -   *dependence*: Does this question (row) depend on another? That is, should it only appear if a different question has a specific value? This column contains the input_id of whatever question this one depends upon.
@@ -87,7 +87,7 @@ Questions that need text-based input should specify "text" in the `input_type` c
 subset(teaching_r_questions, input_id == "self_describe_gender")
 ```
 
-It's important to note that the `option` column for text-based inputs can be left blank (i.e. NA) or contain a character string. If they are left empty, the text field will display "Placeholder." Otherwise, the character string will be displayed:
+It's important to note that, as previously mentioned, the `option` column for text-based inputs corresponds to a placeholder value. It can be left blank (i.e. NA) or contain a character string. If they are left empty, the text field will display "Placeholder" as seen below. Otherwise, the character string will be displayed.
 
 ![](images/text_input_placeholder.png){style="display: block; margin: 1em auto" width="300"}
 
