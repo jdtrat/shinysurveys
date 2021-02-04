@@ -86,7 +86,7 @@ surveyOutput_individual <- function(df) {
     output <-
       shiny::textInput(inputId = base::unique(df$input_id),
                        label = addRequiredUI_internal(df),
-                value = df$option)
+                       placeholder = df$option)
 
   } else if (inputType == "y/n") {
 
