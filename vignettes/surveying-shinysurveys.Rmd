@@ -123,7 +123,7 @@ subset(teaching_r_questions, input_id == "learned_r")
 
 ### UI Function
 
-`surveyOutput()` takes in a data frame of the form described above. You may also add a title and description for your survey with the arguments `survey_title` and `survey_description`, though these are optional. Further documentation forcan be accessed by typing `?shinysurveys::surveyOutput()` in the console.
+`surveyOutput()` takes in a data frame of the form described above. You may also add a title and description for your survey with the arguments `survey_title` and `survey_description`, though these are optional. Further documentation can be accessed by typing `?shinysurveys::surveyOutput()` in the console.
 
 ### Server Function
 

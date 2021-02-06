@@ -30,7 +30,7 @@ demo_survey <- function(theme = "#63B8FF") {
     shiny::observeEvent(input$submit, {
 
       shiny::showModal(shiny::modalDialog(
-        title = "Congrats, you completed your first shinysurvey!",
+        title = "Congratulations, you completed your first shinysurvey!",
         "You can customize what actions happen when a user finishes a survey using input$submit."
       ))
 

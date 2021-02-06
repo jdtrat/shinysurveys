@@ -23,8 +23,6 @@ listUniqueQuestions <- function(df) {
   return(output)
 }
 
-
-
 #' Check if a question is required
 #'
 #' This function is for internal use. It will check if a question in the
@@ -46,7 +44,7 @@ addRequiredUI_internal <- function(df) {
   return(label)
 }
 
-#' Generate the UI Code for demoraphic questions
+#' Generate the UI Code for demographic questions
 #'
 #' @param df One element (a dataframe) in the list of unique questions.
 #' @keywords internal

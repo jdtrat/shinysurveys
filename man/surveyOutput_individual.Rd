@@ -2,7 +2,7 @@
 % Please edit documentation in R/survey_code.R
 \name{surveyOutput_individual}
 \alias{surveyOutput_individual}
-\title{Generate the UI Code for demoraphic questions}
+\title{Generate the UI Code for demographic questions}
 \usage{
 surveyOutput_individual(df)
 }
@@ -13,6 +13,6 @@ surveyOutput_individual(df)
 UI Code for a Shiny App.
 }
 \description{
-Generate the UI Code for demoraphic questions
+Generate the UI Code for demographic questions
 }
 \keyword{internal}
