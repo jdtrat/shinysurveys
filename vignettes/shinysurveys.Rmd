@@ -1,0 +1,13 @@
+---
+title: "shinysurveys"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{shinysurveys}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Please see the {shinysurveys} website for full documentation:
+
+-   <https://jdtrat.com/packages/shinysurveys>
+
