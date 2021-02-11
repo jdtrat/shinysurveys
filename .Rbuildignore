@@ -2,9 +2,9 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^\.github$
-
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
 ^CRAN-RELEASE$
 ^cran-comments\.md$
+^vignettes/articles$
