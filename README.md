@@ -4,8 +4,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg)](https://github.com/jdtrat/shinysurveys/actions) [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-
+[![R-CMD-check](https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg)](https://github.com/jdtrat/shinysurveys/actions) 
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 <!-- badges: end -->
 
@@ -33,8 +32,8 @@ You can install the development version of shinysurveys on from Github as follow
 
 ``` {.r}
 # Install/update shinysurveys with the development version from GitHub. 
-# If devtools is not installed, uncomment the line below.
-# install.packages("devtools")
+# Will install devtools if not already installed 
+if (!require("devtools")) install.packages("devtools")
 devtools::install_github("jdtrat/shinysurveys")
 
 # Load package
