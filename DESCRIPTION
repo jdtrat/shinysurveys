@@ -1,5 +1,5 @@
 Package: shinysurveys
-Title: Create and deploy surveys in Shiny
+Title: Create and Deploy Surveys in Shiny
 Version: 0.1.2
 Authors@R: 
     c(
@@ -29,8 +29,3 @@ Imports:
     sass
 Depends: 
     R (>= 2.10)
-Suggests: 
-    knitr,
-    rmarkdown,
-    tibble
-VignetteBuilder: knitr
