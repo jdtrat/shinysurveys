@@ -1,6 +1,8 @@
 #' Convert dataframe of questions to list for use in Shiny UI
 #'
 #' @param df A user supplied dataframe in the format of teaching_r_questions.
+#'
+#'
 #' @keywords internal
 #'
 #' @return A list of unique questions for each UI element
@@ -30,6 +32,8 @@ listUniqueQuestions <- function(df) {
 #' with an asterisk. If not, it will just return the label.
 #'
 #' @param df One element (a dataframe) in the list of unique questions.
+#'
+#'
 #' @keywords internal
 #' @return A label with or without an asterisk to signify it is required.
 #'
@@ -47,6 +51,8 @@ addRequiredUI_internal <- function(df) {
 #' Generate the UI Code for demographic questions
 #'
 #' @param df One element (a dataframe) in the list of unique questions.
+#'
+#'
 #' @keywords internal
 #' @return UI Code for a Shiny App.
 #'
@@ -122,7 +128,7 @@ surveyOutput_individual <- function(df) {
 #' Returns title/description HTML tags as needed.
 #'
 #' @keywords internal
-#' @noRd
+#'
 #'
 check_survey_metadata <- function(survey_description, survey_title) {
   if (!missing(survey_description) && missing(survey_title)) {
@@ -186,6 +192,7 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
 #' @param input Input from server
 #' @param df One element (a dataframe) in the list of unique questions.
 #'
+#'
 #' @keywords internal
 #' @return NA; shows a dependence question in the UI.
 #'
@@ -216,7 +223,8 @@ showDependence <- function(input = input, df) {
 #' Get required IDs
 #'
 #' @keywords internal
-#' @noRd
+#'
+#'
 getID <- function(df) {
   if (df$required[1] == TRUE) {
     base::unique(df$input_id)
@@ -228,6 +236,8 @@ getID <- function(df) {
 #' Get a character vector of required questions
 #'
 #' @param questions The list of unique questions from \code{\link{listUniqueQuestions}}.
+#'
+#'
 #' @keywords internal
 #' @return A character vectors with the input ID of required questions.
 #'
@@ -254,6 +264,7 @@ getRequired_internal <- function(questions) {
 #' @param input Input from server
 #' @param input_id The input_id to check
 #'
+#'
 #' @keywords internal
 #' @return TRUE if the input has a value; false otherwise.
 #'
@@ -269,6 +280,8 @@ checkIndividual <- function(input = input, input_id) {
 #'
 #' @param input Input from server
 #' @param required_inputs_vector The output of \code{\link{getRequired_internal}}.
+#'
+#'
 #' @keywords internal
 #'
 #' @return TRUE if all required questions have been answered. FALSE otherwise.

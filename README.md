@@ -1,6 +1,6 @@
 # shinysurveys
 
-#### Easily create and deploy surveys in Shiny
+#### Easily Create and Deploy Surveys in Shiny
 
 <!-- badges: start -->
 
@@ -100,7 +100,7 @@ shinyApp(ui, server)
 
 -   **Required questions** can be specified by adding the value `TRUE` to the `required` column. If a required question is not answered, the user will not be able to submit their responses.
 
--   **URL-based user tracking** functionality lets you keep track of participants easily and systematically. If you deploy your survey on [shinyapps.io](https://shinyapps.io), or run it locally in a browser, you can add a URL parameter after the backslash as follows: `?user_id=UNIQUE_ID`. A live demo can be found here: <https://jdtrat-apps.shinyapps.io/shinysurveys_user_tracking/?user_id=hadley>
+-   **URL-based user tracking** functionality lets you keep track of participants easily and systematically. If you deploy your survey on [shinyapps.io](https://shinyapps.io), or run it locally in a browser, you can add a URL parameter after the backslash as follows: `?user_id=UNIQUE_ID`. A live demo can be found here: <a>https://jdtrat-apps.shinyapps.io/shinysurveys_user_tracking/?user_id=hadley</a>
 
 ## Further Reading
 
@@ -108,7 +108,7 @@ For a more in-depth explanation of {shinysurveys}, please see the vignette [*A s
 
 ## Feedback
 
-If you want to see a feature, or report a bug, please [file an issue](https://github.com/jdtrat/shinysurveys/issues) or open a [pull-request](https://github.com/jdtrat/shinysurveys/pulls)! As this package is just getting off the ground, we welcome all feedback and contributions. See our [contribution guidelines](.github/CONTRIBUTING.md) for more details on getting involved!
+If you want to see a feature, or report a bug, please [file an issue](https://github.com/jdtrat/shinysurveys/issues) or open a [pull-request](https://github.com/jdtrat/shinysurveys/pulls)! As this package is just getting off the ground, we welcome all feedback and contributions. See our [contribution guidelines](https://github.com/jdtrat/shinysurveys/blob/main/.github/CONTRIBUTING.md) for more details on getting involved!
 
 ## Code of Conduct
 

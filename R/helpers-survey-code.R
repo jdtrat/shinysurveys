@@ -13,9 +13,9 @@ base_extract_user_id <- function(query_list) {
 
 #' Get unique questions from user-input dataframe
 #'
-#' @keywords internal
-#' @noRd
 #' @param df User-input dataframe of questions
+#'
+#' @keywords internal
 #'
 #' @return List of questions
 #'
@@ -30,8 +30,8 @@ get_questions <- function(df) {
 #' Split questions based on dependency
 #'
 #' @param df A data frame subset for one question
+#'
 #' @keywords internal
-#' @noRd
 #'
 #' @return A list where each element is one UI question.
 #'
@@ -52,7 +52,9 @@ split_dependence <- function(df) {
 #' @param list A list object
 #' @param index A numeric index
 #'
+#'
 #' @keywords internal
+#'
 pluck_by_index <- function(list, index) {
   list[[index]]
 }
