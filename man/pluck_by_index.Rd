@@ -11,6 +11,9 @@ pluck_by_index(list, index)
 
 \item{index}{A numeric index}
 }
+\value{
+Returns list element.
+}
 \description{
 simple and specific version of purrr::pluck to meet use-case
 }

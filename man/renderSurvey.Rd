@@ -11,12 +11,15 @@ renderSurvey(df, theme = "#63B8FF")
 
 \item{theme}{A valid R color: predefined such as "red" or "blue"; hex colors such as #63B8FF (default)}
 }
+\value{
+NA; used for server-side logic in Shiny apps.
+}
 \description{
 Include server-side logic for shinysurveys.
 }
 \examples{
 
-\dontrun{
+if (interactive()) {
 renderSurvey(df = shinysurveys::teaching_r_questions,
 theme = "#63B8FF")
 }

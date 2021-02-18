@@ -55,6 +55,8 @@ split_dependence <- function(df) {
 #'
 #' @keywords internal
 #'
+#' @return Returns list element.
+#'
 pluck_by_index <- function(list, index) {
   list[[index]]
 }

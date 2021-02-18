@@ -6,6 +6,16 @@
 \usage{
 check_survey_metadata(survey_description, survey_title)
 }
+\arguments{
+\item{survey_description}{The survey's description from surveyOutput}
+
+\item{survey_title}{The survey's title from surveyOutput}
+}
+\value{
+Returns error messages if required paramters are not supplied,
+otherwise it returns the appropriate code for survey titles and description
+for use in surveyOutput.
+}
 \description{
 Returns title/description HTML tags as needed.
 }

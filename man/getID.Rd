@@ -6,6 +6,12 @@
 \usage{
 getID(df)
 }
+\arguments{
+\item{df}{The dataframe of questions}
+}
+\value{
+The input ID for required questions
+}
 \description{
 Get required IDs
 }

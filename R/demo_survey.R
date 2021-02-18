@@ -10,10 +10,8 @@
 #' @export
 #'
 #' @examples
+#' if (interactive()) demo_survey()
 #'
-#' \dontrun{
-#' demo_survey()
-#' }
 demo_survey <- function(theme = "#63B8FF") {
 
   ui <- shiny::fluidPage(

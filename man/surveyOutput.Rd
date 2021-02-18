@@ -22,7 +22,7 @@ UI Code for a Shiny App.
 Create the UI code for a Shiny app based on user-supplied questions.
 }
 \examples{
-\dontrun{
+if (interactive()) {
 surveyOutput(df = shinysurveys::teaching_r_questions,
 survey_title = "Teaching R Questions",
 survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")

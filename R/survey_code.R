@@ -127,8 +127,14 @@ surveyOutput_individual <- function(df) {
 #'
 #' Returns title/description HTML tags as needed.
 #'
+#' @param survey_description The survey's description from surveyOutput
+#' @param survey_title The survey's title from surveyOutput
+#'
 #' @keywords internal
 #'
+#' @return Returns error messages if required paramters are not supplied,
+#'   otherwise it returns the appropriate code for survey titles and description
+#'   for use in surveyOutput.
 #'
 check_survey_metadata <- function(survey_description, survey_title) {
   if (!missing(survey_description) && missing(survey_title)) {
@@ -162,7 +168,7 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' if (interactive()) {
 #' surveyOutput(df = shinysurveys::teaching_r_questions,
 #' survey_title = "Teaching R Questions",
 #' survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")
@@ -222,8 +228,11 @@ showDependence <- function(input = input, df) {
 
 #' Get required IDs
 #'
+#' @param df The dataframe of questions
+#'
 #' @keywords internal
 #'
+#' @return The input ID for required questions
 #'
 getID <- function(df) {
   if (df$required[1] == TRUE) {
@@ -307,9 +316,11 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #'
 #' @export
 #'
+#' @return NA; used for server-side logic in Shiny apps.
+#'
 #' @examples
 #'
-#' \dontrun{
+#' if (interactive()) {
 #' renderSurvey(df = shinysurveys::teaching_r_questions,
 #' theme = "#63B8FF")
 #' }

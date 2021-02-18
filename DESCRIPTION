@@ -1,5 +1,5 @@
 Package: shinysurveys
-Title: Create and Deploy Surveys in Shiny
+Title: Create and Deploy Surveys in 'Shiny'
 Version: 0.1.2
 Authors@R: 
     c(
@@ -17,7 +17,9 @@ Authors@R:
            role = c("ctb"),
            email = "ptlegrand1@gmail.com")
     )
-Description: Provides easy-to-use code for creating and deploying surveys in Shiny.
+Description: Easily create and deploy surveys in 'Shiny'. This package includes
+    a minimalistic framework similar to 'Google Forms' that allows for url-based
+    user tracking, customizable submit actions, easy survey-theming, and more.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

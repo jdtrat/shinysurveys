@@ -18,8 +18,6 @@ survey in Shiny. It has a sample title and description and its theme color
 can be customized using a hex color code.
 }
 \examples{
+if (interactive()) demo_survey()
 
-\dontrun{
-demo_survey()
-}
 }
