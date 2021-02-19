@@ -28,13 +28,14 @@
 
 ## Installation
 
-You can install the development version of shinysurveys on from Github as follows:
+You can install {shinysurveys} via CRAN or GitHub and load it as follows:
 
 ``` {.r}
-# Install/update shinysurveys with the development version from GitHub. 
-# Will install devtools if not already installed 
-if (!require("devtools")) install.packages("devtools")
-devtools::install_github("jdtrat/shinysurveys")
+# Install released version from CRAN
+install.packages("shinysurveys")
+
+# Or, install the development version from GitHub
+remotes::install_github("jdtrat/shinysurveys")
 
 # Load package
 library(shinysurveys)
