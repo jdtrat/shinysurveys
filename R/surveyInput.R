@@ -31,7 +31,7 @@ surveyInput <- function(inputId) {
                  ),
                  shiny::column(width = 3,
                                offset = 0.5,
-                               shiny::selectInput(paste0("question_", inputId, "_type"),
+                               shiny::selectInput("question_type",
                                                   "",
                                                   choices = c(
                                                     "Select",
@@ -42,20 +42,16 @@ surveyInput <- function(inputId) {
                                                   )
                                )
                  ),
-                 shiny::div(id = paste0("option_placeholder_", inputId),
-                            shiny::textInput(inputId = paste0("question_", inputId, "_option_1"),
+                 shiny::div(id = paste0("option_placeholder"),
+                            shiny::textInput(inputId = paste0("option_1"),
                                              label = "",
                                              value = "Placeholder",
                                              width = "69%")),
                  shiny::div(class = "form-options",
-                     id = paste0("form-options-question_", inputId),
-                     shiny::actionButton("add_option",
-                                         "Op"),
-                     shiny::actionButton(
-                       "create_question",
-                       label = "",
-                       icon = shiny::icon("plus")
-                     )
+                            id = paste0("form-options-question_", inputId),
+                            shiny::actionButton("add_option",
+                                                label = "",
+                                                icon = shiny::icon("plus")),
                  )
                ),
                shiny::fluidRow(
@@ -63,7 +59,7 @@ surveyInput <- function(inputId) {
                    width = 2,
                    offset = 6,
                    shiny::actionButton(
-                     inputId = paste0("question_", inputId, "_title_delete"),
+                     inputId = paste0("question_delete"),
                      label = "",
                      icon = shiny::icon("trash"),
                      style = "margin-left: 50px;"
@@ -72,7 +68,7 @@ surveyInput <- function(inputId) {
                  shiny::column(width = 2,
                                offset = 0,
                                shinyWidgets::switchInput(
-                                 inputId = paste0("question_", inputId, "_title_required"),
+                                 inputId = paste0("question_required"),
                                  label = "Required",
                                  labelWidth = "60px"
                                )
