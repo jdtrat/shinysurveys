@@ -7,7 +7,7 @@
 #'
 #' @export
 
-surveyInput <- function(inputId) {
+surveyInput <- function(inputId, color, width) {
   shiny::tagList(
     htmltools::htmlDependency(
       name = "surveyInput",
@@ -15,11 +15,12 @@ surveyInput <- function(inputId) {
       package = "shinysurveys",
       src = "surveyInput",
       script = "js/surveyInput.js",
-      stylesheet = "css/surveyInput.scss"
+      stylesheet = "css/surveyInput.css"
     ),
     shiny::div(class = "surveyInput",
                id = inputId,
                `data-input-id` = inputId,
+               `data-width` = width,
                shiny::fluidRow(
                  shiny::column(
                    width = 8,
@@ -43,16 +44,14 @@ surveyInput <- function(inputId) {
                                )
                  ),
                  shiny::div(id = paste0("option_placeholder"),
-                            shiny::textInput(inputId = paste0("option_1"),
+                            shiny::textInput(inputId = "option_1",
                                              label = "",
                                              value = "Placeholder",
-                                             width = "69%")),
-                 shiny::div(class = "form-options",
-                            id = paste0("form-options-question_", inputId),
+                                             width = "69%"),
                             shiny::actionButton("add_option",
                                                 label = "",
-                                                icon = shiny::icon("plus")),
-                 )
+                                                icon = shiny::icon("plus"))
+                            )
                ),
                shiny::fluidRow(
                  shiny::column(
@@ -68,7 +67,7 @@ surveyInput <- function(inputId) {
                  shiny::column(width = 2,
                                offset = 0,
                                shinyWidgets::switchInput(
-                                 inputId = paste0("question_required"),
+                                 inputId = "question_required",
                                  label = "Required",
                                  labelWidth = "60px"
                                )

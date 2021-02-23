@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat|Raleway');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100%;
+}
+
+.surveyInput {
+  background-color: white;
+  border: 0.5px solid #3A506B;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+body {
+	font-family: 'Raleway', sans-serif;
+}
+
+
+
+input[type=text]:focus {
+    border-bottom: 1.5px solid black;
+    -webkit-box-shadow: none
+}
+
+input[type=text] {
+    font-size: 12pt;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.12);
+    padding: 15px;
+    outline: none;
+    color: #3A506B;
+    background-color: transparent;
+}
+
+input[id='question_title'] {
+  margin-left: 10px;
+  font-size: 14pt;
+}
+
+div[id='option_placeholder'] {
+  margin-left: 26px;
+}
+
+
