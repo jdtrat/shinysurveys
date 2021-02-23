@@ -40,10 +40,18 @@ listUniqueQuestions <- function(df) {
 #'
 addRequiredUI_internal <- function(df) {
 
-  if (df$required[1] == TRUE) {
+  # If required and not a rank question make the label the question + *
+  if (df$required[1] == TRUE && !grepl("rank_", df$input_type[1])) {
     label <- shiny::tagList(base::unique(df$question), shiny::span("*", class = "required"))
-  } else if (df$required[1] == FALSE) {
+  # If required and a rank question make the label the specific option + *
+  } else if (df$required[1] == TRUE && grepl("rank_", df$input_type[1])) {
+    label <- shiny::tagList(df$option, shiny::span("*", class = "required"))
+    # If not required and not a rank question make the label the question
+  } else if (df$required == FALSE && !grepl("rank_", df$input_type[1])) {
     label <- base::unique(df$question)
+    # If not required and a rank question make the label the specific option
+  } else if (df$required[1] == FALSE && grepl("rank_", df$input_type[1])) {
+    label <- df$option
   }
   return(label)
 }
@@ -61,7 +69,7 @@ surveyOutput_individual <- function(df) {
   inputType <- base::unique(df$input_type)
 
   if (inputType ==  "select") {
-      output <-
+    output <-
       shiny::selectInput(
         inputId = base::unique(df$input_id),
         label = addRequiredUI_internal(df),
@@ -101,27 +109,43 @@ surveyOutput_individual <- function(df) {
         selected = base::character(0),
         choices = df$option
       )
+  } else if (grepl("rank_{{", inputType, perl = T)) {
+
+    if (length(unique(df$question)) > 1) {
+      stop("Multiple question titles were provided for the ranking input.
+           Please specify items to rank as options, and the question title as the question column.")
+    }
+
+    # Get the number of ranks
+    n_ranks <- parse_num_ranks(input_type = inputType)
+
+    # split the data into individual ranks based on the options
+    rank_list <- split(df, df$option)
+
+    # Create the ranking output with the title and individual elements
+    output <- shiny::div(class = "ranking",
+                 shiny::p(class = "ranking-title", unique(df$question)),
+                 shiny::tagList(lapply(rank_list, rank_ui_internal, num_ranks = n_ranks)))
+
   }
 
   if (!base::is.na(df$dependence[1])) {
     output <-
       shinyjs::hidden(
-      shiny::div(class = "questions dependence",
-                 id = df$input_id[1],
-                 shiny::div(class = "question-input",
-                 output))
-        )
+        shiny::div(class = "questions dependence",
+                   id = df$input_id[1],
+                   shiny::div(class = "question-input",
+                              output))
+      )
   } else if (base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions",
                          shiny::div(class = "question-input",
-                         output))
+                                    output))
   }
 
   return(output)
 
 }
-
-
 
 #' Check survey metadata
 #'
@@ -208,7 +232,7 @@ showDependence <- function(input = input, df) {
     return()
   }
 
- # if there is a dependence
+  # if there is a dependence
   if (!base::is.na(df$dependence[1])) {
     # check that the input of that question's dependence
     # is equal to its dependence value. If so,
@@ -342,7 +366,7 @@ renderSurvey <- function(df, theme = "#63B8FF") {
       readLines(
         system.file("render_survey.scss",
                     package = "shinysurveys")
-        )
+      )
     ))
   })
 
@@ -351,11 +375,11 @@ renderSurvey <- function(df, theme = "#63B8FF") {
 
   shiny::observe({
 
-      query <- shiny::parseQueryString(session$clientData$url_search)
-      if (!base::is.null(query[["user_id"]])) {
-        new_value <- base_extract_user_id(query)
-        shiny::updateTextInput(session, inputId = "userID", value = new_value)
-      }
+    query <- shiny::parseQueryString(session$clientData$url_search)
+    if (!base::is.null(query[["user_id"]])) {
+      new_value <- base_extract_user_id(query)
+      shiny::updateTextInput(session, inputId = "userID", value = new_value)
+    }
 
     # Update the dependencies
     for (id in seq_along(unique_questions)) showDependence(input = session$input, df = unique_questions[[id]])
