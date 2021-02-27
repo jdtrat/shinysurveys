@@ -1,11 +1,35 @@
 # surveyOutput() works - teaching_r_questions
 
+    <script>
+    Shiny.addCustomMessageHandler("add_class", function(params) {
+      $("#" + params.input_id).addClass(params.class_name);
+    });
+    
+    Shiny.addCustomMessageHandler("remove_class", function(params) {
+      $("#" + params.input_id).removeClass(params.class_name);
+    });
+    
+    Shiny.addCustomMessageHandler("disable", function(params) {
+      $el = $("#" + params.input_id);
+      $el.prop("disabled", true);
+      $el.addClass("disabled");
+    });
+    
+    Shiny.addCustomMessageHandler("enable", function(params) {
+      $el = $("#" + params.input_id);
+      $el.prop("disabled", false);
+      $el.removeClass("disabled");
+    });
+    
+    </script>
     <div class="grid">
       <div class="survey">
         <div id="sass" class="shiny-html-output"></div>
-        <div class="form-group shiny-input-container shinyjs-hide">
-          <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
-          <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+        <div style="display: none !important;">
+          <div class="form-group shiny-input-container">
+            <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
+            <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+          </div>
         </div>
         <div class="title-description">
           <h1 id="survey-title">Testing Title</h1>
@@ -58,7 +82,7 @@
             </div>
           </div>
         </div>
-        <div class="questions dependence shinyjs-hide" id="self_describe_gender">
+        <div class="questions dependence" id="self_describe_gender">
           <div class="question-input">
             <div class="form-group shiny-input-container">
               <label class="control-label" id="self_describe_gender-label" for="self_describe_gender">Which best describes your gender?</label>
@@ -106,7 +130,7 @@
             </div>
           </div>
         </div>
-        <div class="questions dependence shinyjs-hide" id="first_language_other">
+        <div class="questions dependence" id="first_language_other">
           <div class="question-input">
             <div class="form-group shiny-input-container">
               <label class="control-label" id="first_language_other-label" for="first_language_other">What was your first language?</label>
@@ -138,7 +162,7 @@
             </div>
           </div>
         </div>
-        <div class="questions dependence shinyjs-hide" id="read_language_other">
+        <div class="questions dependence" id="read_language_other">
           <div class="question-input">
             <div class="form-group shiny-input-container">
               <label class="control-label" id="read_language_other-label" for="read_language_other">In what language do you read most often?</label>
@@ -170,7 +194,7 @@
             </div>
           </div>
         </div>
-        <div class="questions dependence shinyjs-hide" id="years_using_r">
+        <div class="questions dependence" id="years_using_r">
           <div class="question-input">
             <div class="form-group shiny-input-container">
               <label class="control-label" id="years_using_r-label" for="years_using_r">If yes, how many years have you been using R?</label>
@@ -202,7 +226,7 @@
             </div>
           </div>
         </div>
-        <div class="questions dependence shinyjs-hide" id="years_programming_not_r">
+        <div class="questions dependence" id="years_programming_not_r">
           <div class="question-input">
             <div class="form-group shiny-input-container">
               <label class="control-label" id="years_programming_not_r-label" for="years_programming_not_r">If yes, which language(s) and how many years have you been using each language?</label>
@@ -234,7 +258,7 @@
             </div>
           </div>
         </div>
-        <div class="questions dependence shinyjs-hide" id="number_completed_data_analysis">
+        <div class="questions dependence" id="number_completed_data_analysis">
           <div class="question-input">
             <div id="number_completed_data_analysis" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="number_completed_data_analysis-label">
               <label class="control-label" id="number_completed_data_analysis-label" for="number_completed_data_analysis">If yes, approximately how many data analyses have you completed?</label>
@@ -274,12 +298,36 @@
 # surveyOutput() works - ds_questions
 
     <div class="container-fluid">
+      <script>
+    Shiny.addCustomMessageHandler("add_class", function(params) {
+      $("#" + params.input_id).addClass(params.class_name);
+    });
+    
+    Shiny.addCustomMessageHandler("remove_class", function(params) {
+      $("#" + params.input_id).removeClass(params.class_name);
+    });
+    
+    Shiny.addCustomMessageHandler("disable", function(params) {
+      $el = $("#" + params.input_id);
+      $el.prop("disabled", true);
+      $el.addClass("disabled");
+    });
+    
+    Shiny.addCustomMessageHandler("enable", function(params) {
+      $el = $("#" + params.input_id);
+      $el.prop("disabled", false);
+      $el.removeClass("disabled");
+    });
+    
+    </script>
       <div class="grid">
         <div class="survey">
           <div id="sass" class="shiny-html-output"></div>
-          <div class="form-group shiny-input-container shinyjs-hide">
-            <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
-            <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+          <div style="display: none !important;">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
+              <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+            </div>
           </div>
           <div class="title-description">
             <h1 id="survey-title">Getting To Know You</h1>
@@ -296,7 +344,7 @@
               </div>
             </div>
           </div>
-          <div class="questions dependence shinyjs-hide" id="advisor">
+          <div class="questions dependence" id="advisor">
             <div class="question-input">
               <div class="form-group shiny-input-container">
                 <label class="control-label" id="advisor-label" for="advisor">Who's your advisor?</label>
@@ -366,12 +414,36 @@
 # surveyOutput() works - ranking_questions
 
     <div class="container-fluid">
+      <script>
+    Shiny.addCustomMessageHandler("add_class", function(params) {
+      $("#" + params.input_id).addClass(params.class_name);
+    });
+    
+    Shiny.addCustomMessageHandler("remove_class", function(params) {
+      $("#" + params.input_id).removeClass(params.class_name);
+    });
+    
+    Shiny.addCustomMessageHandler("disable", function(params) {
+      $el = $("#" + params.input_id);
+      $el.prop("disabled", true);
+      $el.addClass("disabled");
+    });
+    
+    Shiny.addCustomMessageHandler("enable", function(params) {
+      $el = $("#" + params.input_id);
+      $el.prop("disabled", false);
+      $el.removeClass("disabled");
+    });
+    
+    </script>
       <div class="grid">
         <div class="survey">
           <div id="sass" class="shiny-html-output"></div>
-          <div class="form-group shiny-input-container shinyjs-hide">
-            <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
-            <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+          <div style="display: none !important;">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
+              <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+            </div>
           </div>
           <div class="title-description">
             <h1 id="survey-title">Rank your favorite sushi rolls</h1>

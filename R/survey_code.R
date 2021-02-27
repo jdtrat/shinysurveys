@@ -131,13 +131,10 @@ surveyOutput_individual <- function(df) {
   }
 
   if (!base::is.na(df$dependence[1])) {
-    output <-
-      shinyjs::hidden(
-        shiny::div(class = "questions dependence",
-                   id = df$input_id[1],
-                   shiny::div(class = "question-input",
-                              output))
-      )
+    output <- shiny::div(class = "questions dependence",
+                         id = df$input_id[1],
+                         shiny::div(class = "question-input",
+                                    output))
   } else if (base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions",
                          shiny::div(class = "question-input",
@@ -202,13 +199,15 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
 
   unique_questions <- listUniqueQuestions(df)
 
-  shiny::tagList(shinyjs::useShinyjs(),
+  shiny::tagList(shiny::includeScript(system.file("shinysurveys-js.js",
+                                                  package = "shinysurveys")),
                  shiny::div(class = "grid",
                             shiny::div(class = "survey",
                                        shiny::uiOutput("sass"),
-                                       shinyjs::hidden(shiny::textInput(inputId = "userID",
-                                                                        label = "Enter your username.",
-                                                                        value = "NO_USER_ID")),
+                                       shiny::div(style = "display: none !important;",
+                                                  shiny::textInput(inputId = "userID",
+                                                                   label = "Enter your username.",
+                                                                   value = "NO_USER_ID")),
                                        check_survey_metadata(survey_title = survey_title,
                                                              survey_description = survey_description),
                                        lapply(unique_questions, surveyOutput_individual),
@@ -239,12 +238,12 @@ showDependence <- function(input = input, df) {
     # is equal to its dependence value. If so,
     # show the question.
     if (input[[df$dependence[1]]] == df$dependence_value[1]) {
-      shinyjs::show(df$input_id[1])
-      shinyjs::removeClass(df$input_id[1], class = "dependence")
+      remove_class(.id = df$input_id[1],
+                   .class = "dependence")
       df$required <- TRUE
     } else {
-      shinyjs::addClass(df$input_id[1], class = "dependence")
-      shinyjs::hide(df$input_id[1])
+      add_class(.id = df$input_id[1],
+                .class = "dependence")
       df$required <- FALSE
     }
   }
@@ -385,9 +384,9 @@ renderSurvey <- function(df, theme = "#63B8FF") {
     # Update the dependencies
     for (id in seq_along(unique_questions)) showDependence(input = session$input, df = unique_questions[[id]])
 
-    shinyjs::toggleState(id = "submit",
-                         condition = checkRequired_internal(input = session$input,
-                                                            required_inputs_vector = required_vec))
+    toggle_element(id = "submit",
+                   condition = checkRequired_internal(input = session$input,
+                                                      required_inputs_vector = required_vec))
   })
 
 }
