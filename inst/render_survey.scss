@@ -136,11 +136,33 @@ label {
           padding: 0;
         }
 
-        .ranking-title {
+
+        .ranking{
+
+          .ranking-title {
           margin-bottom: 10px;
           font-size: 1.5rem;
           display: inline-block;
           font-weight: 700;
+        }
+
+          .shiny-options-group{
+            display: inline;
+          }
+
+          .control-label{
+            color: black;
+            margin-right: 5px;
+            border-right: 1px solid $dark;
+            border-bottom: 1px groove $dark;
+            text-align: center;
+            width: 15%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            vertical-align: top;
+          }
+
         }
 
         .question-input {

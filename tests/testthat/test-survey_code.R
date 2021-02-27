@@ -20,6 +20,15 @@ ds_all_required <- transform(ds_questions, required = T)
 ds_no_required <- transform(ds_questions, required = F)
 
 
+rank_questions <- data.frame(question = "Please rank your favorite sushi rolls.",
+                             option = c("Rainbow", "Florida", "Double Salmon", "Volcano", "California"),
+                             input_type = "rank_{{5}}", # change the 5 to change the ranking scale 1 - X
+                             input_id = c("rainbow", "florida", "double_salmon", "volcano", "california"),
+                             dependence = NA,
+                             dependence_value = NA,
+                             required = F)
+
+
 # Test internal data processing -------------------------------------------
 
 test_that("listUniqueQuestions() works", {
@@ -65,6 +74,14 @@ test_that("surveyOutput() works - ds_questions", {
     shinysurveys::surveyOutput(df = ds_questions,
                                survey_title = "Getting To Know You",
                                survey_description = "Welcome! This is a quick survey for us to become familiar with each other's backgrounds in this class.")
+  ))
+})
+
+test_that("surveyOutput() works - ranking_questions", {
+  local_edition(3)
+  expect_snapshot_output(shiny::fluidPage(
+    shinysurveys::surveyOutput(df = rank_questions,
+                               survey_title = "Rank your favorite sushi rolls")
   ))
 })
 

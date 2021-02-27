@@ -43,9 +43,10 @@ addRequiredUI_internal <- function(df) {
   # If required and not a rank question make the label the question + *
   if (df$required[1] == TRUE && !grepl("rank_", df$input_type[1])) {
     label <- shiny::tagList(base::unique(df$question), shiny::span("*", class = "required"))
-  # If required and a rank question make the label the specific option + *
+  # If required and a rank question make the label the * + specific option
+  # It is on the left because rank's labels have their overflow hidden if the screen size is too small
   } else if (df$required[1] == TRUE && grepl("rank_", df$input_type[1])) {
-    label <- shiny::tagList(df$option, shiny::span("*", class = "required"))
+    label <- shiny::tagList(shiny::span("*", class = "required"), df$option)
     # If not required and not a rank question make the label the question
   } else if (df$required == FALSE && !grepl("rank_", df$input_type[1])) {
     label <- base::unique(df$question)
@@ -124,7 +125,7 @@ surveyOutput_individual <- function(df) {
 
     # Create the ranking output with the title and individual elements
     output <- shiny::div(class = "ranking",
-                 shiny::p(class = "ranking-title", unique(df$question)),
+                 shiny::div(class = "ranking-title", unique(df$question)),
                  shiny::tagList(lapply(rank_list, rank_ui_internal, num_ranks = n_ranks)))
 
   }
