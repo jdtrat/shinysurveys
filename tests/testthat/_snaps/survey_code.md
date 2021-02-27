@@ -363,3 +363,153 @@
       </div>
     </div>
 
+# surveyOutput() works - ranking_questions
+
+    <div class="container-fluid">
+      <div class="grid">
+        <div class="survey">
+          <div id="sass" class="shiny-html-output"></div>
+          <div class="form-group shiny-input-container shinyjs-hide">
+            <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
+            <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+          </div>
+          <div class="title-description">
+            <h1 id="survey-title">Rank your favorite sushi rolls</h1>
+          </div>
+          <div class="questions">
+            <div class="question-input">
+              <div class="ranking">
+                <div class="ranking-title">Please rank your favorite sushi rolls.</div>
+                <div id="california" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="california-label">
+                  <label class="control-label" id="california-label" for="california">California</label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="california" value="1"/>
+                      <span>1</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="california" value="2"/>
+                      <span>2</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="california" value="3"/>
+                      <span>3</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="california" value="4"/>
+                      <span>4</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="california" value="5"/>
+                      <span>5</span>
+                    </label>
+                  </div>
+                </div>
+                <div id="double_salmon" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="double_salmon-label">
+                  <label class="control-label" id="double_salmon-label" for="double_salmon">Double Salmon</label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="double_salmon" value="1"/>
+                      <span>1</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="double_salmon" value="2"/>
+                      <span>2</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="double_salmon" value="3"/>
+                      <span>3</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="double_salmon" value="4"/>
+                      <span>4</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="double_salmon" value="5"/>
+                      <span>5</span>
+                    </label>
+                  </div>
+                </div>
+                <div id="florida" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="florida-label">
+                  <label class="control-label" id="florida-label" for="florida">Florida</label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="florida" value="1"/>
+                      <span>1</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="florida" value="2"/>
+                      <span>2</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="florida" value="3"/>
+                      <span>3</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="florida" value="4"/>
+                      <span>4</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="florida" value="5"/>
+                      <span>5</span>
+                    </label>
+                  </div>
+                </div>
+                <div id="rainbow" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="rainbow-label">
+                  <label class="control-label" id="rainbow-label" for="rainbow">Rainbow</label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="rainbow" value="1"/>
+                      <span>1</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="rainbow" value="2"/>
+                      <span>2</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="rainbow" value="3"/>
+                      <span>3</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="rainbow" value="4"/>
+                      <span>4</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="rainbow" value="5"/>
+                      <span>5</span>
+                    </label>
+                  </div>
+                </div>
+                <div id="volcano" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="volcano-label">
+                  <label class="control-label" id="volcano-label" for="volcano">Volcano</label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="volcano" value="1"/>
+                      <span>1</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="volcano" value="2"/>
+                      <span>2</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="volcano" value="3"/>
+                      <span>3</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="volcano" value="4"/>
+                      <span>4</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="volcano" value="5"/>
+                      <span>5</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
+        </div>
+      </div>
+    </div>
+
