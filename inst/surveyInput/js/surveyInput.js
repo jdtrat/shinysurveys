@@ -7,29 +7,35 @@ $.extend(shinySurveyBinding, {
     return $(scope).find(".surveyInput")
   },
 
-  // get the data-anatomy of the element with class selected
-  // use this as the input's value
-  // SEE subscribe
+  // Get the value of the custom input
   getValue: function getValue(el) {
-    var title = $(el).find('#question_title').val()
-    return title
+
+    title = $(el).find('#question_title').val();
+
+    // remove punctuation and replace spaces with underscores and make all lowercase for input_id
+    identifier = title.replace(/[.,?'"\/#!$%\^&\*;:{}=\-_`~()]/g, '').split(' ').join('_').toLowerCase();
+
+    // return values (data frame in R) of the form used in {shinysurveys}
+    var values = [{
+      "question": title,
+      "option": $(el).find('#option_1').val(),
+      "input_type": $(el).find('#question_type').val(),
+      "input_id": identifier,
+      "dependence": 'NA', // GUI doesn't deal with dependencies now
+      "dependence_value": 'NA', // GUI doesn't deal with dependencies now
+      "question_required": $(el).find('#question_required').prop('checked')
+    }];
+
+    return values
   },
 
-  // on click, remove any previous selected classes
-  // then add the selected class to the clicked limb
-  // this is used in getValue
   subscribe: function(el, callback) {
+    // On any of these actions return the values via the getValue function
+    $(el).find("#question_title").on("keyup", function(evt) {callback();})
+    $(el).find("#question_type").change(function(evt) {callback();})
+    $(el).find("#question_required").change(function(evt) {callback();})
+    $(el).find("#option_1").on("keyup", function(evt) {callback();})
 
-    $(el).find("#question_title").on("keyup", function(evt) {
-
-   // $(el).on("click.shinySurveyInput", function(evt) {
-      // remove all of the selected classes inside our element
-      // $(el).find(".selected").removeClass("selected");
-      // set the selected class to the closest clicked part
-      //console.log($(evt.target).attr('id'))
-      // $(evt.target).addClass('selected');
-      callback();
-    })
   },
   unsubscribe: function(el) {
     $(el).off(".shinySurveyBinding");
