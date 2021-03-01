@@ -66,10 +66,10 @@ surveyInput <- function(inputId, color, width) {
                  ),
                  shiny::column(width = 2,
                                offset = 0,
-                               shinyWidgets::switchInput(
+                               shiny::checkboxInput(
                                  inputId = "question_required",
                                  label = "Required",
-                                 labelWidth = "60px"
+                                 value = FALSE
                                )
                  )
                )
