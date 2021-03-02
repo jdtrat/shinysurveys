@@ -47,6 +47,7 @@ $.extend(shinySurveyBinding, {
 
   subscribe: function(el, callback) {
     // On any of these actions return the values via the getValue function
+    $(el).find(".options").on("keyup", function(evt) {callback();})
     $(el).find("#question_title").on("keyup", function(evt) {callback();})
     $(el).find("#question_type").change(function(evt) {callback();})
     $(el).find("#question_required").change(function(evt) {callback();})
@@ -57,21 +58,19 @@ $.extend(shinySurveyBinding, {
     $(el).find("#add_option").on("click", function() {
 
       // unbind all Shiny inputs
-      Shiny.unbindAll();
+     Shiny.unbindAll();
 
       // increment the option_number
       option_number++;
 
-      // append to the option_placeholder a new input element
-      $(el).find('#option_placeholder').append(
-        '<div class="options"><div class=\"form-group shiny-input-container\" style=\"width:69%;\">' +
+$('<div class="options"><div class=\"form-group shiny-input-container\" style=\"width:69%;\">' +
         '<label class=\"control-label\" id=\"option_' + option_number + 'label\" for=\"option_' + option_number + '\"></label>' +
         '<input id=\"option_' + option_number + '\" type=\"text\" class=\"form-control\" value=\"Placeholder\"/>' +
-        '</div></div>'
-      );
+        '</div></div>')
+.insertAfter($('.options').last());
 
       // Bind all shiny inputs, including the newly inserted one.
-      Shiny.bindAll();
+     Shiny.bindAll();
     })
   },
   unsubscribe: function(el) {
