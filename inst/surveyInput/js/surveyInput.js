@@ -21,16 +21,21 @@ $.extend(shinySurveyBinding, {
     let dependence_value = 'NA';
     let required = $(el).find('#question_required').prop('checked');
 
-    // return values (data frame in R) of the form used in {shinysurveys}
-    var values = [{
+    // make an array of the length of the options class
+    // then we'll use map to create elements for each item in the array
+    let values = [...Array(($(".options").length)).keys()].map(i => ({
       "question": question,
-      "option": $(el).find('#option_1').val(), // work on generalizing for any option
+      // use the index to get the id of each option
+      "option": $(el).find('#option_' + i).val(), // work on generalizing for any option
       "input_type": input_type,
       "input_id": input_id,
       "dependence": dependence, // GUI doesn't deal with dependencies now
       "dependence_value": dependence_value, // GUI doesn't deal with dependencies now
       "required": required
-    }];
+    }))
+
+    // this looks way better than in R lol
+    console.log(values)
 
     return values
 
@@ -55,10 +60,10 @@ $.extend(shinySurveyBinding, {
 
       // append to the option_placeholder a new input element
       $(el).find('#option_placeholder').append(
-        '<div class=\"form-group shiny-input-container\" style=\"width:69%;\">' +
+        '<div class="options"><div class=\"form-group shiny-input-container\" style=\"width:69%;\">' +
         '<label class=\"control-label\" id=\"option_' + option_number + 'label\" for=\"option_' + option_number + '\"></label>' +
         '<input id=\"option_' + option_number + '\" type=\"text\" class=\"form-control\" value=\"Placeholder\"/>' +
-        '</div>'
+        '</div></div>'
       );
 
       // Bind all shiny inputs, including the newly inserted one.
