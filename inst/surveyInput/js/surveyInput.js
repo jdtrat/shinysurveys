@@ -25,9 +25,9 @@ $.extend(shinySurveyBinding, {
     // then we'll use map to create elements for each item in the array
 
     // TODO now this is an interesting problem:
-    // this is only getting updated when you click the + sign,
-    // Im thinking that's because our subscribe is looking for a click
-    // So I guess we also need to listen for the text to change.... maybe?
+    //      this is only getting updated when you click the + sign,
+    //      Im thinking that's because our subscribe is looking for a click
+    //      So I guess we also need to listen for the text to change.... maybe?
     let values = [...Array(($(".options").length)).keys()].map(i => ({
       "question": question,
       // use the index to get the id of each option
@@ -40,6 +40,8 @@ $.extend(shinySurveyBinding, {
     }))
 
     // this looks way better than in R lol
+    // TODO clean this up before returning to R
+    //      would be cool to have a list or DF
     console.log(values)
 
     return values
