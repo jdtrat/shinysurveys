@@ -23,6 +23,10 @@ $.extend(shinySurveyBinding, {
 
     // make an array of the length of the options class
     // then we'll use map to create elements for each item in the array
+    // now this is an interesting problem:
+    // this is only getting updated when you click the + sign,
+    // Im thinking that's because our subscribe is looking for a click
+    // So I guess we also need to listen for the text to change.... maybe?
     let values = [...Array(($(".options").length)).keys()].map(i => ({
       "question": question,
       // use the index to get the id of each option
