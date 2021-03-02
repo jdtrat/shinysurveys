@@ -23,7 +23,8 @@ $.extend(shinySurveyBinding, {
 
     // make an array of the length of the options class
     // then we'll use map to create elements for each item in the array
-    // now this is an interesting problem:
+
+    // TODO now this is an interesting problem:
     // this is only getting updated when you click the + sign,
     // Im thinking that's because our subscribe is looking for a click
     // So I guess we also need to listen for the text to change.... maybe?
@@ -47,7 +48,9 @@ $.extend(shinySurveyBinding, {
 
   subscribe: function(el, callback) {
     // On any of these actions return the values via the getValue function
-    $(el).find(".options").on("keyup", function(evt) {callback();})
+    // TODO register the keyup for all inputs... this isn't quite working
+    $(el).find(".options input").on("keyup", function(evt) {callback();})
+
     $(el).find("#question_title").on("keyup", function(evt) {callback();})
     $(el).find("#question_type").change(function(evt) {callback();})
     $(el).find("#question_required").change(function(evt) {callback();})
