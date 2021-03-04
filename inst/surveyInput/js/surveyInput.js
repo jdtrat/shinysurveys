@@ -67,7 +67,7 @@ $.extend(shinySurveyBinding, {
       option_number++;
 
       // unbind all Shiny inputs
-     Shiny.unbindAll();
+     Shiny.unbindAll(el);
 
 $('<div class="options"><div class=\"form-group shiny-input-container\" style=\"width:69%;\">' +
         '<label class=\"control-label\" id=\"option_' + option_number + 'label\" for=\"option_' + option_number + '\"></label>' +
@@ -76,7 +76,7 @@ $('<div class="options"><div class=\"form-group shiny-input-container\" style=\"
 .insertAfter($('.options').last());
 
       // Bind all shiny inputs, including the newly inserted one.
-     Shiny.bindAll();
+     Shiny.bindAll(el);
     })
   },
   unsubscribe: function(el) {
