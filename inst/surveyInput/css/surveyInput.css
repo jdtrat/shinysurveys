@@ -2,8 +2,52 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata');
 
 
-.shiny-input-container:not(.shiny-input-container-inline) {
+/* header and footer button Stuff */
+.footer-icons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+.right-icons {
+  display: flex;
+  gap: 20px;
+  padding-right: 30px;
+}
+
+.header-inputs {
   width: 100%;
+  display: inline-grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 840px) {
+.header-inputs {
+  width: 100%;
+  grid-template-columns: 1fr 0.5fr;
+  grid-template-rows: 0fr;
+  }
+}
+
+
+/* All the buttons in footer should be the same height */
+.footer-icons .btn-default {
+    height: 70%;
+}
+
+/* Make the select feel less squishy on the LHS when the screen is small */
+.surveyInput .selectize-control {
+    margin-left: 20px;
+}
+
+.surveyInput input[type=text] {
+    width: 90%;
+    margin-left: 20px;
+}
+
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 90%;
 }
 
 .surveyInput {

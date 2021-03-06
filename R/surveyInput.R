@@ -7,7 +7,7 @@
 #'
 #' @export
 
-surveyInput <- function(inputId, color, width) {
+surveyInput <- function(inputId, color, width = "300px") {
   shiny::tagList(
     htmltools::htmlDependency(
       name = "surveyInput",
@@ -21,18 +21,9 @@ surveyInput <- function(inputId, color, width) {
                id = inputId,
                `data-input-id` = inputId,
                `data-width` = width,
-               shiny::fluidRow(
-                 shiny::column(
-                   width = 8,
-                   offset = 0,
-                   shiny::textInput("question_title",
-                                    "",
-                                    "Untitled Question",
-                                    width = "600px"),
-                 ),
-                 shiny::column(width = 3,
-                               offset = 0.5,
-                               shiny::selectInput("question_type",
+               shiny::div(class="header-inputs",
+                  shiny::textInput(paste0(inputId,"_question_title"),"","Untitled Question"),
+                  shiny::selectInput(paste0(inputId, "_question_type"),
                                                   "",
                                                   choices = c(
                                                     "Select",
@@ -41,39 +32,24 @@ surveyInput <- function(inputId, color, width) {
                                                     "Text",
                                                     "Yes/No"
                                                   )
-                               )
-                 ),
-                 shiny::div(id = paste0("option_placeholder"),
+                  )
+              ),
+              shiny::div(id = paste0("option_placeholder"),
                             div(class="options",
                                 shiny::textInput(inputId = "option_1",
                                              label = "",
                                              value = "Placeholder",
-                                             width = "69%")),
-                            shiny::actionButton("add_option",
-                                                label = "",
-                                                icon = shiny::icon("plus"))
-                            )
-               ),
-               shiny::fluidRow(
-                 shiny::column(
-                   width = 2,
-                   offset = 6,
-                   shiny::actionButton(
-                     inputId = paste0("question_delete"),
-                     label = "",
-                     icon = shiny::icon("trash"),
-                     style = "margin-left: 50px;"
-                   )
+                                             width = "69%"))
+                            ),
+               shiny::div(class="footer-icons",
+                 shiny::div(class="left-icons",
+                   shiny::actionButton(paste0(inputId, "_add_option"), label = "", icon = shiny::icon("plus"))
                  ),
-                 shiny::column(width = 2,
-                               offset = 0,
-                               shiny::checkboxInput(
-                                 inputId = "question_required",
-                                 label = "Required",
-                                 value = FALSE
-                               )
+                 shiny::div(class="right-icons",
+                   shiny::actionButton(paste0(inputId, "_question_delete"), label = "", icon = shiny::icon("trash")),
+                   shiny::checkboxInput(paste0(inputId, "_question_required"), label = "Required", value = FALSE)
                  )
                )
-    ),
+    )
   )
 }
