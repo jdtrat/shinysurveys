@@ -13,13 +13,14 @@ $.extend(shinySurveyBinding, {
   // Get the value of the custom input
   getValue: function getValue(el) {
 
-    let question = $(el).find('#question_title').val();
-    let input_type = $(el).find('#question_type').val();
-    // remove punctuation and replace spaces with underscores and make all lowercase for input_id
+    console.log(el.id)
+
+    let question = $(el).find("#" + el.id +'_question_title').val();
+    let input_type = $(el).find("#" + el.id + '_question_type').val();
     let input_id = question.replace(/[^a-zA-Z0-9_-]/g, '').split(' ').join('_').toLowerCase();
     let dependence = 'NA';
     let dependence_value = 'NA';
-    let required = $(el).find('#question_required').prop('checked');
+    let required = $(el).find("#" + el.id+ '_question_required').prop('checked');
 
     // make an array of the length of the options class
     // then we'll use map to create elements for each item in the array
@@ -53,7 +54,7 @@ $.extend(shinySurveyBinding, {
     // TODO register the keyup for all inputs... this isn't quite working
     // something like find all the inputs inside options class and listen to them?
     // $(el).find(".options input").on("keyup", function(evt) {callback();})
-    $(el).find("#option_1").on("keyup", function(evt) {callback();})
+    $(el).find(".options").on("keyup", function(evt) {callback();})
 
     $(el).find("#question_title").on("keyup", function(evt) {callback();})
     $(el).find("#question_type").change(function(evt) {callback();})
@@ -61,7 +62,7 @@ $.extend(shinySurveyBinding, {
 
 
     // When the add_option button is clicked, insert another input element
-    $(el).find("#add_option").on("click", function() {
+    $(el).find("#" + el.id + "_add_option").on("click", function() {
 
       // increment the option_number
       option_number++;
@@ -73,7 +74,7 @@ $('<div class="options"><div class=\"form-group shiny-input-container\" style=\"
         '<label class=\"control-label\" id=\"option_' + option_number + 'label\" for=\"option_' + option_number + '\"></label>' +
         '<input id=\"option_' + option_number + '\" type=\"text\" class=\"form-control\" value=\"Placeholder\"/>' +
         '</div></div>')
-.insertAfter($('.options').last());
+.insertAfter($('#' + el.id +  ' .options').last());
 
       // Bind all shiny inputs, including the newly inserted one.
      Shiny.bindAll(el);
