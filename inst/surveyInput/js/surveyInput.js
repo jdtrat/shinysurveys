@@ -44,7 +44,7 @@ $.extend(shinySurveyBinding, {
     //      would be cool to have a list or DF
     console.log(values)
 
-    return values
+    return(JSON.stringify(values));
 
   },
 
@@ -81,6 +81,9 @@ $('<div class="options"><div class=\"form-group shiny-input-container\" style=\"
   },
   unsubscribe: function(el) {
     $(el).off(".shinySurveyBinding");
+  },
+  getType: function(el) {
+    return "surveyInput.questionDataFrame";
   }
 });
 
