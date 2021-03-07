@@ -44,10 +44,11 @@ surveyInput <- function(inputId, color, width) {
                                )
                  ),
                  shiny::div(id = paste0("option_placeholder"),
-                            shiny::textInput(inputId = "option_1",
+                            div(class="options",
+                                shiny::textInput(inputId = "option_1",
                                              label = "",
                                              value = "Placeholder",
-                                             width = "69%"),
+                                             width = "69%")),
                             shiny::actionButton("add_option",
                                                 label = "",
                                                 icon = shiny::icon("plus"))

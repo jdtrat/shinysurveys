@@ -21,16 +21,28 @@ $.extend(shinySurveyBinding, {
     let dependence_value = 'NA';
     let required = $(el).find('#question_required').prop('checked');
 
-    // return values (data frame in R) of the form used in {shinysurveys}
-    var values = [{
+    // make an array of the length of the options class
+    // then we'll use map to create elements for each item in the array
+
+    // TODO now this is an interesting problem:
+    //      this is only getting updated when you click the + sign,
+    //      Im thinking that's because our subscribe is looking for a click
+    //      So I guess we also need to listen for the text to change.... maybe?
+    let values = [...Array(($(".options").length)).keys()].map(i => ({
       "question": question,
-      "option": $(el).find('#option_1').val(), // work on generalizing for any option
+      // use the index to get the id of each option
+      "option": $(el).find('#option_' + i).val(), // work on generalizing for any option
       "input_type": input_type,
       "input_id": input_id,
       "dependence": dependence, // GUI doesn't deal with dependencies now
       "dependence_value": dependence_value, // GUI doesn't deal with dependencies now
       "required": required
-    }];
+    }))
+
+    // this looks way better than in R lol
+    // TODO clean this up before returning to R
+    //      would be cool to have a list or DF
+    console.log(values)
 
     return values
 
@@ -38,31 +50,33 @@ $.extend(shinySurveyBinding, {
 
   subscribe: function(el, callback) {
     // On any of these actions return the values via the getValue function
+    // TODO register the keyup for all inputs... this isn't quite working
+    // something like find all the inputs inside options class and listen to them?
+    // $(el).find(".options input").on("keyup", function(evt) {callback();})
+    $(el).find("#option_1").on("keyup", function(evt) {callback();})
+
     $(el).find("#question_title").on("keyup", function(evt) {callback();})
     $(el).find("#question_type").change(function(evt) {callback();})
     $(el).find("#question_required").change(function(evt) {callback();})
-    $(el).find("#option_1").on("keyup", function(evt) {callback();})
 
 
     // When the add_option button is clicked, insert another input element
     $(el).find("#add_option").on("click", function() {
 
-      // unbind all Shiny inputs
-      Shiny.unbindAll();
-
       // increment the option_number
       option_number++;
 
-      // append to the option_placeholder a new input element
-      $(el).find('#option_placeholder').append(
-        '<div class=\"form-group shiny-input-container\" style=\"width:69%;\">' +
+      // unbind all Shiny inputs
+     Shiny.unbindAll(el);
+
+$('<div class="options"><div class=\"form-group shiny-input-container\" style=\"width:69%;\">' +
         '<label class=\"control-label\" id=\"option_' + option_number + 'label\" for=\"option_' + option_number + '\"></label>' +
         '<input id=\"option_' + option_number + '\" type=\"text\" class=\"form-control\" value=\"Placeholder\"/>' +
-        '</div>'
-      );
+        '</div></div>')
+.insertAfter($('.options').last());
 
       // Bind all shiny inputs, including the newly inserted one.
-      Shiny.bindAll();
+     Shiny.bindAll(el);
     })
   },
   unsubscribe: function(el) {
