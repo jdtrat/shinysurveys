@@ -48,35 +48,34 @@ $.extend(shinySurveyBinding, {
 
   },
 
-  subscribe: function(el, callback) {
+subscribe: function(el, callback) {
     // On any of these actions return the values via the getValue function
     // TODO register the keyup for all inputs... this isn't quite working
     // something like find all the inputs inside options class and listen to them?
-    // $(el).find(".options input").on("keyup", function(evt) {callback();})
-    $(el).find("#option_1").on("keyup", function(evt) {callback();})
-
+    let opts = $(el).find(".options input[id^='option_']");
+    console.log("sub");
+    console.log(opts);
+    opts.on("keyup", function(evt) {callback();})
     $(el).find("#question_title").on("keyup", function(evt) {callback();})
     $(el).find("#question_type").change(function(evt) {callback();})
     $(el).find("#question_required").change(function(evt) {callback();})
-
-
     // When the add_option button is clicked, insert another input element
     $(el).find("#add_option").on("click", function() {
-
       // increment the option_number
       option_number++;
-
       // unbind all Shiny inputs
      Shiny.unbindAll(el);
-
 $('<div class="options"><div class=\"form-group shiny-input-container\" style=\"width:69%;\">' +
         '<label class=\"control-label\" id=\"option_' + option_number + 'label\" for=\"option_' + option_number + '\"></label>' +
         '<input id=\"option_' + option_number + '\" type=\"text\" class=\"form-control\" value=\"Placeholder\"/>' +
         '</div></div>')
 .insertAfter($('.options').last());
-
       // Bind all shiny inputs, including the newly inserted one.
      Shiny.bindAll(el);
+     // update opts that trigger a callback
+      var opts = $(el).find(".options input[id^='option_']");
+      console.log("updated");
+      console.log(opts);
     })
   },
   unsubscribe: function(el) {
