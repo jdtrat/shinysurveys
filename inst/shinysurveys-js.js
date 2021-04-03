@@ -19,4 +19,16 @@ Shiny.addCustomMessageHandler("enable", function(params) {
   $el.removeClass("disabled");
 });
 
+Shiny.addCustomMessageHandler("get_title", function(params) {
 
+  let title = $("#survey-title").html();
+
+  if (typeof(title) !== "undefined") {
+    message = title;
+  } else {
+    message = "NA";
+  }
+
+  Shiny.onInputChange("surveyTitle", message);
+
+});
