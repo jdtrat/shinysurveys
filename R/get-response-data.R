@@ -48,3 +48,37 @@ get_survey_title <- function() {
   session$sendCustomMessage("get_title",
                             list())
 }
+
+#' Return Survey Data
+#'
+#' Return a user's responses for a {shinysurvey}.
+#'
+#' @inheritParams renderSurvey
+#'
+#' @return A data frame with the values of all survey questions.
+#' @export
+#'
+#' @examples
+#' # to come
+get_survey_data <- function(df) {
+
+  get_survey_title() # called for side effects
+
+  survey_data <- as.data.frame(
+    lapply(unique(df$input_id), get_survey_responses)
+  )
+
+  session <- shiny::getDefaultReactiveDomain()
+}
+
+get_text <- function() {
+  session <- shiny::getDefaultReactiveDomain()
+  session$sendCustomMessage("get_text", list())
+}
+
+# append the text from a given ID with the result of "get_text" from JS
+append_text <- function(id) {
+  get_text()
+  session <- shiny::getDefaultReactiveDomain()
+  paste(session$input[[id]], session$input$testText)
+}
