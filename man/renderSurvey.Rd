@@ -9,7 +9,8 @@ renderSurvey(df, theme = "#63B8FF")
 \arguments{
 \item{df}{A user supplied dataframe in the format of teaching_r_questions.}
 
-\item{theme}{A valid R color: predefined such as "red" or "blue"; hex colors such as #63B8FF (default)}
+\item{theme}{A valid R color: predefined such as "red" or "blue"; hex colors
+such as #63B8FF (default). To customize the survey's appearance entirely, supply NULL.}
 }
 \value{
 NA; used for server-side logic in Shiny apps.
