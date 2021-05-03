@@ -352,6 +352,8 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #'
 renderSurvey <- function(df, theme = "#63B8FF") {
 
+  session <- shiny::getDefaultReactiveDomain()
+
   if (!is.null(theme)) {
 
     session$output$sass <- shiny::renderUI({
@@ -372,8 +374,6 @@ renderSurvey <- function(df, theme = "#63B8FF") {
     })
 
   }
-
-  session <- shiny::getDefaultReactiveDomain()
 
   unique_questions <- listUniqueQuestions(df)
   required_vec <- getRequired_internal(unique_questions)
