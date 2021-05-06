@@ -4,7 +4,7 @@
 \alias{surveyOutput}
 \title{Generate the UI Code for demographic questions}
 \usage{
-surveyOutput(df, survey_title, survey_description, ...)
+surveyOutput(df, survey_title, survey_description, custom_input, ...)
 }
 \arguments{
 \item{df}{A user supplied data frame in the format of teaching_r_questions.}
@@ -12,6 +12,8 @@ surveyOutput(df, survey_title, survey_description, ...)
 \item{survey_title}{(Optional) user supplied title for the survey}
 
 \item{survey_description}{(Optional) user supplied description for the survey}
+
+\item{custom_input}{(Optional) user-supplied input type for extending shinysurveys' possible inputs.}
 
 \item{...}{Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.}
 }
@@ -22,9 +24,46 @@ UI Code for a Shiny App.
 Create the UI code for a Shiny app based on user-supplied questions.
 }
 \examples{
+
+## Traditional Example
 if (interactive()) {
 surveyOutput(df = shinysurveys::teaching_r_questions,
 survey_title = "Teaching R Questions",
 survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")
+}
+
+
+## Example of custom input extension
+
+input_extension <- function(df) {
+shiny::sliderInput(
+ inputId = unique(df$input_id),
+ label = shinysurveys:::addRequiredUI_internal(df),
+ min = 1,
+ max = 10,
+ value = 10
+)
+}
+
+question <- data.frame(question = "On a scale from 1-10,
+how much do you love sushi?",
+option = NA,
+input_type = "slider",
+input_id = "sushi_scale",
+dependence = NA,
+dependence_value = NA,
+required = TRUE)
+
+if (interactive()) {
+ui <- fluidPage(
+  surveyOutput(question, "Sushi Scale Example", custom_input = "slider")
+)
+
+server <- function(input, output, session) {
+  renderSurvey(ques)
+}
+
+shinyApp(ui, server)
+
 }
 }

@@ -60,12 +60,17 @@ addRequiredUI_internal <- function(df) {
 #' Generate the UI Code for demographic questions
 #'
 #' @param df One element (a dataframe) in the list of unique questions.
-#'
+#' @param custom_input The input_type corresponding to the custom input.
+#' @param ... Additional arguments to pass into input_extension()
 #'
 #' @keywords internal
 #' @return UI Code for a Shiny App.
 #'
-surveyOutput_individual <- function(df) {
+surveyOutput_individual <- function(df, custom_input, ...) {
+
+  if (missing(custom_input)) {
+    input_extension <- NULL
+  }
 
   inputType <- base::unique(df$input_type)
 
@@ -130,6 +135,11 @@ surveyOutput_individual <- function(df) {
 
   }
 
+  else if (inputType == custom_input) {
+    output <- input_extension(df = df,
+                              ...)
+  }
+
   if (!base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions dependence",
                          id = df$input_id[1],
@@ -184,20 +194,65 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #' @param df A user supplied data frame in the format of teaching_r_questions.
 #' @param survey_title (Optional) user supplied title for the survey
 #' @param survey_description (Optional) user supplied description for the survey
+#' @param custom_input (Optional) user-supplied input type for extending shinysurveys' possible inputs.
 #' @param ... Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.
 #'
 #' @return UI Code for a Shiny App.
 #' @export
 #'
 #' @examples
+#'
+#' ## Traditional Example
 #' if (interactive()) {
 #' surveyOutput(df = shinysurveys::teaching_r_questions,
 #' survey_title = "Teaching R Questions",
 #' survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")
 #' }
-surveyOutput <- function(df, survey_title, survey_description, ...) {
+#'
+#'
+#' ## Example of custom input extension
+#'
+#' input_extension <- function(df) {
+#'shiny::sliderInput(
+#'  inputId = unique(df$input_id),
+#'  label = shinysurveys:::addRequiredUI_internal(df),
+#'  min = 1,
+#'  max = 10,
+#'  value = 10
+#' )
+#' }
+#'
+#'question <- data.frame(question = "On a scale from 1-10,
+#' how much do you love sushi?",
+#' option = NA,
+#' input_type = "slider",
+#' input_id = "sushi_scale",
+#' dependence = NA,
+#' dependence_value = NA,
+#' required = TRUE)
+#'
+#' if (interactive()) {
+#' ui <- fluidPage(
+#'   surveyOutput(question, "Sushi Scale Example", custom_input = "slider")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'   renderSurvey(ques)
+#' }
+#'
+#' shinyApp(ui, server)
+#'
+#' }
+#'
+surveyOutput <- function(df, survey_title, survey_description, custom_input, ...) {
 
   unique_questions <- listUniqueQuestions(df)
+
+  if (missing(custom_input)) {
+    question_ui <- lapply(unique_questions, surveyOutput_individual)
+  } else if (!missing(custom_input)) {
+    question_ui <- lapply(unique_questions, surveyOutput_individual, custom_input)
+  }
 
   shiny::tagList(shiny::includeScript(system.file("shinysurveys-js.js",
                                                   package = "shinysurveys")),
@@ -210,7 +265,7 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
                                                                    value = "NO_USER_ID")),
                                        check_survey_metadata(survey_title = survey_title,
                                                              survey_description = survey_description),
-                                       lapply(unique_questions, surveyOutput_individual),
+                                       question_ui,
                                        shiny::actionButton("submit",
                                                            "Submit",
                                                            ...))))
