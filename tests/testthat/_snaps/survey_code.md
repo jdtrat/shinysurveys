@@ -291,7 +291,9 @@
             </div>
           </div>
         </div>
-        <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
+        <div class="survey-buttons">
+          <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
+        </div>
       </div>
     </div>
 
@@ -406,7 +408,9 @@
               </div>
             </div>
           </div>
-          <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
+          <div class="survey-buttons">
+            <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
+          </div>
         </div>
       </div>
     </div>
@@ -580,7 +584,9 @@
               </div>
             </div>
           </div>
-          <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
+          <div class="survey-buttons">
+            <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
+          </div>
         </div>
       </div>
     </div>

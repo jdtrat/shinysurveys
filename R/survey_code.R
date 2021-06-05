@@ -204,10 +204,26 @@ check_survey_metadata <- function(survey_description, survey_title) {
 surveyOutput <- function(df, survey_title, survey_description, ...) {
 
   survey_env$question_df <- df
-
   survey_env$unique_questions <- listUniqueQuestions(df)
+  survey_env$title <- survey_title
+  if (!missing(survey_description)) {
+    survey_env$description <- survey_description
+  }
 
-  question_ui <- lapply(survey_env$unique_questions, surveyOutput_individual)
+  if ("page" %in% names(df)) {
+    main_ui <- multipaged_ui(df = df)
+  } else if (!"page" %in% names(df)) {
+    main_ui <- shiny::tagList(
+      check_survey_metadata(survey_title = survey_title,
+                            survey_description = survey_description),
+      lapply(survey_env$unique_questions, surveyOutput_individual),
+      shiny::div(class = "survey-buttons",
+                 shiny::actionButton("submit",
+                                     "Submit",
+                                     ...)
+      )
+    )
+  }
 
   shiny::tagList(shiny::includeScript(system.file("shinysurveys-js.js",
                                                   package = "shinysurveys")),
@@ -218,12 +234,7 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
                                                   shiny::textInput(inputId = "userID",
                                                                    label = "Enter your username.",
                                                                    value = "NO_USER_ID")),
-                                       check_survey_metadata(survey_title = survey_title,
-                                                             survey_description = survey_description),
-                                       question_ui,
-                                       shiny::actionButton("submit",
-                                                           "Submit",
-                                                           ...))))
+                                       main_ui)))
 
 }
 
@@ -408,5 +419,11 @@ renderSurvey <- function(df, theme = "#63B8FF") {
                    condition = checkRequired_internal(input = session$input,
                                                       required_inputs_vector = required_vec))
   })
+
+  # Clean up non-essential internal environmental variables
+  shiny::onStop(function() rm(list = ls(survey_env)[which(!ls(survey_env) %in% c("question_df",
+                                                                                 "unique_questions",
+                                                                                 "input_type",
+                                                                                 "input_extension"))], envir = survey_env))
 
 }

@@ -122,6 +122,10 @@ label {
         }
       }
 
+      .page-hidden {
+        display: none;
+      }
+
       .questions {
         display: grid;
         background-color: white;
