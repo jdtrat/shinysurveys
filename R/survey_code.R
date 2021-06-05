@@ -67,6 +67,7 @@ addRequiredUI_internal <- function(df) {
 surveyOutput_individual <- function(df) {
 
   inputType <- base::unique(df$input_type)
+  survey_env$current_question <- df
 
   if (inputType ==  "select") {
     output <-
@@ -193,7 +194,6 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #'
 #' @examples
 #'
-#' ## Traditional Example
 #' if (interactive()) {
 #' surveyOutput(df = shinysurveys::teaching_r_questions,
 #' survey_title = "Teaching R Questions",
@@ -201,47 +201,13 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #' }
 #'
 #'
-#' ## Example of custom input extension
-#'
-#' input_extension <- function(df) {
-#'shiny::sliderInput(
-#'  inputId = unique(df$input_id),
-#'  label = shinysurveys:::addRequiredUI_internal(df),
-#'  min = 1,
-#'  max = 10,
-#'  value = 10
-#' )
-#' }
-#'
-#'question <- data.frame(question = "On a scale from 1-10,
-#' how much do you love sushi?",
-#' option = NA,
-#' input_type = "slider",
-#' input_id = "sushi_scale",
-#' dependence = NA,
-#' dependence_value = NA,
-#' required = TRUE)
-#'
-#' if (interactive()) {
-#' ui <- fluidPage(
-#'   surveyOutput(question, "Sushi Scale Example", custom_input = "slider")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'   renderSurvey(ques)
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-#'
 surveyOutput <- function(df, survey_title, survey_description, ...) {
 
   survey_env$question_df <- df
 
-  unique_questions <- listUniqueQuestions(df)
+  survey_env$unique_questions <- listUniqueQuestions(df)
 
-  question_ui <- lapply(unique_questions, surveyOutput_individual)
+  question_ui <- lapply(survey_env$unique_questions, surveyOutput_individual)
 
   shiny::tagList(shiny::includeScript(system.file("shinysurveys-js.js",
                                                   package = "shinysurveys")),
@@ -425,8 +391,7 @@ renderSurvey <- function(df, theme = "#63B8FF") {
 
   }
 
-  unique_questions <- listUniqueQuestions(df)
-  required_vec <- getRequired_internal(unique_questions)
+  required_vec <- getRequired_internal(survey_env$unique_questions)
 
   shiny::observe({
 
@@ -437,7 +402,7 @@ renderSurvey <- function(df, theme = "#63B8FF") {
     }
 
     # Update the dependencies
-    for (id in seq_along(unique_questions)) showDependence(input = session$input, df = unique_questions[[id]])
+    for (id in seq_along(survey_env$unique_questions)) showDependence(input = session$input, df = survey_env$unique_questions[[id]])
 
     toggle_element(id = "submit",
                    condition = checkRequired_internal(input = session$input,

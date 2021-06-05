@@ -4,14 +4,10 @@
 \alias{surveyOutput_individual}
 \title{Generate the UI Code for demographic questions}
 \usage{
-surveyOutput_individual(df, custom_input, ...)
+surveyOutput_individual(df)
 }
 \arguments{
 \item{df}{One element (a dataframe) in the list of unique questions.}
-
-\item{custom_input}{The input_type corresponding to the custom input.}
-
-\item{...}{Additional arguments to pass into input_extension()}
 }
 \value{
 UI Code for a Shiny App.
