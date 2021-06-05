@@ -1,0 +1,109 @@
+#' Add correct ID for custom input types
+#'
+#' `surveyID()` is a helper function for \code{\link{extendInputType}}. When
+#' defining custom input types, the `inputId` argument for shiny UI components
+#' should equal `surveyID()`. See \ref{examples} for more details.
+#'
+#' @seealso extendInputType
+#' @seealso surveyLabel
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' extendInputType("slider", {
+#' shiny::sliderInput(
+#'   inputId = surveyID(),
+#'   label = surveyLabel(),
+#'   min = 1,
+#'   max = 10,
+#'   value = 5
+#' )
+#' })
+#'
+surveyID <- function() {
+  unique(survey_env$question_df$input_id)
+}
+
+#' Add correct label for custom input types
+#'
+#' `surveyLabel()` is a helper function for \code{\link{extendInputType}}. When
+#' defining custom input types, the `label` argument for shiny UI components
+#' should equal `surveyLabel()`. See \ref{examples} for more details.
+#'
+#' @seealso extendInputType
+#' @seealso surveyID
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' extendInputType("slider", {
+#' shiny::sliderInput(
+#'   inputId = surveyID(),
+#'   label = surveyLabel(),
+#'   min = 1,
+#'   max = 10,
+#'   value = 5
+#' )
+#' })
+#'
+surveyLabel <- function() {
+  addRequiredUI_internal(survey_env$question_df)
+}
+
+
+#' Add Custom Input Types for a Survey
+#'
+#' @param input_type A string of the input type supplied in the data frame of questions.
+#' @param extension A shiny input type not natively supported by {shinysurveys}. See \link{example} for more information.
+#'
+#' @return NA; used to register custom input types for use with a shiny survey.
+#' @export
+#'
+#' @seealso surveyID
+#' @seealso surveyLabel
+#' @examples
+#'
+#' Register a slider input to {shinysurveys} with a custom minimum and maximum value.
+#'
+#' extendInputType("slider", {
+#'   shiny::sliderInput(
+#'     inputId = surveyID(),
+#'     label = surveyLabel(),
+#'     min = 1,
+#'     max = 10,
+#'     value = 5
+#'     )
+#'   })
+#'
+#' # Define a question as normal with the `input_type` set to the custom type defined above.
+#' question <- data.frame(question = "On a scale from 1-10,
+#' how much do you love sushi?",
+#' option = NA,
+#' input_type = "slider",
+#' input_id = "sushi_scale",
+#' dependence = NA,
+#' dependence_value = NA,
+#' required = TRUE)
+#'
+#' # Watch it in action
+#' if (interactive()) {
+#' ui <- fluidPage(
+#'   surveyOutput(df = question, "Sushi Scale Example")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'   renderSurvey()
+#' }
+#'
+#' shinyApp(ui, server)
+#'
+
+extendInputType <- function(input_type, extension) {
+  survey_env$input_type <- c(survey_env$input_type, input_type)
+  survey_env$input_extension <- c(survey_env$input_extension, list(ext = substitute(extension)))
+  names(survey_env$input_extension)[which(names(survey_env$input_extension) == "ext")] <- input_type
+}
+
+

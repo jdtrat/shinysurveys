@@ -60,17 +60,11 @@ addRequiredUI_internal <- function(df) {
 #' Generate the UI Code for demographic questions
 #'
 #' @param df One element (a dataframe) in the list of unique questions.
-#' @param custom_input The input_type corresponding to the custom input.
-#' @param ... Additional arguments to pass into input_extension()
 #'
 #' @keywords internal
 #' @return UI Code for a Shiny App.
 #'
-surveyOutput_individual <- function(df, custom_input, ...) {
-
-  if (missing(custom_input)) {
-    input_extension <- NULL
-  }
+surveyOutput_individual <- function(df) {
 
   inputType <- base::unique(df$input_type)
 
@@ -115,6 +109,7 @@ surveyOutput_individual <- function(df, custom_input, ...) {
         selected = base::character(0),
         choices = df$option
       )
+
   } else if (grepl("rank_{{", inputType, perl = T)) {
 
     if (length(unique(df$question)) > 1) {
@@ -133,11 +128,8 @@ surveyOutput_individual <- function(df, custom_input, ...) {
                  shiny::div(class = "ranking-title", unique(df$question)),
                  shiny::tagList(lapply(rank_list, rank_ui_internal, num_ranks = n_ranks)))
 
-  }
-
-  else if (inputType == custom_input) {
-    output <- input_extension(df = df,
-                              ...)
+  } else if (inputType %in% survey_env$input_type) {
+    output <- eval(survey_env$input_extension[[inputType]])
   }
 
   if (!base::is.na(df$dependence[1])) {
@@ -194,7 +186,6 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #' @param df A user supplied data frame in the format of teaching_r_questions.
 #' @param survey_title (Optional) user supplied title for the survey
 #' @param survey_description (Optional) user supplied description for the survey
-#' @param custom_input (Optional) user-supplied input type for extending shinysurveys' possible inputs.
 #' @param ... Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.
 #'
 #' @return UI Code for a Shiny App.
@@ -244,15 +235,13 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #'
 #' }
 #'
-surveyOutput <- function(df, survey_title, survey_description, custom_input, ...) {
+surveyOutput <- function(df, survey_title, survey_description, ...) {
+
+  survey_env$question_df <- df
 
   unique_questions <- listUniqueQuestions(df)
 
-  if (missing(custom_input)) {
-    question_ui <- lapply(unique_questions, surveyOutput_individual)
-  } else if (!missing(custom_input)) {
-    question_ui <- lapply(unique_questions, surveyOutput_individual, custom_input)
-  }
+  question_ui <- lapply(unique_questions, surveyOutput_individual)
 
   shiny::tagList(shiny::includeScript(system.file("shinysurveys-js.js",
                                                   package = "shinysurveys")),
@@ -406,6 +395,12 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #' }
 #'
 renderSurvey <- function(df, theme = "#63B8FF") {
+
+  if (missing(df)) {
+    df <- survey_env$question_df
+  } else if (!missing(df)) {
+    warning("The `df` argument in `renderSurvey()` is deprecated and will be removed in a future version. Please only pass the data frame of questions to `surveyOutput()`.")
+  }
 
   session <- shiny::getDefaultReactiveDomain()
 

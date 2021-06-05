@@ -1,3 +1,6 @@
+# Create a new environment for access within a survey
+survey_env <- base::new.env(parent = base::emptyenv())
+
 #' Extract user ID from query string
 #'
 #'
