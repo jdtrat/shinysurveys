@@ -159,6 +159,50 @@ extendInputType <- function(input_type, extension) {
   survey_env$input_type <- c(survey_env$input_type, input_type)
   survey_env$input_extension <- c(survey_env$input_extension, list(ext = substitute(extension)))
   names(survey_env$input_extension)[which(names(survey_env$input_extension) == "ext")] <- input_type
+  message(paste0("Input Type \"", input_type,"\" registered with {shinysurveys}. If the session restarts, you will need to re-register it.\n",
+                 "To see all registered input extensions, please call `shinysurveys::listInputExtensions()`."))
 }
 
+#' List all registered survey extensions
+#'
+#' @return A named list containing the registered input type and their associated functions.
+#' @export
+#'
+#' @examples
+#'
+#' if (interactive()) {
+#'
+#'   # Register a date input to {shinysurveys},
+#'   # limiting possible dates to a twenty-day period.
+#'
+#'   extendInputType("slider", {
+#'     shiny::sliderInput(
+#'       inputId = surveyID(),
+#'       label = surveyLabel(),
+#'       min = 1,
+#'       max = 10,
+#'       value = 5
+#'       )
+#'     })
+#'
+#'   # Register a slider input to {shinysurveys}
+#'   # with a custom minimum and maximum value.
+#'
+#'   extendInputType("date", {
+#'     shiny::dateInput(
+#'       inputId = surveyID(),
+#'       value = Sys.Date(),
+#'       label = surveyLabel(),
+#'       min = Sys.Date()-10,
+#'       max = Sys.Date()+10
+#'     )
+#'   })
+#'
+#'   listInputExtensions()
+#'
+#' }
+#'
+listInputExtensions <- function() {
+  survey_env$input_extension
+}
 

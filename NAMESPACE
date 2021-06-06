@@ -2,6 +2,7 @@
 
 export(demo_survey)
 export(extendInputType)
+export(listInputExtensions)
 export(renderSurvey)
 export(surveyID)
 export(surveyLabel)
