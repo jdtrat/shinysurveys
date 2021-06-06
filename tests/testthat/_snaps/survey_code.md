@@ -21,7 +21,41 @@
       $el.removeClass("disabled");
     });
     
-    </script>
+    
+    $(document).ready(function() {
+      // When one of the buttons are clicked, get the current page
+      // from the button ID.
+      $('.survey-buttons .btn').on('click', function(e) {
+        console.log("Hello");
+        current_id = $(e.target).attr('id');
+        current_page = parseInt(current_id.split('-')[1]);
+    
+        // If the button is a "next" button, hide current page and show the next one
+        if ($(e.target).attr('page-action') === 'next') {
+    
+          next_page = current_page + 1;
+    
+          $('#page-' + current_page).addClass('page-hidden');
+          $('#page-' + current_page).removeClass('page-visible');
+          $('#page-' + next_page).removeClass('page-hidden');
+          $('#page-' + next_page).addClass('page-visible');
+    
+        // If the button is a "previous" button, hide current page and show the previous one
+    
+        } else if ($(e.target).attr('page-action') === 'previous') {
+    
+          previous_page = current_page - 1;
+    
+          $('#page-' + current_page).addClass('page-hidden');
+          $('#page-' + current_page).removeClass('page-visible');
+          $('#page-' + previous_page).removeClass('page-hidden');
+          $('#page-' + previous_page).addClass('page-visible');
+    
+        }
+    
+      });
+    
+    });</script>
     <div class="grid">
       <div class="survey">
         <div id="sass" class="shiny-html-output"></div>
@@ -321,7 +355,41 @@
       $el.removeClass("disabled");
     });
     
-    </script>
+    
+    $(document).ready(function() {
+      // When one of the buttons are clicked, get the current page
+      // from the button ID.
+      $('.survey-buttons .btn').on('click', function(e) {
+        console.log("Hello");
+        current_id = $(e.target).attr('id');
+        current_page = parseInt(current_id.split('-')[1]);
+    
+        // If the button is a "next" button, hide current page and show the next one
+        if ($(e.target).attr('page-action') === 'next') {
+    
+          next_page = current_page + 1;
+    
+          $('#page-' + current_page).addClass('page-hidden');
+          $('#page-' + current_page).removeClass('page-visible');
+          $('#page-' + next_page).removeClass('page-hidden');
+          $('#page-' + next_page).addClass('page-visible');
+    
+        // If the button is a "previous" button, hide current page and show the previous one
+    
+        } else if ($(e.target).attr('page-action') === 'previous') {
+    
+          previous_page = current_page - 1;
+    
+          $('#page-' + current_page).addClass('page-hidden');
+          $('#page-' + current_page).removeClass('page-visible');
+          $('#page-' + previous_page).removeClass('page-hidden');
+          $('#page-' + previous_page).addClass('page-visible');
+    
+        }
+    
+      });
+    
+    });</script>
       <div class="grid">
         <div class="survey">
           <div id="sass" class="shiny-html-output"></div>
@@ -439,7 +507,41 @@
       $el.removeClass("disabled");
     });
     
-    </script>
+    
+    $(document).ready(function() {
+      // When one of the buttons are clicked, get the current page
+      // from the button ID.
+      $('.survey-buttons .btn').on('click', function(e) {
+        console.log("Hello");
+        current_id = $(e.target).attr('id');
+        current_page = parseInt(current_id.split('-')[1]);
+    
+        // If the button is a "next" button, hide current page and show the next one
+        if ($(e.target).attr('page-action') === 'next') {
+    
+          next_page = current_page + 1;
+    
+          $('#page-' + current_page).addClass('page-hidden');
+          $('#page-' + current_page).removeClass('page-visible');
+          $('#page-' + next_page).removeClass('page-hidden');
+          $('#page-' + next_page).addClass('page-visible');
+    
+        // If the button is a "previous" button, hide current page and show the previous one
+    
+        } else if ($(e.target).attr('page-action') === 'previous') {
+    
+          previous_page = current_page - 1;
+    
+          $('#page-' + current_page).addClass('page-hidden');
+          $('#page-' + current_page).removeClass('page-visible');
+          $('#page-' + previous_page).removeClass('page-hidden');
+          $('#page-' + previous_page).addClass('page-visible');
+    
+        }
+    
+      });
+    
+    });</script>
       <div class="grid">
         <div class="survey">
           <div id="sass" class="shiny-html-output"></div>
@@ -615,7 +717,41 @@
       $el.removeClass("disabled");
     });
     
-    </script>
+    
+    $(document).ready(function() {
+      // When one of the buttons are clicked, get the current page
+      // from the button ID.
+      $('.survey-buttons .btn').on('click', function(e) {
+        console.log("Hello");
+        current_id = $(e.target).attr('id');
+        current_page = parseInt(current_id.split('-')[1]);
+    
+        // If the button is a "next" button, hide current page and show the next one
+        if ($(e.target).attr('page-action') === 'next') {
+    
+          next_page = current_page + 1;
+    
+          $('#page-' + current_page).addClass('page-hidden');
+          $('#page-' + current_page).removeClass('page-visible');
+          $('#page-' + next_page).removeClass('page-hidden');
+          $('#page-' + next_page).addClass('page-visible');
+    
+        // If the button is a "previous" button, hide current page and show the previous one
+    
+        } else if ($(e.target).attr('page-action') === 'previous') {
+    
+          previous_page = current_page - 1;
+    
+          $('#page-' + current_page).addClass('page-hidden');
+          $('#page-' + current_page).removeClass('page-visible');
+          $('#page-' + previous_page).removeClass('page-hidden');
+          $('#page-' + previous_page).addClass('page-visible');
+    
+        }
+    
+      });
+    
+    });</script>
       <div class="grid">
         <div class="survey">
           <div id="sass" class="shiny-html-output"></div>
@@ -702,7 +838,7 @@
               </div>
             </div>
             <div class="survey-buttons">
-              <button id="next" type="button" class="btn btn-default action-button">Next</button>
+              <button id="next-1" type="button" class="btn btn-default action-button" page-action="next">Next</button>
             </div>
           </div>
           <div class="page page-hidden" id="page-2">
@@ -771,8 +907,8 @@
               </div>
             </div>
             <div class="survey-buttons">
-              <button id="previous" type="button" class="btn btn-default action-button">Previous</button>
-              <button id="next" type="button" class="btn btn-default action-button">Next</button>
+              <button id="previous-2" type="button" class="btn btn-default action-button" page-action="previous">Previous</button>
+              <button id="next-2" type="button" class="btn btn-default action-button" page-action="next">Next</button>
             </div>
           </div>
           <div class="page page-hidden" id="page-3">
@@ -898,7 +1034,7 @@
               </div>
             </div>
             <div class="survey-buttons">
-              <button id="previous" type="button" class="btn btn-default action-button">Previous</button>
+              <button id="previous-3" type="button" class="btn btn-default action-button" page-action="previous">Previous</button>
               <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
             </div>
           </div>

@@ -154,16 +154,16 @@ button_placeholders <- function(page) {
 
   } else if (page == "1" && length(unique(survey_env$question_df$page)) != 1) {
     shiny::div(class = "survey-buttons",
-               shiny::actionButton("next", "Next")
+               shiny::actionButton(paste0("next-", page), "Next", `page-action` = "next")
     )
   } else if (page != "1" && page != as.character(survey_env$num_pages)) {
     shiny::div(class = "survey-buttons",
-               shiny::actionButton("previous", "Previous"),
-               shiny::actionButton("next", "Next")
+               shiny::actionButton(paste0("previous-", page), "Previous", `page-action` = "previous"),
+               shiny::actionButton(paste0("next-", page), "Next", `page-action` = "next")
     )
   } else if (page == as.character(survey_env$num_pages)) {
     shiny::div(class = "survey-buttons",
-               shiny::actionButton("previous", "Previous"),
+               shiny::actionButton(paste0("previous-", page), "Previous", `page-action` = "previous"),
                shiny::actionButton("submit", "Submit")
     )
   }
