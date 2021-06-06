@@ -156,9 +156,15 @@ surveyLabel <- function() {
 #'
 
 extendInputType <- function(input_type, extension) {
-  survey_env$input_type <- c(survey_env$input_type, input_type)
-  survey_env$input_extension <- c(survey_env$input_extension, list(ext = substitute(extension)))
-  names(survey_env$input_extension)[which(names(survey_env$input_extension) == "ext")] <- input_type
+
+  if (!input_type %in% survey_env$input_type) {
+    survey_env$input_type <- c(survey_env$input_type, input_type)
+    survey_env$input_extension <- c(survey_env$input_extension, list(ext = substitute(extension)))
+    names(survey_env$input_extension)[which(names(survey_env$input_extension) == "ext")] <- input_type
+  } else if (input_type %in% survey_env$input_type) {
+    survey_env$input_extension[[input_type]] <- substitute(extension)
+  }
+
   message(paste0("Input Type \"", input_type,"\" registered with {shinysurveys}. If the session restarts, you will need to re-register it.\n",
                  "To see all registered input extensions, please call `shinysurveys::listInputExtensions()`."))
 }
