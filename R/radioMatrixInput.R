@@ -1,5 +1,5 @@
 
-matrixRadioButtons <- function (inputId, choices, selected = NULL)
+radioMatrixButtons <- function (inputId, choices, selected = NULL)
 {
 
   options <- lapply(choices, FUN = function(value) {
@@ -12,7 +12,7 @@ matrixRadioButtons <- function (inputId, choices, selected = NULL)
 
     inputTag
   })
-  div(class = "matrix-radio-buttons", id = paste0("radio-buttons-", inputId),  options)
+  div(class = "radio-matrix-buttons", id = paste0("radio-buttons-", inputId),  options)
 }
 
 #' Create radio input ID
@@ -49,7 +49,7 @@ radioBody <- function(.responseItems, .choices, .selected = NULL) {
                 id = paste0("td-", create_radio_input_id(item)),
                   item
                 ),
-                matrixRadioButtons(inputId = create_radio_input_id(item),
+                radioMatrixButtons(inputId = create_radio_input_id(item),
                                     choices = choice,
                                     selected = select)
         )
