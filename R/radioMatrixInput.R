@@ -24,7 +24,7 @@ radioMatrixButtons <- function (inputId, choices, selected = NULL)
 #' @keywords internal
 #'
 create_radio_input_id <- function(.responseItem) {
-  gsub(" ", "_", gsub("[\\'[:punct:]]", "", tolower(strtrim(.responseItem, 10)), perl = FALSE))
+  gsub(" ", "_", gsub("[\\'[:punct:]]", "", tolower(.responseItem), perl = FALSE))
 }
 
 
