@@ -3,14 +3,20 @@ var radioMatrixBinding = new Shiny.InputBinding();
 $.extend(radioMatrixBinding, {
 
   find: function(scope) {
-    return $(scope).find(".radio-matrix-buttons");
+    return $(scope).find(".radioMatrixInput");
   },
 
   getValue: function(el) {
 
-    var value = $(el).find('input:checked').attr('value')
-    console.log(value);
-    return value;
+    checked = $(el).find('input:checked');
+
+    var values = [...Array(checked.length).keys()].map(i => ({
+      "question_id": $(checked[i]).attr('name'),
+      "response": $(checked[i]).attr('value')
+    }));
+
+    console.log(values);
+    return(JSON.stringify(values));
 
   },
 
@@ -18,9 +24,7 @@ $.extend(radioMatrixBinding, {
   subscribe: function(el, callback) {
 
     $(el).on("change.radioMatrixBinding", function(evt) {
-      // uncheck the currently checked button
-      $(el).find('input:checked').prop('checked', false);
-      // check the radio button that was clicked on
+
       $(evt.target).prop("checked", true);
 
       callback();
@@ -28,8 +32,14 @@ $.extend(radioMatrixBinding, {
     });
   },
   unsubscribe: function(el) {
-    $(el).off(".radio-matrix-buttons");
+    $(el).off(".radioMatrixInput");
+  },
+
+  getType: function(el) {
+    return "radioMatrixInput.dataframe";
   }
+
+
 });
 
 Shiny.inputBindings.register(radioMatrixBinding);
