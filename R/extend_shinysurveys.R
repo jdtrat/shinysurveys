@@ -6,6 +6,7 @@
 #'
 #' @seealso \code{\link{extendInputType}}
 #' @seealso \code{\link{surveyLabel}}
+#' @seealso \code{\link{surveyOptions}}
 #' @return NA; used for side effects with \code{\link{extendInputType}}.
 #' @export
 #'
@@ -33,6 +34,7 @@ surveyID <- function() {
 #'
 #' @seealso \code{\link{extendInputType}}
 #' @seealso \code{\link{surveyID}}
+#' @seealso \code{\link{surveyOptions}}
 #' @return NA; used for side effects with \code{\link{extendInputType}}.
 #' @export
 #'
@@ -52,6 +54,33 @@ surveyLabel <- function() {
   addRequiredUI_internal(survey_env$current_question)
 }
 
+#' Add options for custom input types
+#'
+#' `surveyOptions()` is a helper function for \code{\link{extendInputType}}. When
+#' defining custom input types, the choices arguments for shiny UI components
+#' should equal `surveyOption()`. See examples for more details.
+#'
+#' @seealso \code{\link{extendInputType}}
+#' @seealso \code{\link{surveyID}}
+#' @seealso \code{\link{surveyOptions}}
+#' @return NA; used for side effects with \code{\link{extendInputType}}.
+#' @export
+#'
+#' @examples
+#'
+#' extendInputType("inlineRadioButtons", {
+#' shiny::radioButtons(
+#'   inputId = surveyID(),
+#'   label = surveyLabel(),
+#'   selected = character(0),
+#'   choices = surveyOptions(),
+#'   inline = TRUE
+#' )
+#' })
+#'
+surveyOptions <- function() {
+  survey_env$current_question$option
+}
 
 #' Add Custom Input Types for a Survey
 #'
