@@ -30,7 +30,9 @@ surveyID <- function() {
 #'
 #' `surveyLabel()` is a helper function for \code{\link{extendInputType}}. When
 #' defining custom input types, the `label` argument for shiny UI components
-#' should equal `surveyLabel()`. See examples for more details.
+#' should equal `surveyLabel()`. It essentially takes on the value in the
+#' "question" column in the data supplied to \code{\link{surveyOutput}}. See
+#' examples for more details.
 #'
 #' @seealso \code{\link{extendInputType}}
 #' @seealso \code{\link{surveyID}}

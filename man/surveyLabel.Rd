@@ -12,7 +12,9 @@ NA; used for side effects with \code{\link{extendInputType}}.
 \description{
 \code{surveyLabel()} is a helper function for \code{\link{extendInputType}}. When
 defining custom input types, the \code{label} argument for shiny UI components
-should equal \code{surveyLabel()}. See examples for more details.
+should equal \code{surveyLabel()}. It essentially takes on the value in the
+"question" column in the data supplied to \code{\link{surveyOutput}}. See
+examples for more details.
 }
 \examples{
 
