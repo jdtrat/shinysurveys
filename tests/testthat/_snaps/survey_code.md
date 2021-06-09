@@ -411,7 +411,7 @@
       </div>
     </div>
 
-# surveyOutput() works - ranking_questions
+# surveyOutput() works - matrix questions
 
     <div class="container-fluid">
       <script>
@@ -446,137 +446,125 @@
             </div>
           </div>
           <div class="title-description">
-            <h1 id="survey-title">Rank your favorite sushi rolls</h1>
+            <h1 id="survey-title">Testing Matrix Questions</h1>
           </div>
           <div class="questions">
             <div class="question-input">
-              <div class="ranking">
-                <div class="ranking-title">Please rank your favorite sushi rolls.</div>
-                <div id="california" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="california-label">
-                  <label class="control-label" id="california-label" for="california">California</label>
-                  <div class="shiny-options-group">
-                    <label class="radio-inline">
-                      <input type="radio" name="california" value="1"/>
-                      <span>1</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="california" value="2"/>
-                      <span>2</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="california" value="3"/>
-                      <span>3</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="california" value="4"/>
-                      <span>4</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="california" value="5"/>
-                      <span>5</span>
-                    </label>
-                  </div>
-                </div>
-                <div id="double_salmon" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="double_salmon-label">
-                  <label class="control-label" id="double_salmon-label" for="double_salmon">Double Salmon</label>
-                  <div class="shiny-options-group">
-                    <label class="radio-inline">
-                      <input type="radio" name="double_salmon" value="1"/>
-                      <span>1</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="double_salmon" value="2"/>
-                      <span>2</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="double_salmon" value="3"/>
-                      <span>3</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="double_salmon" value="4"/>
-                      <span>4</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="double_salmon" value="5"/>
-                      <span>5</span>
-                    </label>
-                  </div>
-                </div>
-                <div id="florida" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="florida-label">
-                  <label class="control-label" id="florida-label" for="florida">Florida</label>
-                  <div class="shiny-options-group">
-                    <label class="radio-inline">
-                      <input type="radio" name="florida" value="1"/>
-                      <span>1</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="florida" value="2"/>
-                      <span>2</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="florida" value="3"/>
-                      <span>3</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="florida" value="4"/>
-                      <span>4</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="florida" value="5"/>
-                      <span>5</span>
-                    </label>
-                  </div>
-                </div>
-                <div id="rainbow" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="rainbow-label">
-                  <label class="control-label" id="rainbow-label" for="rainbow">Rainbow</label>
-                  <div class="shiny-options-group">
-                    <label class="radio-inline">
-                      <input type="radio" name="rainbow" value="1"/>
-                      <span>1</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="rainbow" value="2"/>
-                      <span>2</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="rainbow" value="3"/>
-                      <span>3</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="rainbow" value="4"/>
-                      <span>4</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="rainbow" value="5"/>
-                      <span>5</span>
-                    </label>
-                  </div>
-                </div>
-                <div id="volcano" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="volcano-label">
-                  <label class="control-label" id="volcano-label" for="volcano">Volcano</label>
-                  <div class="shiny-options-group">
-                    <label class="radio-inline">
-                      <input type="radio" name="volcano" value="1"/>
-                      <span>1</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="volcano" value="2"/>
-                      <span>2</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="volcano" value="3"/>
-                      <span>3</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="volcano" value="4"/>
-                      <span>4</span>
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="volcano" value="5"/>
-                      <span>5</span>
-                    </label>
-                  </div>
-                </div>
+              <div class="radioMatrixInput" id="matId">
+                <table>
+                  <tr>
+                    <td></td>
+                    <th>Disagree</th>
+                    <th>Neutral</th>
+                    <th>Agree</th>
+                  </tr>
+                  <tbody>
+                    <tr class="radio-matrix-buttons" id="tr-i_love_sushi">
+                      <td id="td-i_love_sushi">I love sushi.</td>
+                      <td>
+                        <input type="radio" name="i_love_sushi" value="Disagree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="i_love_sushi" value="Neutral"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="i_love_sushi" value="Agree"/>
+                      </td>
+                    </tr>
+                    <tr class="radio-matrix-buttons" id="tr-i_love_chocolate">
+                      <td id="td-i_love_chocolate">I love chocolate.</td>
+                      <td>
+                        <input type="radio" name="i_love_chocolate" value="Disagree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="i_love_chocolate" value="Neutral"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="i_love_chocolate" value="Agree"/>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="questions">
+            <div class="question-input">
+              <div class="form-group shiny-input-container">
+                <label class="control-label" id="favorite_food-label" for="favorite_food">What's your favorite food?</label>
+                <input id="favorite_food" type="text" class="form-control" value="" placeholder="text"/>
+              </div>
+            </div>
+          </div>
+          <div class="questions">
+            <div class="question-input">
+              <div class="radioMatrixInput" id="matId2">
+                <table>
+                  <tr>
+                    <td></td>
+                    <th>Strongly Disagree</th>
+                    <th>Disagree</th>
+                    <th>Neutral</th>
+                    <th>Agree</th>
+                    <th>Strongly Agree</th>
+                  </tr>
+                  <tbody>
+                    <tr class="radio-matrix-buttons" id="tr-goat_cheese_is_the_goat">
+                      <td id="td-goat_cheese_is_the_goat">Goat cheese is the GOAT.</td>
+                      <td>
+                        <input type="radio" name="goat_cheese_is_the_goat" value="Strongly Disagree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="goat_cheese_is_the_goat" value="Disagree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="goat_cheese_is_the_goat" value="Neutral"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="goat_cheese_is_the_goat" value="Agree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="goat_cheese_is_the_goat" value="Strongly Agree"/>
+                      </td>
+                    </tr>
+                    <tr class="radio-matrix-buttons" id="tr-yogurt_and_berries_are_a_great_snack">
+                      <td id="td-yogurt_and_berries_are_a_great_snack">Yogurt and berries are a great snack.</td>
+                      <td>
+                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Strongly Disagree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Disagree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Neutral"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Agree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Strongly Agree"/>
+                      </td>
+                    </tr>
+                    <tr class="radio-matrix-buttons" id="tr-sunbutter_is_a_fantastic_alternative_to_peanut_butter">
+                      <td id="td-sunbutter_is_a_fantastic_alternative_to_peanut_butter">SunButter® is a fantastic alternative to peanut butter.</td>
+                      <td>
+                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Strongly Disagree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Disagree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Neutral"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Agree"/>
+                      </td>
+                      <td>
+                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Strongly Agree"/>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

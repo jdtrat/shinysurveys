@@ -31,4 +31,6 @@ shiny::sliderInput(
 \code{\link{extendInputType}}
 
 \code{\link{surveyID}}
+
+\code{\link{surveyOptions}}
 }

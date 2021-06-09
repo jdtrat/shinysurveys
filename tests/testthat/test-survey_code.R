@@ -19,14 +19,21 @@ ds_all_required <- transform(ds_questions, required = T)
 
 ds_no_required <- transform(ds_questions, required = F)
 
-
-rank_questions <- data.frame(question = "Please rank your favorite sushi rolls.",
-                             option = c("Rainbow", "Florida", "Double Salmon", "Volcano", "California"),
-                             input_type = "rank_{{5}}", # change the 5 to change the ranking scale 1 - X
-                             input_id = c("rainbow", "florida", "double_salmon", "volcano", "california"),
-                             dependence = NA,
-                             dependence_value = NA,
-                             required = F)
+matrix_questions <- data.frame(
+  question = c(rep("I love sushi.", 3), rep("I love chocolate.",3),
+               "What's your favorite food?", rep("Goat cheese is the GOAT.", 5),
+               rep("Yogurt and berries are a great snack.",5),
+               rep("SunButter® is a fantastic alternative to peanut butter.", 5)),
+  option = c(rep(c("Disagree", "Neutral", "Agree"), 2), "text",
+             rep(c("Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"), 3)),
+  input_type = c(rep("matrix", 6), "text", rep("matrix", 15)),
+  # For matrix questions, the IDs should be the same for each question
+  # but different for each matrix input unit
+  input_id = c(rep("matId", 6), "favorite_food", rep("matId2", 15)),
+  dependence = NA,
+  dependence_value = NA,
+  required = FALSE
+)
 
 
 # Test internal data processing -------------------------------------------
@@ -77,11 +84,11 @@ test_that("surveyOutput() works - ds_questions", {
   ))
 })
 
-test_that("surveyOutput() works - ranking_questions", {
+test_that("surveyOutput() works - matrix questions", {
   local_edition(3)
   expect_snapshot_output(shiny::fluidPage(
-    shinysurveys::surveyOutput(df = rank_questions,
-                               survey_title = "Rank your favorite sushi rolls")
+    shinysurveys::surveyOutput(df = matrix_questions,
+                               survey_title = "Testing Matrix Questions")
   ))
 })
 

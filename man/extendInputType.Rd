@@ -57,7 +57,8 @@ shinyApp(ui, server)
 
 
 
-# Register a date input to {shinysurveys}, limiting possible dates to a twenty-day period.
+# Register a date input to {shinysurveys},
+# limiting possible dates to a twenty-day period.
 
 extendInputType("date", {
   shiny::dateInput(
@@ -69,7 +70,8 @@ extendInputType("date", {
   )
 })
 
-# Define a question as normal with the `input_type` set to the custom date type defined above.
+# Define a question as normal with the `input_type` set to
+# the custom date type defined above.
 
 date_question <- data.frame(question = "When do you graduate?",
 option = NA,
@@ -97,7 +99,8 @@ shinyApp(ui, server)
 
 if (interactive()) {
 ui <- fluidPage(
-  surveyOutput(df = rbind(slider_question, date_question), "Date & Slider Input Extension Example")
+  surveyOutput(df = rbind(slider_question, date_question),
+  "Date & Slider Input Extension Example")
 )
 
 server <- function(input, output, session) {

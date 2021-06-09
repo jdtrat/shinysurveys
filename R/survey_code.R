@@ -40,19 +40,10 @@ listUniqueQuestions <- function(df) {
 #'
 addRequiredUI_internal <- function(df) {
 
-  # If required and not a rank question make the label the question + *
-  if (df$required[1] == TRUE && !grepl("rank_", df$input_type[1])) {
+  if (df$required[1] == TRUE) {
     label <- shiny::tagList(base::unique(df$question), shiny::span("*", class = "required"))
-  # If required and a rank question make the label the * + specific option
-  # It is on the left because rank's labels have their overflow hidden if the screen size is too small
-  } else if (df$required[1] == TRUE && grepl("rank_", df$input_type[1])) {
-    label <- shiny::tagList(shiny::span("*", class = "required"), df$option)
-    # If not required and not a rank question make the label the question
-  } else if (df$required == FALSE && !grepl("rank_", df$input_type[1])) {
+  } else if (df$required[1] == FALSE) {
     label <- base::unique(df$question)
-    # If not required and a rank question make the label the specific option
-  } else if (df$required[1] == FALSE && grepl("rank_", df$input_type[1])) {
-    label <- df$option
   }
   return(label)
 }
@@ -67,6 +58,11 @@ addRequiredUI_internal <- function(df) {
 surveyOutput_individual <- function(df) {
 
   inputType <- base::unique(df$input_type)
+
+  if (grepl("rank_{{", inputType, perl = T)) {
+    stop('Ranking input types have been superseded by the "matrix" input type.')
+  }
+
   survey_env$current_question <- df
 
   if (inputType ==  "select") {
@@ -111,23 +107,15 @@ surveyOutput_individual <- function(df) {
         choices = df$option
       )
 
-  } else if (grepl("rank_{{", inputType, perl = T)) {
+  } else if (inputType == "matrix") {
 
-    if (length(unique(df$question)) > 1) {
-      stop("Multiple question titles were provided for the ranking input.
-           Please specify items to rank as options, and the question title as the question column.")
-    }
-
-    # Get the number of ranks
-    n_ranks <- parse_num_ranks(input_type = inputType)
-
-    # split the data into individual ranks based on the options
-    rank_list <- split(df, df$option)
-
-    # Create the ranking output with the title and individual elements
-    output <- shiny::div(class = "ranking",
-                 shiny::div(class = "ranking-title", unique(df$question)),
-                 shiny::tagList(lapply(rank_list, rank_ui_internal, num_ranks = n_ranks)))
+    output <-
+      radioMatrixInput(
+        inputId = base::unique(df$input_id),
+        responseItems = addRequiredUI_internal(df),
+        choices = unique(df$option),
+        selected = NULL
+      )
 
   } else if (inputType %in% survey_env$input_type) {
     output <- eval(survey_env$input_extension[[inputType]])
