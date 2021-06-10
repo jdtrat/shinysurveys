@@ -61,7 +61,7 @@ numberInput <- function(inputId, label, value = NULL, min = NA, max = NA, step =
     inputTag$attribs$value <- value
 
   shiny::tagList(
-    shiny::div(class = "surveyNumericInput",
+    shiny::div(class = "surveyNumericInput form-group shiny-input-container",
                style = htmltools::css(width = shiny::validateCssUnit(width)),
                shinyInputLabel(inputId, label), inputTag)
 
