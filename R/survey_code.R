@@ -193,7 +193,9 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
 
   survey_env$question_df <- df
   survey_env$unique_questions <- listUniqueQuestions(df)
-  survey_env$title <- survey_title
+  if (!missing(survey_title)) {
+    survey_env$title <- survey_title
+  }
   if (!missing(survey_description)) {
     survey_env$description <- survey_description
   }
