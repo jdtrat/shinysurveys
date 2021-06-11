@@ -12,6 +12,7 @@ $.extend(radioMatrixBinding, {
 
     var values = [...Array(checked.length).keys()].map(i => ({
       "question_id": $(checked[i]).attr('name'),
+      "question_type": "matrix",
       "response": $(checked[i]).attr('value')
     }));
 
