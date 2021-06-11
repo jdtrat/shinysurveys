@@ -67,18 +67,22 @@ surveyOutput_individual <- function(df) {
 
   if (inputType ==  "select") {
     output <-
-      shiny::selectInput(
+      shiny::selectizeInput(
         inputId = base::unique(df$input_id),
         label = addRequiredUI_internal(df),
         choices = df$option,
+        options = list(
+          placeholder = '',
+          onInitialize = I('function() { this.setValue(""); }')
+        )
       )
   } else if (inputType == "numeric") {
 
     output <-
-      shiny::numericInput(
+      numberInput(
         inputId = base::unique(df$input_id),
         label = addRequiredUI_internal(df),
-        value = df$option
+        placeholder = df$option
       )
 
   } else if (inputType == "mc") {
@@ -123,11 +127,12 @@ surveyOutput_individual <- function(df) {
 
   if (!base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions dependence",
-                         id = df$input_id[1],
+                         id = paste0(df$input_id[1], "-question"),
                          shiny::div(class = "question-input",
                                     output))
   } else if (base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions",
+                         id = paste0(df$input_id[1], "-question"),
                          shiny::div(class = "question-input",
                                     output))
   }
@@ -217,6 +222,8 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
 
   shiny::tagList(shiny::includeScript(system.file("shinysurveys-js.js",
                                                   package = "shinysurveys")),
+                 shiny::includeScript(system.file("save_data.js",
+                                                  package = "shinysurveys")),
                  shiny::div(class = "grid",
                             shiny::div(class = "survey",
                                        shiny::uiOutput("sass"),
@@ -249,11 +256,11 @@ showDependence <- function(input = input, df) {
     # is equal to its dependence value. If so,
     # show the question.
     if (input[[df$dependence[1]]] == df$dependence_value[1]) {
-      remove_class(.id = df$input_id[1],
+      remove_class(.id = paste0(df$input_id[1], "-question"),
                    .class = "dependence")
       df$required <- TRUE
     } else {
-      add_class(.id = df$input_id[1],
+      add_class(.id = paste0(df$input_id[1], "-question"),
                 .class = "dependence")
       df$required <- FALSE
     }
@@ -313,7 +320,7 @@ getRequired_internal <- function(questions) {
 #' @return TRUE if the input has a value; false otherwise.
 #'
 checkIndividual <- function(input = input, input_id) {
-  if (!is.null(input[[input_id]]) && input[[input_id]] != "") {
+  if (!is.null(input[[input_id]]) && input[[input_id]] != "" && !is.na(input[[input_id]])) {
     TRUE
   } else {
     FALSE
@@ -408,6 +415,7 @@ renderSurvey <- function(df, theme = "#63B8FF") {
     toggle_element(id = "submit",
                    condition = checkRequired_internal(input = session$input,
                                                       required_inputs_vector = required_vec))
+
   })
 
   # Clean up non-essential internal environmental variables
