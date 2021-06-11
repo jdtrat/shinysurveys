@@ -57,29 +57,55 @@
       });
     
     });</script>
-      <script>$(document).on("shiny:connected", function() {
+      <script>
+    // define debounce function
+    const debounce = function(func, delay) {
+      let timeout;
+    
+      return function executed(...args) {
+        const later = function() {
+          clearTimeout(timeout);
+          func(...args);
+        };
+    
+        clearTimeout(timeout);
+        timeout = setTimeout(later, delay);
+    
+      };
+    
+    };
+    
+    $(document).on("shiny:connected", function() {
         Shiny.setInputValue('shinysurveysConnected', true);
         var initial_values;
     
-      });
+        function getHiddenInputs() {
     
-    $(document).ready(function() {
-      console.log('ready!');
-      // Whenever a question-input changes, let's
-         $('.question-input').on('change', function() {
-          console.log($(this).attr('id'));
-          console.log('something changed');
-        });
-    });
+        // RETURN ALL DIVS WITH A DEPENDENCE AND OR A RADIO MATRIX INPUT
+        // SINCE DATA SAVED WILL NEED TO IGNORE THE ALREADY PROCESSED OUTPUT
+        // OF RADIO MATRIX INPUTS, WE WANT TO IGNORE THEM HERE.
+        hiddenDivs = $('.dependence, .radioMatrixInput');
+        var hiddenInputIds = [];
+        var i;
     
-    Shiny.addCustomMessageHandler("get_default_values", function(inputIds) {
-      console.log(inputIds);
-      initial_values = inputIds;
-    });
+        for (i = 0; i < hiddenDivs.length; i++) {
+          hiddenInputIds[i] = $(hiddenDivs[i]).attr('id').split('-question')[0];
+        }
+          Shiny.setInputValue('shinysurveysHiddenInputs', hiddenInputIds);
+    
+        }
+    
+        var log_hidden_inputs = debounce(function() {
+          getHiddenInputs();
+         }, 1000)
     
     
+        // $('.questions:not(.dependence)').last().on('change', getHiddenInputs);
     
-    </script>
+        $('#submit').on('click', getHiddenInputs);
+    
+        $('.question-input').on('click', log_hidden_inputs);
+      });</script>
       <div class="grid">
         <div class="survey">
           <div id="sass" class="shiny-html-output"></div>
