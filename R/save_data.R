@@ -63,7 +63,7 @@ get_survey_data <- function(custom_id = NULL) {
 
   if ("matrix" %in% survey_env$ordered_question_df$input_type) {
 
-    matrix_ids <- unique(survey_env$ordered_question_df[which(survey_env$ordered_question_df$input_type == "matrix"), "input_id"])
+    matrix_ids <- unique(survey_env$ordered_question_df[which(survey_env$ordered_question_df$input_type == "matrix"), "input_id"])$input_id
 
     matrix_responses <- do.call(rbind,
                                 lapply(
@@ -75,7 +75,7 @@ get_survey_data <- function(custom_id = NULL) {
 
     bounded <- survey_env$ordered_question_df
     bounded[which(bounded$input_type == "matrix"), "input_id"] <- bounded[which(bounded$input_type == "matrix"), "question"]
-    bounded[which(bounded$input_type == "matrix"),"input_id"] <- vapply(X = bounded[which(bounded$input_type == "matrix"), "input_id"], FUN = function(x) {
+    bounded[which(bounded$input_type == "matrix"),"input_id"] <- vapply(X = bounded[which(bounded$input_type == "matrix"), "input_id"]$input_id, FUN = function(x) {
       create_radio_input_id(x)}, FUN.VALUE = character(1), USE.NAMES = FALSE)
     bounded <- bounded[,c("input_id", "input_type", "question_number")]
     names(bounded) <- c("question_id", "question_type", "question_number")
