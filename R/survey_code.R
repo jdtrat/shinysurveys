@@ -59,6 +59,25 @@ surveyOutput_individual <- function(df) {
 
   inputType <- base::unique(df$input_type)
 
+  if (length(inputType) != 1) {
+    if (!"instructions" %in% inputType) {
+      stop("Please double check your data frame and ensure that the input type for all questions is supported.")
+    } else if ("instructions" %in% inputType) {
+      instructions <- df[which(df$input_type == "instructions"), "question"]
+      if ("tbl" %in% class(df)) {instructions <- instructions$question}
+
+      instructions <- shiny::tagList(
+        shiny::div(class = "question-instructions",
+                   instructions)
+      )
+
+      inputType <- inputType[which(inputType != "instructions")]
+      df <- df[which(df$input_type != "instructions"),]
+    }
+  } else if (length(inputType == 1)) {
+    instructions <- NULL
+  }
+
   if (grepl("rank_{{", inputType, perl = T)) {
     stop('Ranking input types have been superseded by the "matrix" input type.')
   }
@@ -129,11 +148,13 @@ surveyOutput_individual <- function(df) {
     output <- shiny::div(class = "questions dependence",
                          id = paste0(df$input_id[1], "-question"),
                          shiny::div(class = "question-input",
+                                    instructions,
                                     output))
   } else if (base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions",
                          id = paste0(df$input_id[1], "-question"),
                          shiny::div(class = "question-input",
+                                    instructions,
                                     output))
   }
 
