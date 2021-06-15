@@ -35,7 +35,16 @@ make_survey_response_df <- function(.question_id, .question_type, .response) {
   return(output)
 }
 
-
+# Check for questions that return multiple answers
+# such as selectInput(multiple = TRUE) or checkboxGroupInput
+# If that's the case, collapse the input into one row for aggregating responses
+check_length <- function(.input) {
+  if (length(.input) == 1) {
+    as.character(.input)
+  } else if (length(.input) != 1) {
+    as.character(paste0(.input, collapse = ","))
+  }
+}
 
 #' Get survey data
 #'
@@ -92,7 +101,7 @@ get_survey_data <- function(custom_id = NULL) {
   responses <- do.call(rbind,
                       lapply(
                         shown_questions, function(x) {
-                          data.frame(response = as.character(session$input[[x]]))
+                          data.frame(response = check_length(.input = session$input[[x]]))
                         }
                       ))
 
