@@ -1,3 +1,42 @@
+# Internal function to make the survey response data frame when there are mismatched
+# data frame rows, as is likely to happen with custom input extensions.
+make_survey_response_df <- function(.question_id, .question_type, .response) {
+
+  numId <- length(.question_id)
+  numType <- length(.question_type)
+  numResponse <- nrow(.response)
+
+  if (numId == numType & numId == numResponse) {
+    output <- data.frame(
+      question_id = .question_id,
+      question_type = .question_type,
+      response = .response
+    )
+  } else if (numId == numType & numId > numResponse) {
+
+    output <- data.frame(
+      question_id = .question_id,
+      question_type = .question_type,
+      response = rbind(.response, rep(NA, numId - numResponse))
+    )
+
+  } else if (numId == numType & numId < numResponse) {
+
+    output <- data.frame(
+      question_id = c(.question_id, rep(NA, numResponse - numId)),
+      question_type = c(.question_type, rep(NA, numResponse - numType)),
+      response = .response
+    )
+
+  } else {
+    stop("Could not save data. Unknown error.\n Please file an issue at https://github.com/jdtrat/shinysurveys/issues, including a data set that recreates this problem.")
+  }
+
+  return(output)
+}
+
+
+
 #' Get survey data
 #'
 #' Get a participant's responses.
@@ -50,16 +89,16 @@ get_survey_data <- function(custom_id = NULL) {
   )
   names(shown_input_types) <- "question_type"
 
-  output <- data.frame(
-    question_id = shown_questions,
-    question_type = shown_input_types,
-    response = do.call(rbind,
-                       lapply(
-                         shown_questions, function(x) {
-                           data.frame(response = as.character(session$input[[x]]))
-                         }
-                       ))
-  )
+  responses <- do.call(rbind,
+                      lapply(
+                        shown_questions, function(x) {
+                          data.frame(response = as.character(session$input[[x]]))
+                        }
+                      ))
+
+  output <- make_survey_response_df(.question_id = shown_questions,
+                                    .question_type = shown_input_types,
+                                    .response = responses)
 
   if ("matrix" %in% survey_env$ordered_question_df$input_type) {
 
