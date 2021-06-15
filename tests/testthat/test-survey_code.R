@@ -178,3 +178,32 @@ test_that("server works with dependency questions - multiple choice", {
   })
 
 })
+
+
+test_that("input type error catch works", {
+
+  no_error <- data.frame(question = "Question about input types",
+                   option = NA,
+                   input_type = "select",
+                   # Note the input IDs are specific for the language option
+                   input_id = "testing-input-error",
+                   dependence = NA,
+                   dependence_value = NA,
+                   required = TRUE)
+
+  error <- no_error
+  error$input_type <- "unknown-input-type"
+
+  expect_silent(
+    ui <- shiny::fluidPage(
+      surveyOutput(no_error)
+    )
+  )
+
+  expect_error(
+    ui <- shiny::fluidPage(
+      surveyOutput(error)
+    )
+  )
+
+})

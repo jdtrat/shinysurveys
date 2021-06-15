@@ -142,6 +142,9 @@ surveyOutput_individual <- function(df) {
 
   } else if (inputType %in% survey_env$input_type) {
     output <- eval(survey_env$input_extension[[inputType]])
+  } else {
+    stop(paste0("Input type '", inputType, "' from the supplied data frame of questions is not recognized by {shinysurveys}.
+                Did you mean to register a custom input extension with `extendInputType()`?"))
   }
 
   if (!base::is.na(df$dependence[1])) {
