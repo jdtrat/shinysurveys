@@ -106,95 +106,93 @@
     
         $('.question-input').on('click', log_hidden_inputs);
       });</script>
-      <div class="grid">
-        <div class="survey">
-          <div id="sass" class="shiny-html-output"></div>
-          <div style="display: none !important;">
+      <div class="survey">
+        <div id="sass" class="shiny-html-output"></div>
+        <div style="display: none !important;">
+          <div class="form-group shiny-input-container">
+            <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
+            <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+          </div>
+        </div>
+        <div class="title-description">
+          <h1 id="survey-title">Getting To Know You</h1>
+          <p id="survey-description">Welcome! This is a quick survey for us to become familiar with each other's backgrounds in this class.</p>
+        </div>
+        <div class="questions" id="name-question">
+          <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
-              <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+              <label class="control-label" id="name-label" for="name">
+                What is your name?
+                <span class="required">*</span>
+              </label>
+              <input id="name" type="text" class="form-control" value="" placeholder="Your Answer"/>
             </div>
           </div>
-          <div class="title-description">
-            <h1 id="survey-title">Getting To Know You</h1>
-            <p id="survey-description">Welcome! This is a quick survey for us to become familiar with each other's backgrounds in this class.</p>
-          </div>
-          <div class="questions" id="name-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="name-label" for="name">
-                  What is your name?
-                  <span class="required">*</span>
-                </label>
-                <input id="name" type="text" class="form-control" value="" placeholder="Your Answer"/>
-              </div>
+        </div>
+        <div class="questions dependence" id="advisor-question">
+          <div class="question-input">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="advisor-label" for="advisor">Who's your advisor?</label>
+              <input id="advisor" type="text" class="form-control" value="" placeholder="Your Answer"/>
             </div>
           </div>
-          <div class="questions dependence" id="advisor-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="advisor-label" for="advisor">Who's your advisor?</label>
-                <input id="advisor" type="text" class="form-control" value="" placeholder="Your Answer"/>
-              </div>
+        </div>
+        <div class="questions" id="interests-question">
+          <div class="question-input">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="interests-label" for="interests">What are your research interests?</label>
+              <input id="interests" type="text" class="form-control" value="" placeholder="Your Answer"/>
             </div>
           </div>
-          <div class="questions" id="interests-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="interests-label" for="interests">What are your research interests?</label>
-                <input id="interests" type="text" class="form-control" value="" placeholder="Your Answer"/>
-              </div>
+        </div>
+        <div class="questions" id="goals-question">
+          <div class="question-input">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="goals-label" for="goals">What are your long term career goals?</label>
+              <input id="goals" type="text" class="form-control" value="" placeholder="Your Answer"/>
             </div>
           </div>
-          <div class="questions" id="goals-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="goals-label" for="goals">What are your long term career goals?</label>
-                <input id="goals" type="text" class="form-control" value="" placeholder="Your Answer"/>
-              </div>
+        </div>
+        <div class="questions" id="other_courses-question">
+          <div class="question-input">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="other_courses-label" for="other_courses">
+                What other courses are you taking / other big commitments?
+                <span class="required">*</span>
+              </label>
+              <input id="other_courses" type="text" class="form-control" value="" placeholder="Your Answer"/>
             </div>
           </div>
-          <div class="questions" id="other_courses-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="other_courses-label" for="other_courses">
-                  What other courses are you taking / other big commitments?
-                  <span class="required">*</span>
-                </label>
-                <input id="other_courses" type="text" class="form-control" value="" placeholder="Your Answer"/>
-              </div>
+        </div>
+        <div class="questions" id="current_understanding-question">
+          <div class="question-input">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="current_understanding-label" for="current_understanding">How would you rate your current understanding of the topics in this course (data science, exploratory data analysis, graphical data analysis)?</label>
+              <input id="current_understanding" type="text" class="form-control" value="" placeholder="Your Answer"/>
             </div>
           </div>
-          <div class="questions" id="current_understanding-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="current_understanding-label" for="current_understanding">How would you rate your current understanding of the topics in this course (data science, exploratory data analysis, graphical data analysis)?</label>
-                <input id="current_understanding" type="text" class="form-control" value="" placeholder="Your Answer"/>
-              </div>
+        </div>
+        <div class="questions" id="experience_with_r-question">
+          <div class="question-input">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="experience_with_r-label" for="experience_with_r">How much experience have you already had with R?</label>
+              <input id="experience_with_r" type="text" class="form-control" value="" placeholder="Your Answer"/>
             </div>
           </div>
-          <div class="questions" id="experience_with_r-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="experience_with_r-label" for="experience_with_r">How much experience have you already had with R?</label>
-                <input id="experience_with_r" type="text" class="form-control" value="" placeholder="Your Answer"/>
-              </div>
+        </div>
+        <div class="questions" id="programming_experience-question">
+          <div class="question-input">
+            <div class="form-group shiny-input-container">
+              <label class="control-label" id="programming_experience-label" for="programming_experience">
+                In general, how much programming experience have you had?
+                <span class="required">*</span>
+              </label>
+              <input id="programming_experience" type="text" class="form-control" value="" placeholder="Your Answer"/>
             </div>
           </div>
-          <div class="questions" id="programming_experience-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="programming_experience-label" for="programming_experience">
-                  In general, how much programming experience have you had?
-                  <span class="required">*</span>
-                </label>
-                <input id="programming_experience" type="text" class="form-control" value="" placeholder="Your Answer"/>
-              </div>
-            </div>
-          </div>
-          <div class="survey-buttons">
-            <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
-          </div>
+        </div>
+        <div class="survey-buttons">
+          <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
         </div>
       </div>
     </div>

@@ -7,10 +7,14 @@
 renderSurvey(df, theme = "#63B8FF")
 }
 \arguments{
-\item{df}{A user supplied dataframe in the format of teaching_r_questions.}
+\item{df}{\strong{Deprecated} \emph{please only place argument in
+\code{\link{renderSurvey}}.} A user supplied data frame in the format of
+teaching_r_questions.}
 
-\item{theme}{A valid R color: predefined such as "red" or "blue"; hex colors
-such as #63B8FF (default). To customize the survey's appearance entirely, supply NULL.}
+\item{theme}{\strong{Deprecated} \emph{please place the theme argument in
+\code{\link{renderSurvey}}.} A valid R color: predefined such as "red" or
+"blue"; hex colors such as #63B8FF (default). To customize the survey's
+appearance entirely, supply NULL.}
 }
 \value{
 NA; used for server-side logic in Shiny apps.
@@ -21,8 +25,37 @@ Include server-side logic for shinysurveys.
 \examples{
 
 if (interactive()) {
-renderSurvey(df = shinysurveys::teaching_r_questions,
-theme = "#63B8FF")
+
+  library(shiny)
+  library(shinysurveys)
+
+  df <- data.frame(question = "What is your favorite food?",
+                   option = "Your Answer",
+                   input_type = "text",
+                   input_id = "favorite_food",
+                   dependence = NA,
+                   dependence_value = NA,
+                   required = F)
+
+  ui <- fluidPage(
+    surveyOutput(df = df,
+                 survey_title = "Hello, World!",
+                 theme = "#63B8FF")
+  )
+
+  server <- function(input, output, session) {
+    renderSurvey()
+
+    observeEvent(input$submit, {
+      showModal(modalDialog(
+        title = "Congrats, you completed your first shinysurvey!",
+        "You can customize what actions happen when a user finishes a survey using input$submit."
+      ))
+    })
+  }
+
+  shinyApp(ui, server)
+
 }
 
 }

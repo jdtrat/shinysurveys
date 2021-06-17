@@ -25,13 +25,8 @@ matrix_instructions <- data.frame(question = c("Please indicate how much you agr
                               rep("The best way to get my team members to work independently is to keep them at a distance", 5), rep("In the past 3 months, I have used breathing exercises", 5),
                               rep("In the past 3 months, I have practiced silencing my mind.", 5), rep("I communicate the emotions I am feeling to my team members.", 5),
                               rep("To check the words I use to express emotions with my body to see if the words are right for the feelings.", 5)),
-                 # Repeat all possible options for each of the eight questions
                  option = c(NA, rep(c("Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree"), 8)),
-                 # use {shinysurveys} now-native "matrix" input type
-                 #we repeat it 40 times since there are 5 options per question and there are 8 questions
                  input_type = c("instructions", rep("matrix", 40)),
-                 # repeat the input ID for all 8 questions that are part of the matrix
-                 # we repeat it 40 times since there are 5 options per question and there are 8 questions
                  input_id = "matId_1",
                  dependence = NA,
                  dependence_value = NA,

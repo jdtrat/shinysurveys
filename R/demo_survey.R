@@ -16,14 +16,14 @@ demo_survey <- function(theme = "#63B8FF") {
 
   ui <- shiny::fluidPage(
         surveyOutput(shinysurveys::teaching_r_questions,
-                      survey_title = "A survey title",
-                      survey_description = "A description that is longer than the title.")
+                     survey_title = "A survey title",
+                     survey_description = "A description that is longer than the title.",
+                     theme = theme)
         )
 
   server <- function(input, output, session) {
 
-    renderSurvey(df = shinysurveys::teaching_r_questions,
-                 theme = theme)
+    renderSurvey()
 
     shiny::observeEvent(input$submit, {
 

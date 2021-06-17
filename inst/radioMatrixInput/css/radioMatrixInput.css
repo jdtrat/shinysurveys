@@ -4,14 +4,91 @@
 }
 
 th, td {
-  padding: 5px !important;
   vertical-align: middle !important;
   text-align: center !important;
   width: 25px;
 }
 
+@media screen and (max-width: 375px) {
+
+  th, td {
+        padding-left: 1px !important;
+        padding-right: 1px !important;
+        font-size: x-small;
+  }
+}
+
+@media screen and (max-width: 400px) and (min-width: 376px) {
+
+  th, td {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    font-size: x-small;
+  }
+}
+
+@media screen and (max-width: 410px) and (min-width: 400px) {
+
+  th, td {
+    padding-left: 1.25px !important;
+    padding-right: 1.25px !important;
+    font-size: smaller;
+  }
+}
 
 
+@media screen and (max-width: 439px) and (min-width: 411px) {
+
+  th, td {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    font-size: smaller;
+  }
+}
+
+@media screen and (max-width: 487px) and (min-width: 440px) {
+
+  th, td {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    font-size: small;
+  }
+}
+
+
+@media screen and (max-width: 575px) and (min-width: 488px) {
+
+  th, td {
+    padding-left: 3.5px !important;
+    padding-right: 3.5px !important;
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 576px) {
+
+  th, td {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+
+    th, td {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+}
+
+@media screen and (min-width: 993px) {
+
+    th, td {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+}
 
 .radioMatrixInput .radio-inline input[type=radio] {
     position: relative !important;

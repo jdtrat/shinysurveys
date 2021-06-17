@@ -82,7 +82,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  renderSurvey(df = df)
+  renderSurvey()
   
   observeEvent(input$submit, {
     showModal(modalDialog(

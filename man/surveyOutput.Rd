@@ -4,7 +4,7 @@
 \alias{surveyOutput}
 \title{Generate the UI Code for demographic questions}
 \usage{
-surveyOutput(df, survey_title, survey_description, ...)
+surveyOutput(df, survey_title, survey_description, theme = "#63B8FF", ...)
 }
 \arguments{
 \item{df}{A user supplied data frame in the format of teaching_r_questions.}
@@ -12,6 +12,9 @@ surveyOutput(df, survey_title, survey_description, ...)
 \item{survey_title}{(Optional) user supplied title for the survey}
 
 \item{survey_description}{(Optional) user supplied description for the survey}
+
+\item{theme}{A valid R color: predefined such as "red" or "blue"; hex colors
+such as #63B8FF (default). To customize the survey's appearance entirely, supply NULL.}
 
 \item{...}{Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.}
 }
@@ -24,10 +27,36 @@ Create the UI code for a Shiny app based on user-supplied questions.
 \examples{
 
 if (interactive()) {
-surveyOutput(df = shinysurveys::teaching_r_questions,
-survey_title = "Teaching R Questions",
-survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")
+
+  library(shiny)
+  library(shinysurveys)
+
+  df <- data.frame(question = "What is your favorite food?",
+                   option = "Your Answer",
+                   input_type = "text",
+                   input_id = "favorite_food",
+                   dependence = NA,
+                   dependence_value = NA,
+                   required = F)
+
+  ui <- fluidPage(
+    surveyOutput(df = df,
+                 survey_title = "Hello, World!",
+                 theme = "#63B8FF")
+  )
+
+  server <- function(input, output, session) {
+    renderSurvey()
+
+    observeEvent(input$submit, {
+      showModal(modalDialog(
+        title = "Congrats, you completed your first shinysurvey!",
+        "You can customize what actions happen when a user finishes a survey using input$submit."
+      ))
+    })
+  }
+
+  shinyApp(ui, server)
+
 }
-
-
 }

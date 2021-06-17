@@ -106,141 +106,139 @@
     
         $('.question-input').on('click', log_hidden_inputs);
       });</script>
-      <div class="grid">
-        <div class="survey">
-          <div id="sass" class="shiny-html-output"></div>
-          <div style="display: none !important;">
+      <div class="survey">
+        <div id="sass" class="shiny-html-output"></div>
+        <div style="display: none !important;">
+          <div class="form-group shiny-input-container">
+            <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
+            <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+          </div>
+        </div>
+        <div class="title-description">
+          <h1 id="survey-title">Testing Matrix Questions</h1>
+        </div>
+        <div class="questions" id="matId-question">
+          <div class="question-input">
+            <div class="radioMatrixInput" id="matId">
+              <table>
+                <tr>
+                  <td></td>
+                  <th>Disagree</th>
+                  <th>Neutral</th>
+                  <th>Agree</th>
+                </tr>
+                <tbody>
+                  <tr class="radio-matrix-buttons" id="tr-i_love_sushi">
+                    <td id="td-i_love_sushi">I love sushi.</td>
+                    <td>
+                      <input type="radio" name="i_love_sushi" value="Disagree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="i_love_sushi" value="Neutral"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="i_love_sushi" value="Agree"/>
+                    </td>
+                  </tr>
+                  <tr class="radio-matrix-buttons" id="tr-i_love_chocolate">
+                    <td id="td-i_love_chocolate">I love chocolate.</td>
+                    <td>
+                      <input type="radio" name="i_love_chocolate" value="Disagree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="i_love_chocolate" value="Neutral"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="i_love_chocolate" value="Agree"/>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="questions" id="favorite_food-question">
+          <div class="question-input">
             <div class="form-group shiny-input-container">
-              <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
-              <input id="userID" type="text" class="form-control" value="NO_USER_ID"/>
+              <label class="control-label" id="favorite_food-label" for="favorite_food">What's your favorite food?</label>
+              <input id="favorite_food" type="text" class="form-control" value="" placeholder="text"/>
             </div>
           </div>
-          <div class="title-description">
-            <h1 id="survey-title">Testing Matrix Questions</h1>
-          </div>
-          <div class="questions" id="matId-question">
-            <div class="question-input">
-              <div class="radioMatrixInput" id="matId">
-                <table>
-                  <tr>
-                    <td></td>
-                    <th>Disagree</th>
-                    <th>Neutral</th>
-                    <th>Agree</th>
+        </div>
+        <div class="questions" id="matId2-question">
+          <div class="question-input">
+            <div class="radioMatrixInput" id="matId2">
+              <table>
+                <tr>
+                  <td></td>
+                  <th>Strongly Disagree</th>
+                  <th>Disagree</th>
+                  <th>Neutral</th>
+                  <th>Agree</th>
+                  <th>Strongly Agree</th>
+                </tr>
+                <tbody>
+                  <tr class="radio-matrix-buttons" id="tr-goat_cheese_is_the_goat">
+                    <td id="td-goat_cheese_is_the_goat">Goat cheese is the GOAT.</td>
+                    <td>
+                      <input type="radio" name="goat_cheese_is_the_goat" value="Strongly Disagree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="goat_cheese_is_the_goat" value="Disagree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="goat_cheese_is_the_goat" value="Neutral"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="goat_cheese_is_the_goat" value="Agree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="goat_cheese_is_the_goat" value="Strongly Agree"/>
+                    </td>
                   </tr>
-                  <tbody>
-                    <tr class="radio-matrix-buttons" id="tr-i_love_sushi">
-                      <td id="td-i_love_sushi">I love sushi.</td>
-                      <td>
-                        <input type="radio" name="i_love_sushi" value="Disagree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="i_love_sushi" value="Neutral"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="i_love_sushi" value="Agree"/>
-                      </td>
-                    </tr>
-                    <tr class="radio-matrix-buttons" id="tr-i_love_chocolate">
-                      <td id="td-i_love_chocolate">I love chocolate.</td>
-                      <td>
-                        <input type="radio" name="i_love_chocolate" value="Disagree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="i_love_chocolate" value="Neutral"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="i_love_chocolate" value="Agree"/>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="questions" id="favorite_food-question">
-            <div class="question-input">
-              <div class="form-group shiny-input-container">
-                <label class="control-label" id="favorite_food-label" for="favorite_food">What's your favorite food?</label>
-                <input id="favorite_food" type="text" class="form-control" value="" placeholder="text"/>
-              </div>
-            </div>
-          </div>
-          <div class="questions" id="matId2-question">
-            <div class="question-input">
-              <div class="radioMatrixInput" id="matId2">
-                <table>
-                  <tr>
-                    <td></td>
-                    <th>Strongly Disagree</th>
-                    <th>Disagree</th>
-                    <th>Neutral</th>
-                    <th>Agree</th>
-                    <th>Strongly Agree</th>
+                  <tr class="radio-matrix-buttons" id="tr-yogurt_and_berries_are_a_great_snack">
+                    <td id="td-yogurt_and_berries_are_a_great_snack">Yogurt and berries are a great snack.</td>
+                    <td>
+                      <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Strongly Disagree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Disagree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Neutral"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Agree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Strongly Agree"/>
+                    </td>
                   </tr>
-                  <tbody>
-                    <tr class="radio-matrix-buttons" id="tr-goat_cheese_is_the_goat">
-                      <td id="td-goat_cheese_is_the_goat">Goat cheese is the GOAT.</td>
-                      <td>
-                        <input type="radio" name="goat_cheese_is_the_goat" value="Strongly Disagree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="goat_cheese_is_the_goat" value="Disagree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="goat_cheese_is_the_goat" value="Neutral"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="goat_cheese_is_the_goat" value="Agree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="goat_cheese_is_the_goat" value="Strongly Agree"/>
-                      </td>
-                    </tr>
-                    <tr class="radio-matrix-buttons" id="tr-yogurt_and_berries_are_a_great_snack">
-                      <td id="td-yogurt_and_berries_are_a_great_snack">Yogurt and berries are a great snack.</td>
-                      <td>
-                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Strongly Disagree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Disagree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Neutral"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Agree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Strongly Agree"/>
-                      </td>
-                    </tr>
-                    <tr class="radio-matrix-buttons" id="tr-sunbutter_is_a_fantastic_alternative_to_peanut_butter">
-                      <td id="td-sunbutter_is_a_fantastic_alternative_to_peanut_butter">SunButter® is a fantastic alternative to peanut butter.</td>
-                      <td>
-                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Strongly Disagree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Disagree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Neutral"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Agree"/>
-                      </td>
-                      <td>
-                        <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Strongly Agree"/>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                  <tr class="radio-matrix-buttons" id="tr-sunbutter_is_a_fantastic_alternative_to_peanut_butter">
+                    <td id="td-sunbutter_is_a_fantastic_alternative_to_peanut_butter">SunButter® is a fantastic alternative to peanut butter.</td>
+                    <td>
+                      <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Strongly Disagree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Disagree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Neutral"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Agree"/>
+                    </td>
+                    <td>
+                      <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Strongly Agree"/>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="survey-buttons">
-            <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
-          </div>
+        </div>
+        <div class="survey-buttons">
+          <button id="submit" type="button" class="btn btn-default action-button">Submit</button>
         </div>
       </div>
     </div>

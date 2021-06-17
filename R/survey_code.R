@@ -204,6 +204,8 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #' @param df A user supplied data frame in the format of teaching_r_questions.
 #' @param survey_title (Optional) user supplied title for the survey
 #' @param survey_description (Optional) user supplied description for the survey
+#' @param theme A valid R color: predefined such as "red" or "blue"; hex colors
+#'   such as #63B8FF (default). To customize the survey's appearance entirely, supply NULL.
 #' @param ... Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.
 #'
 #' @return UI Code for a Shiny App.
@@ -212,14 +214,43 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #' @examples
 #'
 #' if (interactive()) {
-#' surveyOutput(df = shinysurveys::teaching_r_questions,
-#' survey_title = "Teaching R Questions",
-#' survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")
+#'
+#'   library(shiny)
+#'   library(shinysurveys)
+#'
+#'   df <- data.frame(question = "What is your favorite food?",
+#'                    option = "Your Answer",
+#'                    input_type = "text",
+#'                    input_id = "favorite_food",
+#'                    dependence = NA,
+#'                    dependence_value = NA,
+#'                    required = F)
+#'
+#'   ui <- fluidPage(
+#'     surveyOutput(df = df,
+#'                  survey_title = "Hello, World!",
+#'                  theme = "#63B8FF")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     renderSurvey()
+#'
+#'     observeEvent(input$submit, {
+#'       showModal(modalDialog(
+#'         title = "Congrats, you completed your first shinysurvey!",
+#'         "You can customize what actions happen when a user finishes a survey using input$submit."
+#'       ))
+#'     })
+#'   }
+#'
+#'   shinyApp(ui, server)
+#'
 #' }
-#'
-#'
-surveyOutput <- function(df, survey_title, survey_description, ...) {
 
+
+surveyOutput <- function(df, survey_title, survey_description, theme = "#63B8FF", ...) {
+
+  survey_env$theme <- theme
   survey_env$question_df <- df
   survey_env$unique_questions <- listUniqueQuestions(df)
   if (!missing(survey_title)) {
@@ -248,14 +279,13 @@ surveyOutput <- function(df, survey_title, survey_description, ...) {
                                                   package = "shinysurveys")),
                  shiny::includeScript(system.file("save_data.js",
                                                   package = "shinysurveys")),
-                 shiny::div(class = "grid",
                             shiny::div(class = "survey",
                                        shiny::uiOutput("sass"),
                                        shiny::div(style = "display: none !important;",
                                                   shiny::textInput(inputId = "userID",
                                                                    label = "Enter your username.",
                                                                    value = "NO_USER_ID")),
-                                       main_ui)))
+                                       main_ui))
 
 }
 
@@ -377,9 +407,14 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #'
 #' Include server-side logic for shinysurveys.
 #'
-#' @param df A user supplied dataframe in the format of teaching_r_questions.
-#' @param theme A valid R color: predefined such as "red" or "blue"; hex colors
-#'   such as #63B8FF (default). To customize the survey's appearance entirely, supply NULL.
+#'
+#' @param df **Deprecated** *please only place argument in
+#'   \code{\link{renderSurvey}}.* A user supplied data frame in the format of
+#'   teaching_r_questions.
+#' @param theme **Deprecated** *please place the theme argument in
+#'   \code{\link{renderSurvey}}.* A valid R color: predefined such as "red" or
+#'   "blue"; hex colors such as #63B8FF (default). To customize the survey's
+#'   appearance entirely, supply NULL.
 #'
 #' @export
 #'
@@ -387,9 +422,39 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #'
 #' @examples
 #'
+
 #' if (interactive()) {
-#' renderSurvey(df = shinysurveys::teaching_r_questions,
-#' theme = "#63B8FF")
+#'
+#'   library(shiny)
+#'   library(shinysurveys)
+#'
+#'   df <- data.frame(question = "What is your favorite food?",
+#'                    option = "Your Answer",
+#'                    input_type = "text",
+#'                    input_id = "favorite_food",
+#'                    dependence = NA,
+#'                    dependence_value = NA,
+#'                    required = F)
+#'
+#'   ui <- fluidPage(
+#'     surveyOutput(df = df,
+#'                  survey_title = "Hello, World!",
+#'                  theme = "#63B8FF")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     renderSurvey()
+#'
+#'     observeEvent(input$submit, {
+#'       showModal(modalDialog(
+#'         title = "Congrats, you completed your first shinysurvey!",
+#'         "You can customize what actions happen when a user finishes a survey using input$submit."
+#'       ))
+#'     })
+#'   }
+#'
+#'   shinyApp(ui, server)
+#'
 #' }
 #'
 renderSurvey <- function(df, theme = "#63B8FF") {
@@ -400,9 +465,15 @@ renderSurvey <- function(df, theme = "#63B8FF") {
     warning("The `df` argument in `renderSurvey()` is deprecated and will be removed in a future version. Please only pass the data frame of questions to `surveyOutput()`.")
   }
 
+  if (missing(theme)) {
+    theme <- survey_env$theme
+  } else if (!missing(theme)) {
+    warning("The `theme` argument in `renderSurvey()` is deprecated and will be removed in a future version. Please only pass the theme color to `surveyOutput()`.")
+  }
+
   session <- shiny::getDefaultReactiveDomain()
 
-  if (!is.null(theme)) {
+  if (!is.null(survey_env$theme)) {
 
     session$output$sass <- shiny::renderUI({
       shiny::tags$head(
@@ -413,7 +484,7 @@ renderSurvey <- function(df, theme = "#63B8FF") {
 
     css <- shiny::reactive({
       sass::sass(list(
-        list(color = theme),
+        list(color = survey_env$theme),
         readLines(
           system.file("render_survey.scss",
                       package = "shinysurveys")
