@@ -40,6 +40,10 @@ listUniqueQuestions <- function(df) {
 #'
 addRequiredUI_internal <- function(df) {
 
+  if (length(base::unique(df$question)) != 1 & base::unique(df$input_type) != "matrix") {
+    stop(paste0("The question with input ID '", df$input_id, "' has more than one question in the `question` column. Perhaps there is a spelling error?"))
+  }
+
   if (df$required[1] == TRUE) {
     label <- shiny::tagList(base::unique(df$question), shiny::span("*", class = "required"))
   } else if (df$required[1] == FALSE) {
@@ -139,6 +143,13 @@ surveyOutput_individual <- function(df) {
         choices = unique(df$option),
         selected = NULL
       )
+
+  } else if (inputType == "instructions") {
+
+    output <- shiny::div(
+      class = "instructions-only",
+      df$question
+    )
 
   } else if (inputType %in% survey_env$input_type) {
     output <- eval(survey_env$input_extension[[inputType]])
@@ -279,13 +290,13 @@ surveyOutput <- function(df, survey_title, survey_description, theme = "#63B8FF"
                                                   package = "shinysurveys")),
                  shiny::includeScript(system.file("save_data.js",
                                                   package = "shinysurveys")),
-                            shiny::div(class = "survey",
-                                       shiny::uiOutput("sass"),
-                                       shiny::div(style = "display: none !important;",
-                                                  shiny::textInput(inputId = "userID",
-                                                                   label = "Enter your username.",
-                                                                   value = "NO_USER_ID")),
-                                       main_ui))
+                 shiny::div(class = "survey",
+                            shiny::uiOutput("sass"),
+                            shiny::div(style = "display: none !important;",
+                                       shiny::textInput(inputId = "userID",
+                                                        label = "Enter your username.",
+                                                        value = "NO_USER_ID")),
+                            main_ui))
 
 }
 
