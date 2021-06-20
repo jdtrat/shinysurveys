@@ -81,9 +81,6 @@
     
         function getHiddenInputs() {
     
-        // RETURN ALL DIVS WITH A DEPENDENCE AND OR A RADIO MATRIX INPUT
-        // SINCE DATA SAVED WILL NEED TO IGNORE THE ALREADY PROCESSED OUTPUT
-        // OF RADIO MATRIX INPUTS, WE WANT TO IGNORE THEM HERE.
         hiddenDivs = $('.dependence, .radioMatrixInput');
         var hiddenInputIds = [];
         var i;
@@ -98,9 +95,6 @@
         var log_hidden_inputs = debounce(function() {
           getHiddenInputs();
          }, 1000)
-    
-    
-        // $('.questions:not(.dependence)').last().on('change', getHiddenInputs);
     
         $('#submit').on('click', getHiddenInputs);
     
@@ -463,9 +457,6 @@
     
         function getHiddenInputs() {
     
-        // RETURN ALL DIVS WITH A DEPENDENCE AND OR A RADIO MATRIX INPUT
-        // SINCE DATA SAVED WILL NEED TO IGNORE THE ALREADY PROCESSED OUTPUT
-        // OF RADIO MATRIX INPUTS, WE WANT TO IGNORE THEM HERE.
         hiddenDivs = $('.dependence, .radioMatrixInput');
         var hiddenInputIds = [];
         var i;
@@ -480,9 +471,6 @@
         var log_hidden_inputs = debounce(function() {
           getHiddenInputs();
          }, 1000)
-    
-    
-        // $('.questions:not(.dependence)').last().on('change', getHiddenInputs);
     
         $('#submit').on('click', getHiddenInputs);
     
@@ -751,9 +739,6 @@
     
         function getHiddenInputs() {
     
-        // RETURN ALL DIVS WITH A DEPENDENCE AND OR A RADIO MATRIX INPUT
-        // SINCE DATA SAVED WILL NEED TO IGNORE THE ALREADY PROCESSED OUTPUT
-        // OF RADIO MATRIX INPUTS, WE WANT TO IGNORE THEM HERE.
         hiddenDivs = $('.dependence, .radioMatrixInput');
         var hiddenInputIds = [];
         var i;
@@ -768,9 +753,6 @@
         var log_hidden_inputs = debounce(function() {
           getHiddenInputs();
          }, 1000)
-    
-    
-        // $('.questions:not(.dependence)').last().on('change', getHiddenInputs);
     
         $('#submit').on('click', getHiddenInputs);
     
