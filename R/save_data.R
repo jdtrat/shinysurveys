@@ -94,9 +94,8 @@ get_survey_data <- function(custom_id = NULL) {
   shown_input_types <- do.call(rbind,
                                lapply(
                                  split(shown_subset, factor(shown_subset$input_id, levels = unique(shown_subset$input_id))),
-                                 function(x) x[1,"input_type"])
+                                 function(x) x[1,"input_type", drop = FALSE]$input_type)
   )
-  names(shown_input_types) <- "question_type"
 
   responses <- do.call(rbind,
                       lapply(

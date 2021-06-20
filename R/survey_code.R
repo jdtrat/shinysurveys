@@ -67,9 +67,7 @@ surveyOutput_individual <- function(df) {
     if (!"instructions" %in% inputType) {
       stop("Please double check your data frame and ensure that the input type for all questions is supported.")
     } else if ("instructions" %in% inputType) {
-      instructions <- df[which(df$input_type == "instructions"), "question"]
-      if ("tbl" %in% class(df)) {instructions <- instructions$question}
-
+      instructions <- df[which(df$input_type == "instructions"), "question", drop = FALSE]$question
       instructions <- shiny::tagList(
         shiny::div(class = "question-instructions",
                    instructions)
