@@ -110,7 +110,7 @@ radioBody <- function(.responseItems, .choices, .selected = NULL) {
 #'
 #'   server <- function(input, output, session) {
 #'     observe({
-#'       print(input$simpMat)
+#'       print(input$matInput)
 #'     })
 #'   }
 #'
