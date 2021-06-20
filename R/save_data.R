@@ -82,7 +82,9 @@ get_survey_data <- function(custom_id = NULL) {
 
   session <- shiny::getDefaultReactiveDomain()
 
-  shown_questions <- unique(survey_env$question_df$input_id[which(!survey_env$question_df$input_id %in% session$input$shinysurveysHiddenInputs)])
+  # get id of instructions input types to exclude from survey response collection
+  instructions_id <- survey_env$question_df[which(survey_env$question_df$input_type == "instructions"), "input_id", drop = FALSE]$input_id
+  shown_questions <- unique(survey_env$question_df$input_id[which(!survey_env$question_df$input_id %in% c(session$input$shinysurveysHiddenInputs, instructions_id))])
 
   for (i in seq_along(survey_env$unique_questions)) {
     survey_env$unique_questions[[i]]$question_number <- rep(i, nrow(survey_env$unique_questions[[i]]))
