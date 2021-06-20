@@ -16,7 +16,11 @@ radioMatrixInput(inputId, responseItems, choices, selected = NULL)
 \item{selected}{Initial selected value}
 }
 \value{
-A matrix of radio buttons that can be added to a UI definition.
+A matrix of radio buttons that can be added to a UI definition. When
+run in a Shiny application, this will return \code{NULL} until all possible
+response items have been answered, at which time a data frame with the
+question_id, question_type, and response, the format used in
+\code{\link{get_survey_data}}.
 }
 \description{
 Create a matrix of radio buttons.
@@ -36,7 +40,7 @@ if (interactive()) {
 
   server <- function(input, output, session) {
     observe({
-      print(input$simpMat)
+      print(input$matInput)
     })
   }
 

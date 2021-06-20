@@ -9,6 +9,7 @@ $.extend(radioMatrixBinding, {
   getValue: function(el) {
 
     checked = $(el).find('input:checked');
+    num_items = $(el).find('.radio-matrix-buttons').length;
 
     var values = [...Array(checked.length).keys()].map(i => ({
       "question_id": $(checked[i]).attr('name'),
@@ -16,8 +17,13 @@ $.extend(radioMatrixBinding, {
       "response": $(checked[i]).attr('value')
     }));
 
-    console.log(values);
-    return(JSON.stringify(values));
+    if (checked.length === num_items) {
+      return(JSON.stringify(values));
+    } else {
+      return(null);
+    }
+
+    // return(JSON.stringify(values));
 
   },
 
