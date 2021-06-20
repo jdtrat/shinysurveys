@@ -407,6 +407,9 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
   } else {
     required_inputs_vector <- required_inputs_vector[!is.na(required_inputs_vector)]
   }
+
+  required_inputs_vector <- required_inputs_vector[which(!required_inputs_vector %in% input$shinysurveysHiddenInputs)]
+
   all(vapply(required_inputs_vector, checkIndividual, input = input, FUN.VALUE = logical(1), USE.NAMES = FALSE))
 }
 
