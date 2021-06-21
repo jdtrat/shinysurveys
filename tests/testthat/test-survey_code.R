@@ -19,6 +19,21 @@ ds_all_required <- transform(ds_questions, required = T)
 
 ds_no_required <- transform(ds_questions, required = F)
 
+
+ds_plus_matrix <- rbind(
+  ds_questions,
+  data.frame(
+    question = c(rep("I love sushi.", 3), rep("I love chocolate.",3)),
+    option = rep(c("Disagree", "Neutral", "Agree"), 2),
+    input_type = rep("matrix", 6),
+    input_id = "matId",
+    dependence = NA,
+    dependence_value = NA,
+    required = TRUE
+  )
+)
+
+
 # Test internal data processing -------------------------------------------
 
 test_that("listUniqueQuestions() works", {
@@ -73,19 +88,58 @@ test_that("server works when some questions are required and others are not", {
                       goals = "answer",
                       current_understanding = "answer",
                       experience_with_r = "answer",
-                      )
+                      `tr-i_love_sushi` = "Agree")
 
     # expect false because not all required questions have been answered
     expect_false(toggle_button())
 
     session$setInputs(other_courses = "answer",
-                      programming_experience = "answer")
+                      programming_experience = "answer",
+                      `tr-i_love_chocolate` = "Agree")
 
     # expect true because all required questions have been answered
     expect_true(toggle_button())
   })
 
 })
+
+test_that("server works with required matrix questions and others", {
+
+  server <- function(input, output, session) {
+
+    required_vec <- getRequired_internal(
+      listUniqueQuestions(
+        ds_plus_matrix
+      )
+    )
+
+    toggle_button <- reactive({checkRequired_internal(input = input, required_inputs_vector = required_vec)})
+
+  }
+
+  shiny::testServer(server, {
+    session$setInputs(name = "answer",
+                      advisor = "answer",
+                      interests = "answer",
+                      goals = "answer",
+                      current_understanding = "answer",
+                      experience_with_r = "answer"
+
+    )
+
+    # expect false because not all required questions have been answered
+    expect_false(toggle_button())
+
+    session$setInputs(other_courses = "answer",
+                      programming_experience = "answer",
+                      matId = "answer")
+
+    # expect true because all required questions have been answered
+    expect_true(toggle_button())
+  })
+
+})
+
 
 
 test_that("server works when all questions are required", {

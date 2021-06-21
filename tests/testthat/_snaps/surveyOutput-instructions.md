@@ -81,7 +81,7 @@
     
         function getHiddenInputs() {
     
-        hiddenDivs = $('.dependence, .radioMatrixInput');
+        hiddenDivs = $('.dependence');
         var hiddenInputIds = [];
         var i;
     
@@ -457,7 +457,7 @@
     
         function getHiddenInputs() {
     
-        hiddenDivs = $('.dependence, .radioMatrixInput');
+        hiddenDivs = $('.dependence');
         var hiddenInputIds = [];
         var i;
     
@@ -493,7 +493,7 @@
             <div class="radioMatrixInput" id="matId_1">
               <table>
                 <tr>
-                  <td></td>
+                  <th></th>
                   <th>Strongly Disagree</th>
                   <th>Disagree</th>
                   <th>Neither Agree or Disagree</th>
@@ -739,7 +739,7 @@
     
         function getHiddenInputs() {
     
-        hiddenDivs = $('.dependence, .radioMatrixInput');
+        hiddenDivs = $('.dependence');
         var hiddenInputIds = [];
         var i;
     
@@ -1032,7 +1032,7 @@
             <div class="radioMatrixInput" id="matId_1">
               <table>
                 <tr>
-                  <td></td>
+                  <th></th>
                   <th>Strongly Disagree</th>
                   <th>Disagree</th>
                   <th>Neither Agree or Disagree</th>

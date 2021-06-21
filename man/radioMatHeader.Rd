@@ -4,10 +4,12 @@
 \alias{radioMatHeader}
 \title{Create the radio matrix input's header}
 \usage{
-radioMatHeader(.choices)
+radioMatHeader(.choices, .required)
 }
 \arguments{
 \item{.choices}{Possible choices}
+
+\item{.required}{Logical: TRUE/FALSE should a required asterisk be placed on the matrix question}
 }
 \value{
 Header for the table (matrix input)

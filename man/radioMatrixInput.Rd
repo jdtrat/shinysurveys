@@ -4,7 +4,7 @@
 \alias{radioMatrixInput}
 \title{Create a matrix of radio buttons.}
 \usage{
-radioMatrixInput(inputId, responseItems, choices, selected = NULL)
+radioMatrixInput(inputId, responseItems, choices, selected = NULL, ...)
 }
 \arguments{
 \item{inputId}{The input id}
@@ -14,6 +14,8 @@ radioMatrixInput(inputId, responseItems, choices, selected = NULL)
 \item{choices}{Possible choices (column labels)}
 
 \item{selected}{Initial selected value}
+
+\item{...}{Additional arguments specific to {shinysurveys} required questions.}
 }
 \value{
 A matrix of radio buttons that can be added to a UI definition. When

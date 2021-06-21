@@ -40,13 +40,21 @@ create_radio_input_id <- function(.responseItem) {
 #' Create the radio matrix input's header
 #'
 #' @param .choices Possible choices
+#' @param .required Logical: TRUE/FALSE should a required asterisk be placed on the matrix question
 #'
 #' @return Header for the table (matrix input)
 #' @keywords internal
 #'
-radioMatHeader <- function(.choices) {
+radioMatHeader <- function(.choices, .required) {
+
+  if (.required) {
+    required_placeholder <- shiny::tags$th(class = "required", "*", style = "font-size: 18px;")
+  } else {
+    required_placeholder <- shiny::tags$th()
+  }
+
   shiny::tags$tr(
-    shiny::tags$td(),
+    required_placeholder,
     lapply(X = .choices, function(choice) {
       shiny::tags$th(choice)
     })
@@ -91,6 +99,7 @@ radioBody <- function(.responseItems, .choices, .selected = NULL) {
 #' @param responseItems The questions to be asked (row labels)
 #' @param choices Possible choices (column labels)
 #' @param selected Initial selected value
+#' @param ... Additional arguments specific to {shinysurveys} required questions.
 #'
 #' @return A matrix of radio buttons that can be added to a UI definition. When
 #'   run in a Shiny application, this will return \code{NULL} until all possible
@@ -162,7 +171,7 @@ radioBody <- function(.responseItems, .choices, .selected = NULL) {
 #'
 #' }
 #'
-radioMatrixInput <- function(inputId, responseItems, choices, selected = NULL) {
+radioMatrixInput <- function(inputId, responseItems, choices, selected = NULL, ...) {
   shiny::tagList(
     htmltools::htmlDependency(
       name = "radioMatrixInput",
@@ -175,7 +184,7 @@ radioMatrixInput <- function(inputId, responseItems, choices, selected = NULL) {
     shiny::div(class = "radioMatrixInput",
                id = inputId,
                shiny::tags$table(
-                 radioMatHeader(.choices = choices),
+                 radioMatHeader(.choices = choices, ...),
                  radioBody(.responseItems = responseItems,
                            .choices = choices,
                            .selected = selected)

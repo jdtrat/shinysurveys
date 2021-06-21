@@ -22,3 +22,18 @@ test_that("surveyOutput() works - matrix questions", {
                                survey_title = "Testing Matrix Questions")
   ))
 })
+
+matrix_questions_required <- transform(matrix_questions, required = TRUE)
+
+test_that("surveyOutput() works - required matrix questions", {
+  local_edition(3)
+  expect_snapshot_output(shiny::fluidPage(
+    shinysurveys::surveyOutput(df = matrix_questions_required,
+                               survey_title = "Testing Matrix Questions - Required")
+  ))
+})
+
+
+
+
+

@@ -22,7 +22,7 @@ $(document).on("shiny:connected", function() {
 
     function getHiddenInputs() {
 
-    hiddenDivs = $('.dependence, .radioMatrixInput');
+    hiddenDivs = $('.dependence');
     var hiddenInputIds = [];
     var i;
 

@@ -81,7 +81,7 @@
     
         function getHiddenInputs() {
     
-        hiddenDivs = $('.dependence, .radioMatrixInput');
+        hiddenDivs = $('.dependence');
         var hiddenInputIds = [];
         var i;
     

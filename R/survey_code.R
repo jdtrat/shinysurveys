@@ -134,12 +134,15 @@ surveyOutput_individual <- function(df) {
 
   } else if (inputType == "matrix") {
 
+    required_matrix <- ifelse(all(df$required), TRUE, FALSE)
+
     output <-
       radioMatrixInput(
         inputId = base::unique(df$input_id),
-        responseItems = addRequiredUI_internal(df),
-        choices = unique(df$option),
-        selected = NULL
+        responseItems = base::unique(df$question),
+        choices = base::unique(df$option),
+        selected = NULL,
+        .required = required_matrix
       )
 
   } else if (inputType == "instructions") {
