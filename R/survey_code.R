@@ -188,21 +188,35 @@ surveyOutput_individual <- function(df) {
 #'   for use in surveyOutput.
 #'
 check_survey_metadata <- function(survey_description, survey_title) {
+
   if (!missing(survey_description) && missing(survey_title)) {
     stop("Must provide a survey title in order to provide a survey description.")
   } else if (missing(survey_title) && missing(survey_description)) {
     return()
   } else if (!missing(survey_title) && missing(survey_description)) {
-    return(
-      shiny::div(class = "title-description",
-                 shiny::h1(id = "survey-title", survey_title))
-    )
+
+    if (is.null(survey_title)) {
+      return()
+    } else {
+      return(
+        shiny::div(class = "title-description",
+                   shiny::h1(id = "survey-title", survey_title))
+      )
+    }
+
+
   } else if (!missing(survey_title) && !missing(survey_description)) {
-    return(
-      shiny::div(class = "title-description",
-                 shiny::h1(id = "survey-title", survey_title),
-                 shiny::p(id = "survey-description", survey_description))
-    )
+
+    if (is.null(survey_title) && is.null(survey_description)){
+      return()
+    } else {
+      return(
+        shiny::div(class = "title-description",
+                   shiny::h1(id = "survey-title", survey_title),
+                   shiny::p(id = "survey-description", survey_description))
+      )
+    }
+
   }
 }
 
