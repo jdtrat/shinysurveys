@@ -23,8 +23,6 @@ $.extend(radioMatrixBinding, {
       return(null);
     }
 
-    // return(JSON.stringify(values));
-
   },
 
   // on click, uncheck the previously selected input and check the new one.
