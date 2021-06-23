@@ -502,7 +502,7 @@
                 </tr>
                 <tbody>
                   <tr class="radio-matrix-buttons" id="tr-my_team_members_can_depend_upon_me_as_a_safe_space_when_they_are_experiencing_stressful_workplace_experiences">
-                    <td id="td-my_team_members_can_depend_upon_me_as_a_safe_space_when_they_are_experiencing_stressful_workplace_experiences">My team members can depend upon me as a 'safe space' when they are experiencing stressful workplace experiences.</td>
+                    <td class="radio-matrix-buttons-label" id="td-my_team_members_can_depend_upon_me_as_a_safe_space_when_they_are_experiencing_stressful_workplace_experiences">My team members can depend upon me as a 'safe space' when they are experiencing stressful workplace experiences.</td>
                     <td>
                       <input type="radio" name="my_team_members_can_depend_upon_me_as_a_safe_space_when_they_are_experiencing_stressful_workplace_experiences" value="Strongly Disagree"/>
                     </td>
@@ -520,7 +520,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-i_feel_competent_in_my_role_as_a_leader">
-                    <td id="td-i_feel_competent_in_my_role_as_a_leader">I feel competent in my role as a leader</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_feel_competent_in_my_role_as_a_leader">I feel competent in my role as a leader</td>
                     <td>
                       <input type="radio" name="i_feel_competent_in_my_role_as_a_leader" value="Strongly Disagree"/>
                     </td>
@@ -538,7 +538,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-i_have_a_different_identity_as_a_leader_than_i_do_when_i_am_with_family_or_friends">
-                    <td id="td-i_have_a_different_identity_as_a_leader_than_i_do_when_i_am_with_family_or_friends">I have a different identity as a leader than I do when I am with family or friends.</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_have_a_different_identity_as_a_leader_than_i_do_when_i_am_with_family_or_friends">I have a different identity as a leader than I do when I am with family or friends.</td>
                     <td>
                       <input type="radio" name="i_have_a_different_identity_as_a_leader_than_i_do_when_i_am_with_family_or_friends" value="Strongly Disagree"/>
                     </td>
@@ -556,7 +556,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-the_best_way_to_get_my_team_members_to_work_independently_is_to_keep_them_at_a_distance">
-                    <td id="td-the_best_way_to_get_my_team_members_to_work_independently_is_to_keep_them_at_a_distance">The best way to get my team members to work independently is to keep them at a distance</td>
+                    <td class="radio-matrix-buttons-label" id="td-the_best_way_to_get_my_team_members_to_work_independently_is_to_keep_them_at_a_distance">The best way to get my team members to work independently is to keep them at a distance</td>
                     <td>
                       <input type="radio" name="the_best_way_to_get_my_team_members_to_work_independently_is_to_keep_them_at_a_distance" value="Strongly Disagree"/>
                     </td>
@@ -574,7 +574,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-in_the_past_3_months_i_have_used_breathing_exercises">
-                    <td id="td-in_the_past_3_months_i_have_used_breathing_exercises">In the past 3 months, I have used breathing exercises</td>
+                    <td class="radio-matrix-buttons-label" id="td-in_the_past_3_months_i_have_used_breathing_exercises">In the past 3 months, I have used breathing exercises</td>
                     <td>
                       <input type="radio" name="in_the_past_3_months_i_have_used_breathing_exercises" value="Strongly Disagree"/>
                     </td>
@@ -592,7 +592,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-in_the_past_3_months_i_have_practiced_silencing_my_mind">
-                    <td id="td-in_the_past_3_months_i_have_practiced_silencing_my_mind">In the past 3 months, I have practiced silencing my mind.</td>
+                    <td class="radio-matrix-buttons-label" id="td-in_the_past_3_months_i_have_practiced_silencing_my_mind">In the past 3 months, I have practiced silencing my mind.</td>
                     <td>
                       <input type="radio" name="in_the_past_3_months_i_have_practiced_silencing_my_mind" value="Strongly Disagree"/>
                     </td>
@@ -610,7 +610,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-i_communicate_the_emotions_i_am_feeling_to_my_team_members">
-                    <td id="td-i_communicate_the_emotions_i_am_feeling_to_my_team_members">I communicate the emotions I am feeling to my team members.</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_communicate_the_emotions_i_am_feeling_to_my_team_members">I communicate the emotions I am feeling to my team members.</td>
                     <td>
                       <input type="radio" name="i_communicate_the_emotions_i_am_feeling_to_my_team_members" value="Strongly Disagree"/>
                     </td>
@@ -628,7 +628,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-to_check_the_words_i_use_to_express_emotions_with_my_body_to_see_if_the_words_are_right_for_the_feelings">
-                    <td id="td-to_check_the_words_i_use_to_express_emotions_with_my_body_to_see_if_the_words_are_right_for_the_feelings">To check the words I use to express emotions with my body to see if the words are right for the feelings.</td>
+                    <td class="radio-matrix-buttons-label" id="td-to_check_the_words_i_use_to_express_emotions_with_my_body_to_see_if_the_words_are_right_for_the_feelings">To check the words I use to express emotions with my body to see if the words are right for the feelings.</td>
                     <td>
                       <input type="radio" name="to_check_the_words_i_use_to_express_emotions_with_my_body_to_see_if_the_words_are_right_for_the_feelings" value="Strongly Disagree"/>
                     </td>
@@ -1041,7 +1041,7 @@
                 </tr>
                 <tbody>
                   <tr class="radio-matrix-buttons" id="tr-my_team_members_can_depend_upon_me_as_a_safe_space_when_they_are_experiencing_stressful_workplace_experiences">
-                    <td id="td-my_team_members_can_depend_upon_me_as_a_safe_space_when_they_are_experiencing_stressful_workplace_experiences">My team members can depend upon me as a 'safe space' when they are experiencing stressful workplace experiences.</td>
+                    <td class="radio-matrix-buttons-label" id="td-my_team_members_can_depend_upon_me_as_a_safe_space_when_they_are_experiencing_stressful_workplace_experiences">My team members can depend upon me as a 'safe space' when they are experiencing stressful workplace experiences.</td>
                     <td>
                       <input type="radio" name="my_team_members_can_depend_upon_me_as_a_safe_space_when_they_are_experiencing_stressful_workplace_experiences" value="Strongly Disagree"/>
                     </td>
@@ -1059,7 +1059,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-i_feel_competent_in_my_role_as_a_leader">
-                    <td id="td-i_feel_competent_in_my_role_as_a_leader">I feel competent in my role as a leader</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_feel_competent_in_my_role_as_a_leader">I feel competent in my role as a leader</td>
                     <td>
                       <input type="radio" name="i_feel_competent_in_my_role_as_a_leader" value="Strongly Disagree"/>
                     </td>
@@ -1077,7 +1077,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-i_have_a_different_identity_as_a_leader_than_i_do_when_i_am_with_family_or_friends">
-                    <td id="td-i_have_a_different_identity_as_a_leader_than_i_do_when_i_am_with_family_or_friends">I have a different identity as a leader than I do when I am with family or friends.</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_have_a_different_identity_as_a_leader_than_i_do_when_i_am_with_family_or_friends">I have a different identity as a leader than I do when I am with family or friends.</td>
                     <td>
                       <input type="radio" name="i_have_a_different_identity_as_a_leader_than_i_do_when_i_am_with_family_or_friends" value="Strongly Disagree"/>
                     </td>
@@ -1095,7 +1095,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-the_best_way_to_get_my_team_members_to_work_independently_is_to_keep_them_at_a_distance">
-                    <td id="td-the_best_way_to_get_my_team_members_to_work_independently_is_to_keep_them_at_a_distance">The best way to get my team members to work independently is to keep them at a distance</td>
+                    <td class="radio-matrix-buttons-label" id="td-the_best_way_to_get_my_team_members_to_work_independently_is_to_keep_them_at_a_distance">The best way to get my team members to work independently is to keep them at a distance</td>
                     <td>
                       <input type="radio" name="the_best_way_to_get_my_team_members_to_work_independently_is_to_keep_them_at_a_distance" value="Strongly Disagree"/>
                     </td>
@@ -1113,7 +1113,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-in_the_past_3_months_i_have_used_breathing_exercises">
-                    <td id="td-in_the_past_3_months_i_have_used_breathing_exercises">In the past 3 months, I have used breathing exercises</td>
+                    <td class="radio-matrix-buttons-label" id="td-in_the_past_3_months_i_have_used_breathing_exercises">In the past 3 months, I have used breathing exercises</td>
                     <td>
                       <input type="radio" name="in_the_past_3_months_i_have_used_breathing_exercises" value="Strongly Disagree"/>
                     </td>
@@ -1131,7 +1131,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-in_the_past_3_months_i_have_practiced_silencing_my_mind">
-                    <td id="td-in_the_past_3_months_i_have_practiced_silencing_my_mind">In the past 3 months, I have practiced silencing my mind.</td>
+                    <td class="radio-matrix-buttons-label" id="td-in_the_past_3_months_i_have_practiced_silencing_my_mind">In the past 3 months, I have practiced silencing my mind.</td>
                     <td>
                       <input type="radio" name="in_the_past_3_months_i_have_practiced_silencing_my_mind" value="Strongly Disagree"/>
                     </td>
@@ -1149,7 +1149,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-i_communicate_the_emotions_i_am_feeling_to_my_team_members">
-                    <td id="td-i_communicate_the_emotions_i_am_feeling_to_my_team_members">I communicate the emotions I am feeling to my team members.</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_communicate_the_emotions_i_am_feeling_to_my_team_members">I communicate the emotions I am feeling to my team members.</td>
                     <td>
                       <input type="radio" name="i_communicate_the_emotions_i_am_feeling_to_my_team_members" value="Strongly Disagree"/>
                     </td>
@@ -1167,7 +1167,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-to_check_the_words_i_use_to_express_emotions_with_my_body_to_see_if_the_words_are_right_for_the_feelings">
-                    <td id="td-to_check_the_words_i_use_to_express_emotions_with_my_body_to_see_if_the_words_are_right_for_the_feelings">To check the words I use to express emotions with my body to see if the words are right for the feelings.</td>
+                    <td class="radio-matrix-buttons-label" id="td-to_check_the_words_i_use_to_express_emotions_with_my_body_to_see_if_the_words_are_right_for_the_feelings">To check the words I use to express emotions with my body to see if the words are right for the feelings.</td>
                     <td>
                       <input type="radio" name="to_check_the_words_i_use_to_express_emotions_with_my_body_to_see_if_the_words_are_right_for_the_feelings" value="Strongly Disagree"/>
                     </td>

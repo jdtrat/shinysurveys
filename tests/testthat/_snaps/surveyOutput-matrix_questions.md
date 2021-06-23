@@ -123,7 +123,7 @@
                 </tr>
                 <tbody>
                   <tr class="radio-matrix-buttons" id="tr-i_love_sushi">
-                    <td id="td-i_love_sushi">I love sushi.</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_love_sushi">I love sushi.</td>
                     <td>
                       <input type="radio" name="i_love_sushi" value="Disagree"/>
                     </td>
@@ -135,7 +135,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-i_love_chocolate">
-                    <td id="td-i_love_chocolate">I love chocolate.</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_love_chocolate">I love chocolate.</td>
                     <td>
                       <input type="radio" name="i_love_chocolate" value="Disagree"/>
                     </td>
@@ -173,7 +173,7 @@
                 </tr>
                 <tbody>
                   <tr class="radio-matrix-buttons" id="tr-goat_cheese_is_the_goat">
-                    <td id="td-goat_cheese_is_the_goat">Goat cheese is the GOAT.</td>
+                    <td class="radio-matrix-buttons-label" id="td-goat_cheese_is_the_goat">Goat cheese is the GOAT.</td>
                     <td>
                       <input type="radio" name="goat_cheese_is_the_goat" value="Strongly Disagree"/>
                     </td>
@@ -191,7 +191,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-yogurt_and_berries_are_a_great_snack">
-                    <td id="td-yogurt_and_berries_are_a_great_snack">Yogurt and berries are a great snack.</td>
+                    <td class="radio-matrix-buttons-label" id="td-yogurt_and_berries_are_a_great_snack">Yogurt and berries are a great snack.</td>
                     <td>
                       <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Strongly Disagree"/>
                     </td>
@@ -209,7 +209,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-sunbutter_is_a_fantastic_alternative_to_peanut_butter">
-                    <td id="td-sunbutter_is_a_fantastic_alternative_to_peanut_butter">SunButter® is a fantastic alternative to peanut butter.</td>
+                    <td class="radio-matrix-buttons-label" id="td-sunbutter_is_a_fantastic_alternative_to_peanut_butter">SunButter® is a fantastic alternative to peanut butter.</td>
                     <td>
                       <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Strongly Disagree"/>
                     </td>
@@ -362,7 +362,7 @@
                 </tr>
                 <tbody>
                   <tr class="radio-matrix-buttons" id="tr-i_love_sushi">
-                    <td id="td-i_love_sushi">I love sushi.</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_love_sushi">I love sushi.</td>
                     <td>
                       <input type="radio" name="i_love_sushi" value="Disagree"/>
                     </td>
@@ -374,7 +374,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-i_love_chocolate">
-                    <td id="td-i_love_chocolate">I love chocolate.</td>
+                    <td class="radio-matrix-buttons-label" id="td-i_love_chocolate">I love chocolate.</td>
                     <td>
                       <input type="radio" name="i_love_chocolate" value="Disagree"/>
                     </td>
@@ -415,7 +415,7 @@
                 </tr>
                 <tbody>
                   <tr class="radio-matrix-buttons" id="tr-goat_cheese_is_the_goat">
-                    <td id="td-goat_cheese_is_the_goat">Goat cheese is the GOAT.</td>
+                    <td class="radio-matrix-buttons-label" id="td-goat_cheese_is_the_goat">Goat cheese is the GOAT.</td>
                     <td>
                       <input type="radio" name="goat_cheese_is_the_goat" value="Strongly Disagree"/>
                     </td>
@@ -433,7 +433,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-yogurt_and_berries_are_a_great_snack">
-                    <td id="td-yogurt_and_berries_are_a_great_snack">Yogurt and berries are a great snack.</td>
+                    <td class="radio-matrix-buttons-label" id="td-yogurt_and_berries_are_a_great_snack">Yogurt and berries are a great snack.</td>
                     <td>
                       <input type="radio" name="yogurt_and_berries_are_a_great_snack" value="Strongly Disagree"/>
                     </td>
@@ -451,7 +451,7 @@
                     </td>
                   </tr>
                   <tr class="radio-matrix-buttons" id="tr-sunbutter_is_a_fantastic_alternative_to_peanut_butter">
-                    <td id="td-sunbutter_is_a_fantastic_alternative_to_peanut_butter">SunButter® is a fantastic alternative to peanut butter.</td>
+                    <td class="radio-matrix-buttons-label" id="td-sunbutter_is_a_fantastic_alternative_to_peanut_butter">SunButter® is a fantastic alternative to peanut butter.</td>
                     <td>
                       <input type="radio" name="sunbutter_is_a_fantastic_alternative_to_peanut_butter" value="Strongly Disagree"/>
                     </td>

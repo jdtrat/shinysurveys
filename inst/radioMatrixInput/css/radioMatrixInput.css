@@ -3,10 +3,24 @@
   padding-right: 12px;
 }
 
+.radioMatrixInput table {
+  border-collapse: separate;
+  -webkit-border-vertical-spacing: 1rem;
+  -webkit-border-horizontal-spacing: 0.5rem;
+}
+
 th, td {
   vertical-align: middle !important;
   text-align: center !important;
   width: 25px;
+}
+
+.radioMatrixInput .radio-matrix-buttons-label {
+  width: 40%;
+}
+
+tr.spaceUnder>td {
+  padding-bottom: 1em;
 }
 
 @media screen and (max-width: 375px) {
@@ -18,7 +32,7 @@ th, td {
   }
 }
 
-@media screen and (max-width: 400px) and (min-width: 376px) {
+@media screen and (max-width: 429px) and (min-width: 376px) {
 
   th, td {
     padding-left: 2px !important;
@@ -27,17 +41,7 @@ th, td {
   }
 }
 
-@media screen and (max-width: 410px) and (min-width: 400px) {
-
-  th, td {
-    padding-left: 1.25px !important;
-    padding-right: 1.25px !important;
-    font-size: smaller;
-  }
-}
-
-
-@media screen and (max-width: 439px) and (min-width: 411px) {
+@media screen and (max-width: 525px) and (min-width: 430px) {
 
   th, td {
     padding-left: 2px !important;
@@ -46,25 +50,7 @@ th, td {
   }
 }
 
-@media screen and (max-width: 487px) and (min-width: 440px) {
-
-  th, td {
-    padding-left: 2px !important;
-    padding-right: 2px !important;
-    font-size: small;
-  }
-}
-
-
-@media screen and (max-width: 575px) and (min-width: 488px) {
-
-  th, td {
-    padding-left: 3.5px !important;
-    padding-right: 3.5px !important;
-  }
-}
-
-@media screen and (max-width: 767px) and (min-width: 576px) {
+@media screen and (max-width: 767px) and (min-width: 526px) {
 
   th, td {
     padding-left: 4px !important;

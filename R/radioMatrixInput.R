@@ -78,7 +78,7 @@ radioBody <- function(.responseItems, .choices, .selected = NULL) {
       X = .responseItems, function(item, choice, select) {
         shiny::tags$tr(class = "radio-matrix-buttons",
                 id = paste0("tr-", create_radio_input_id(item)),
-                shiny::tags$td(
+                shiny::tags$td(class = "radio-matrix-buttons-label",
                 id = paste0("td-", create_radio_input_id(item)),
                   item
                 ),
