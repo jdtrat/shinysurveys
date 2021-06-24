@@ -23,6 +23,10 @@ tr.spaceUnder>td {
   padding-bottom: 1em;
 }
 
+.radioMatrixInput .radio-matrix-buttons:hover {
+  background-color: #F5F5F5;
+}
+
 @media screen and (max-width: 375px) {
 
   th, td {
