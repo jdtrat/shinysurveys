@@ -301,12 +301,25 @@ surveyOutput <- function(df, survey_title, survey_description, theme = "#63B8FF"
     )
   }
 
+  if (!is.null(survey_env$theme)) {
+    survey_style <- sass::sass(list(
+      list(color = survey_env$theme),
+      readLines(
+        system.file("render_survey.scss",
+                    package = "shinysurveys")
+      )
+    ))
+  } else if (is.null(survey_env$theme)) {
+    survey_style <- NULL
+  }
+
+
   shiny::tagList(shiny::includeScript(system.file("shinysurveys-js.js",
                                                   package = "shinysurveys")),
                  shiny::includeScript(system.file("save_data.js",
                                                   package = "shinysurveys")),
+                 shiny::tags$style(shiny::HTML(survey_style)),
                  shiny::div(class = "survey",
-                            shiny::uiOutput("sass"),
                             shiny::div(style = "display: none !important;",
                                        shiny::textInput(inputId = "userID",
                                                         label = "Enter your username.",
@@ -503,27 +516,6 @@ renderSurvey <- function(df, theme = "#63B8FF") {
 
   session <- shiny::getDefaultReactiveDomain()
 
-  if (!is.null(survey_env$theme)) {
-
-    session$output$sass <- shiny::renderUI({
-      shiny::tags$head(
-        shiny::tags$style(
-          css())
-      )
-    })
-
-    css <- shiny::reactive({
-      sass::sass(list(
-        list(color = survey_env$theme),
-        readLines(
-          system.file("render_survey.scss",
-                      package = "shinysurveys")
-        )
-      ))
-    })
-
-  }
-
   required_vec <- getRequired_internal(survey_env$unique_questions)
 
   shiny::observe({
@@ -548,5 +540,7 @@ renderSurvey <- function(df, theme = "#63B8FF") {
                                                                                  "unique_questions",
                                                                                  "input_type",
                                                                                  "input_extension"))], envir = survey_env))
+
+  shiny::onStop(function() unlink(survey_env$css_file))
 
 }

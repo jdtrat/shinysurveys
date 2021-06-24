@@ -99,8 +99,163 @@
     
         $('.question-input').on('click', log_hidden_inputs);
       });</script>
+    <style>@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat|Raleway");
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: #b0dbff;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: #333;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    h1, h2, h3 {
+      text-transform: uppercase;
+      text-align: left;
+      letter-spacing: .1em;
+      line-height: 1.2;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin: 36px 0;
+    }
+    
+    h1.title {
+      color: #416983;
+    }
+    
+    h3 {
+      font-style: italic;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    p {
+      color: #333;
+      margin: 35px;
+      margin-bottom: 10px;
+      font-family: 'Raleway', sans-serif;
+    }
+    
+    li.l {
+      margin-left: 40px;
+      margin-right: 35px;
+    }
+    
+    input[type=text]:focus {
+      border-bottom: 1.5px solid #4aacff;
+      -webkit-box-shadow: none;
+    }
+    
+    input[type=text] {
+      font-size: 1.5rem;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+      padding: 15px 0;
+      outline: none;
+      color: #3A506B;
+      background-color: transparent;
+    }
+    
+    label {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+    
+    .required {
+      color: red;
+    }
+    
+    .container-fluid .survey {
+      padding: 20px;
+      padding-left: 20%;
+      padding-right: 20%;
+    }
+    
+    @media (max-width: 1195px) {
+      .container-fluid .survey {
+        padding-left: 15%;
+        padding-right: 15%;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .container-fluid .survey {
+        padding-left: 12.5%;
+        padding-right: 12.5%;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .container-fluid .survey {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+    
+    @media (max-width: 575px) {
+      .container-fluid .survey {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+    }
+    
+    .container-fluid .survey .title-description {
+      background-color: white;
+      border-radius: 20px;
+      border-top: 20px solid #30a1ff;
+      padding-left: 5%;
+      padding-right: 5%;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    
+    .container-fluid .survey .title-description #survey-description {
+      text-align: center;
+      margin: 2px;
+      font-size: 1.8rem;
+    }
+    
+    .container-fluid .survey .title-description #survey-title {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 12px;
+    }
+    
+    .container-fluid .survey .page-hidden {
+      display: none;
+    }
+    
+    .container-fluid .survey .questions {
+      display: grid;
+      background-color: white;
+      border: 0.5px solid #CCCCCC;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      padding: 10px;
+      min-height: 138px;
+      font-size: 1.4rem;
+    }
+    
+    .container-fluid .survey .questions.dependence {
+      padding: 0;
+      display: none;
+    }
+    
+    .container-fluid .survey .questions .question-input {
+      margin: auto;
+      width: 100%;
+    }
+    
+    .container-fluid .survey .questions .question-input .shiny-input-container {
+      width: 100%;
+      padding: 0;
+    }
+    </style>
     <div class="survey">
-      <div id="sass" class="shiny-html-output"></div>
       <div style="display: none !important;">
         <div class="form-group shiny-input-container">
           <label class="control-label" id="userID-label" for="userID">Enter your username.</label>
