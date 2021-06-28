@@ -45,7 +45,7 @@ library(shinysurveys)
 
 A survey made with our package might look like this:
 
-![](https://www.jdtrat.com/packages/shinysurveys/resources/shinysurveys-final-demo.gif)
+![](https://www.jdtrat.com/project/shinysurveys/shinysurveys-final-demo.gif)
 
 You can run a demo survey with the function `shinysurveys::demo_survey()`.
 
