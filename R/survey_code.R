@@ -40,19 +40,14 @@ listUniqueQuestions <- function(df) {
 #'
 addRequiredUI_internal <- function(df) {
 
-  # If required and not a rank question make the label the question + *
-  if (df$required[1] == TRUE && !grepl("rank_", df$input_type[1])) {
+  if (length(base::unique(df$question)) != 1 & base::unique(df$input_type) != "matrix") {
+    stop(paste0("The question with input ID '", df$input_id, "' has more than one question in the `question` column. Perhaps there is a spelling error?"))
+  }
+
+  if (df$required[1] == TRUE) {
     label <- shiny::tagList(base::unique(df$question), shiny::span("*", class = "required"))
-  # If required and a rank question make the label the * + specific option
-  # It is on the left because rank's labels have their overflow hidden if the screen size is too small
-  } else if (df$required[1] == TRUE && grepl("rank_", df$input_type[1])) {
-    label <- shiny::tagList(shiny::span("*", class = "required"), df$option)
-    # If not required and not a rank question make the label the question
-  } else if (df$required == FALSE && !grepl("rank_", df$input_type[1])) {
+  } else if (df$required[1] == FALSE) {
     label <- base::unique(df$question)
-    # If not required and a rank question make the label the specific option
-  } else if (df$required[1] == FALSE && grepl("rank_", df$input_type[1])) {
-    label <- df$option
   }
   return(label)
 }
@@ -61,7 +56,6 @@ addRequiredUI_internal <- function(df) {
 #'
 #' @param df One element (a dataframe) in the list of unique questions.
 #'
-#'
 #' @keywords internal
 #' @return UI Code for a Shiny App.
 #'
@@ -69,20 +63,47 @@ surveyOutput_individual <- function(df) {
 
   inputType <- base::unique(df$input_type)
 
+  if (length(inputType) != 1) {
+    if (!"instructions" %in% inputType) {
+      stop("Please double check your data frame and ensure that the input type for all questions is supported.")
+    } else if ("instructions" %in% inputType) {
+      instructions <- df[which(df$input_type == "instructions"), "question", drop = FALSE]$question
+      instructions <- shiny::tagList(
+        shiny::div(class = "question-instructions",
+                   instructions)
+      )
+
+      inputType <- inputType[which(inputType != "instructions")]
+      df <- df[which(df$input_type != "instructions"),]
+    }
+  } else if (length(inputType == 1)) {
+    instructions <- NULL
+  }
+
+  if (grepl("rank_{{", inputType, perl = T)) {
+    stop('Ranking input types have been superseded by the "matrix" input type.')
+  }
+
+  survey_env$current_question <- df
+
   if (inputType ==  "select") {
     output <-
-      shiny::selectInput(
+      shiny::selectizeInput(
         inputId = base::unique(df$input_id),
         label = addRequiredUI_internal(df),
         choices = df$option,
+        options = list(
+          placeholder = '',
+          onInitialize = I('function() { this.setValue(""); }')
+        )
       )
   } else if (inputType == "numeric") {
 
     output <-
-      shiny::numericInput(
+      numberInput(
         inputId = base::unique(df$input_id),
         label = addRequiredUI_internal(df),
-        value = df$option
+        placeholder = df$option
       )
 
   } else if (inputType == "mc") {
@@ -110,34 +131,45 @@ surveyOutput_individual <- function(df) {
         selected = base::character(0),
         choices = df$option
       )
-  } else if (grepl("rank_{{", inputType, perl = T)) {
 
-    if (length(unique(df$question)) > 1) {
-      stop("Multiple question titles were provided for the ranking input.
-           Please specify items to rank as options, and the question title as the question column.")
-    }
+  } else if (inputType == "matrix") {
 
-    # Get the number of ranks
-    n_ranks <- parse_num_ranks(input_type = inputType)
+    required_matrix <- ifelse(all(df$required), TRUE, FALSE)
 
-    # split the data into individual ranks based on the options
-    rank_list <- split(df, df$option)
+    output <-
+      radioMatrixInput(
+        inputId = base::unique(df$input_id),
+        responseItems = base::unique(df$question),
+        choices = base::unique(df$option),
+        selected = NULL,
+        .required = required_matrix
+      )
 
-    # Create the ranking output with the title and individual elements
-    output <- shiny::div(class = "ranking",
-                 shiny::div(class = "ranking-title", unique(df$question)),
-                 shiny::tagList(lapply(rank_list, rank_ui_internal, num_ranks = n_ranks)))
+  } else if (inputType == "instructions") {
 
+    output <- shiny::div(
+      class = "instructions-only",
+      df$question
+    )
+
+  } else if (inputType %in% survey_env$input_type) {
+    output <- eval(survey_env$input_extension[[inputType]])
+  } else {
+    stop(paste0("Input type '", inputType, "' from the supplied data frame of questions is not recognized by {shinysurveys}.
+                Did you mean to register a custom input extension with `extendInputType()`?"))
   }
 
   if (!base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions dependence",
-                         id = df$input_id[1],
+                         id = paste0(df$input_id[1], "-question"),
                          shiny::div(class = "question-input",
+                                    instructions,
                                     output))
   } else if (base::is.na(df$dependence[1])) {
     output <- shiny::div(class = "questions",
+                         id = paste0(df$input_id[1], "-question"),
                          shiny::div(class = "question-input",
+                                    instructions,
                                     output))
   }
 
@@ -159,21 +191,35 @@ surveyOutput_individual <- function(df) {
 #'   for use in surveyOutput.
 #'
 check_survey_metadata <- function(survey_description, survey_title) {
+
   if (!missing(survey_description) && missing(survey_title)) {
     stop("Must provide a survey title in order to provide a survey description.")
   } else if (missing(survey_title) && missing(survey_description)) {
     return()
   } else if (!missing(survey_title) && missing(survey_description)) {
-    return(
-      shiny::div(class = "title-description",
-                 shiny::h1(id = "survey-title", survey_title))
-    )
+
+    if (is.null(survey_title)) {
+      return()
+    } else {
+      return(
+        shiny::div(class = "title-description",
+                   shiny::h1(id = "survey-title", survey_title))
+      )
+    }
+
+
   } else if (!missing(survey_title) && !missing(survey_description)) {
-    return(
-      shiny::div(class = "title-description",
-                 shiny::h1(id = "survey-title", survey_title),
-                 shiny::p(id = "survey-description", survey_description))
-    )
+
+    if (is.null(survey_title) && is.null(survey_description)){
+      return()
+    } else {
+      return(
+        shiny::div(class = "title-description",
+                   shiny::h1(id = "survey-title", survey_title),
+                   shiny::p(id = "survey-description", survey_description))
+      )
+    }
+
   }
 }
 
@@ -184,36 +230,101 @@ check_survey_metadata <- function(survey_description, survey_title) {
 #' @param df A user supplied data frame in the format of teaching_r_questions.
 #' @param survey_title (Optional) user supplied title for the survey
 #' @param survey_description (Optional) user supplied description for the survey
+#' @param theme A valid R color: predefined such as "red" or "blue"; hex colors
+#'   such as #63B8FF (default). To customize the survey's appearance entirely, supply NULL.
 #' @param ... Additional arguments to pass into \link[shiny]{actionButton} used to submit survey responses.
 #'
 #' @return UI Code for a Shiny App.
 #' @export
 #'
 #' @examples
+#'
 #' if (interactive()) {
-#' surveyOutput(df = shinysurveys::teaching_r_questions,
-#' survey_title = "Teaching R Questions",
-#' survey_description = "Survey used in the Teaching R Study (McGowan et al., 2021)")
+#'
+#'   library(shiny)
+#'   library(shinysurveys)
+#'
+#'   df <- data.frame(question = "What is your favorite food?",
+#'                    option = "Your Answer",
+#'                    input_type = "text",
+#'                    input_id = "favorite_food",
+#'                    dependence = NA,
+#'                    dependence_value = NA,
+#'                    required = F)
+#'
+#'   ui <- fluidPage(
+#'     surveyOutput(df = df,
+#'                  survey_title = "Hello, World!",
+#'                  theme = "#63B8FF")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     renderSurvey()
+#'
+#'     observeEvent(input$submit, {
+#'       showModal(modalDialog(
+#'         title = "Congrats, you completed your first shinysurvey!",
+#'         "You can customize what actions happen when a user finishes a survey using input$submit."
+#'       ))
+#'     })
+#'   }
+#'
+#'   shinyApp(ui, server)
+#'
 #' }
-surveyOutput <- function(df, survey_title, survey_description, ...) {
 
-  unique_questions <- listUniqueQuestions(df)
+
+surveyOutput <- function(df, survey_title, survey_description, theme = "#63B8FF", ...) {
+
+  survey_env$theme <- theme
+  survey_env$question_df <- df
+  survey_env$unique_questions <- listUniqueQuestions(df)
+  if (!missing(survey_title)) {
+    survey_env$title <- survey_title
+  }
+  if (!missing(survey_description)) {
+    survey_env$description <- survey_description
+  }
+
+  if ("page" %in% names(df)) {
+    main_ui <- multipaged_ui(df = df)
+  } else if (!"page" %in% names(df)) {
+    main_ui <- shiny::tagList(
+      check_survey_metadata(survey_title = survey_title,
+                            survey_description = survey_description),
+      lapply(survey_env$unique_questions, surveyOutput_individual),
+      shiny::div(class = "survey-buttons",
+                 shiny::actionButton("submit",
+                                     "Submit",
+                                     ...)
+      )
+    )
+  }
+
+  if (!is.null(survey_env$theme)) {
+    survey_style <- sass::sass(list(
+      list(color = survey_env$theme),
+      readLines(
+        system.file("render_survey.scss",
+                    package = "shinysurveys")
+      )
+    ))
+  } else if (is.null(survey_env$theme)) {
+    survey_style <- NULL
+  }
+
 
   shiny::tagList(shiny::includeScript(system.file("shinysurveys-js.js",
                                                   package = "shinysurveys")),
-                 shiny::div(class = "grid",
-                            shiny::div(class = "survey",
-                                       shiny::uiOutput("sass"),
-                                       shiny::div(style = "display: none !important;",
-                                                  shiny::textInput(inputId = "userID",
-                                                                   label = "Enter your username.",
-                                                                   value = "NO_USER_ID")),
-                                       check_survey_metadata(survey_title = survey_title,
-                                                             survey_description = survey_description),
-                                       lapply(unique_questions, surveyOutput_individual),
-                                       shiny::actionButton("submit",
-                                                           "Submit",
-                                                           ...))))
+                 shiny::includeScript(system.file("save_data.js",
+                                                  package = "shinysurveys")),
+                 shiny::tags$style(shiny::HTML(survey_style)),
+                 shiny::div(class = "survey",
+                            shiny::div(style = "display: none !important;",
+                                       shiny::textInput(inputId = "userID",
+                                                        label = "Enter your username.",
+                                                        value = "NO_USER_ID")),
+                            main_ui))
 
 }
 
@@ -238,11 +349,11 @@ showDependence <- function(input = input, df) {
     # is equal to its dependence value. If so,
     # show the question.
     if (input[[df$dependence[1]]] == df$dependence_value[1]) {
-      remove_class(.id = df$input_id[1],
+      remove_class(.id = paste0(df$input_id[1], "-question"),
                    .class = "dependence")
       df$required <- TRUE
     } else {
-      add_class(.id = df$input_id[1],
+      add_class(.id = paste0(df$input_id[1], "-question"),
                 .class = "dependence")
       df$required <- FALSE
     }
@@ -302,7 +413,7 @@ getRequired_internal <- function(questions) {
 #' @return TRUE if the input has a value; false otherwise.
 #'
 checkIndividual <- function(input = input, input_id) {
-  if (!is.null(input[[input_id]]) && input[[input_id]] != "") {
+  if (!is.null(input[[input_id]]) && input[[input_id]] != "" && !is.na(input[[input_id]])) {
     TRUE
   } else {
     FALSE
@@ -326,6 +437,10 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
   } else {
     required_inputs_vector <- required_inputs_vector[!is.na(required_inputs_vector)]
   }
+
+  instructions_id <- survey_env$question_df[which(survey_env$question_df$input_type == "instructions"), "input_id", drop = FALSE]$input_id
+  required_inputs_vector <- required_inputs_vector[which(!required_inputs_vector %in% c(input$shinysurveysHiddenInputs, instructions_id))]
+
   all(vapply(required_inputs_vector, checkIndividual, input = input, FUN.VALUE = logical(1), USE.NAMES = FALSE))
 }
 
@@ -335,9 +450,14 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #'
 #' Include server-side logic for shinysurveys.
 #'
-#' @param df A user supplied dataframe in the format of teaching_r_questions.
-#' @param theme A valid R color: predefined such as "red" or "blue"; hex colors
-#'   such as #63B8FF (default). To customize the survey's appearance entirely, supply NULL.
+#'
+#' @param df **Deprecated** *please only place argument in
+#'   \code{\link{surveyOutput}}.* A user supplied data frame in the format of
+#'   teaching_r_questions.
+#' @param theme **Deprecated** *please place the theme argument in
+#'   \code{\link{surveyOutput}}.* A valid R color: predefined such as "red" or
+#'   "blue"; hex colors such as #63B8FF (default). To customize the survey's
+#'   appearance entirely, supply NULL.
 #'
 #' @export
 #'
@@ -345,38 +465,58 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #'
 #' @examples
 #'
+
 #' if (interactive()) {
-#' renderSurvey(df = shinysurveys::teaching_r_questions,
-#' theme = "#63B8FF")
+#'
+#'   library(shiny)
+#'   library(shinysurveys)
+#'
+#'   df <- data.frame(question = "What is your favorite food?",
+#'                    option = "Your Answer",
+#'                    input_type = "text",
+#'                    input_id = "favorite_food",
+#'                    dependence = NA,
+#'                    dependence_value = NA,
+#'                    required = F)
+#'
+#'   ui <- fluidPage(
+#'     surveyOutput(df = df,
+#'                  survey_title = "Hello, World!",
+#'                  theme = "#63B8FF")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     renderSurvey()
+#'
+#'     observeEvent(input$submit, {
+#'       showModal(modalDialog(
+#'         title = "Congrats, you completed your first shinysurvey!",
+#'         "You can customize what actions happen when a user finishes a survey using input$submit."
+#'       ))
+#'     })
+#'   }
+#'
+#'   shinyApp(ui, server)
+#'
 #' }
 #'
 renderSurvey <- function(df, theme = "#63B8FF") {
 
-  session <- shiny::getDefaultReactiveDomain()
-
-  if (!is.null(theme)) {
-
-    session$output$sass <- shiny::renderUI({
-      shiny::tags$head(
-        shiny::tags$style(
-          css())
-      )
-    })
-
-    css <- shiny::reactive({
-      sass::sass(list(
-        list(color = theme),
-        readLines(
-          system.file("render_survey.scss",
-                      package = "shinysurveys")
-        )
-      ))
-    })
-
+  if (missing(df)) {
+    df <- survey_env$question_df
+  } else if (!missing(df)) {
+    warning("The `df` argument in `renderSurvey()` is deprecated and will be removed in a future version. Please only pass the data frame of questions to `surveyOutput()`.")
   }
 
-  unique_questions <- listUniqueQuestions(df)
-  required_vec <- getRequired_internal(unique_questions)
+  if (missing(theme)) {
+    theme <- survey_env$theme
+  } else if (!missing(theme)) {
+    warning("The `theme` argument in `renderSurvey()` is deprecated and will be removed in a future version. Please only pass the theme color to `surveyOutput()`.")
+  }
+
+  session <- shiny::getDefaultReactiveDomain()
+
+  required_vec <- getRequired_internal(survey_env$unique_questions)
 
   shiny::observe({
 
@@ -387,11 +527,20 @@ renderSurvey <- function(df, theme = "#63B8FF") {
     }
 
     # Update the dependencies
-    for (id in seq_along(unique_questions)) showDependence(input = session$input, df = unique_questions[[id]])
+    for (id in seq_along(survey_env$unique_questions)) showDependence(input = session$input, df = survey_env$unique_questions[[id]])
 
     toggle_element(id = "submit",
                    condition = checkRequired_internal(input = session$input,
                                                       required_inputs_vector = required_vec))
+
   })
+
+  # Clean up non-essential internal environmental variables
+  shiny::onStop(function() rm(list = ls(survey_env)[which(!ls(survey_env) %in% c("question_df",
+                                                                                 "unique_questions",
+                                                                                 "input_type",
+                                                                                 "input_extension"))], envir = survey_env))
+
+  shiny::onStop(function() unlink(survey_env$css_file))
 
 }

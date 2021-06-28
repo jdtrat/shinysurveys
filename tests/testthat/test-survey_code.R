@@ -20,13 +20,18 @@ ds_all_required <- transform(ds_questions, required = T)
 ds_no_required <- transform(ds_questions, required = F)
 
 
-rank_questions <- data.frame(question = "Please rank your favorite sushi rolls.",
-                             option = c("Rainbow", "Florida", "Double Salmon", "Volcano", "California"),
-                             input_type = "rank_{{5}}", # change the 5 to change the ranking scale 1 - X
-                             input_id = c("rainbow", "florida", "double_salmon", "volcano", "california"),
-                             dependence = NA,
-                             dependence_value = NA,
-                             required = F)
+ds_plus_matrix <- rbind(
+  ds_questions,
+  data.frame(
+    question = c(rep("I love sushi.", 3), rep("I love chocolate.",3)),
+    option = rep(c("Disagree", "Neutral", "Agree"), 2),
+    input_type = rep("matrix", 6),
+    input_id = "matId",
+    dependence = NA,
+    dependence_value = NA,
+    required = TRUE
+  )
+)
 
 
 # Test internal data processing -------------------------------------------
@@ -58,34 +63,6 @@ test_that("addRequiredUI_internal() correctly adds asterisks to required questio
 
 })
 
-
-# Test UI Output ------------------------------------------------------------
-
-test_that("surveyOutput() works - teaching_r_questions", {
-  local_edition(3)
-  expect_snapshot_output(surveyOutput(df = teaching_r_questions,
-                                      survey_title = "Testing Title",
-                                      survey_description = "Testing Description"))
-})
-
-test_that("surveyOutput() works - ds_questions", {
-  local_edition(3)
-  expect_snapshot_output(shiny::fluidPage(
-    shinysurveys::surveyOutput(df = ds_questions,
-                               survey_title = "Getting To Know You",
-                               survey_description = "Welcome! This is a quick survey for us to become familiar with each other's backgrounds in this class.")
-  ))
-})
-
-test_that("surveyOutput() works - ranking_questions", {
-  local_edition(3)
-  expect_snapshot_output(shiny::fluidPage(
-    shinysurveys::surveyOutput(df = rank_questions,
-                               survey_title = "Rank your favorite sushi rolls")
-  ))
-})
-
-
 # Test Server Functionality --------------------------------------------------------
 
 ## Test Required Questions
@@ -111,19 +88,58 @@ test_that("server works when some questions are required and others are not", {
                       goals = "answer",
                       current_understanding = "answer",
                       experience_with_r = "answer",
-                      )
+                      `tr-i_love_sushi` = "Agree")
 
     # expect false because not all required questions have been answered
     expect_false(toggle_button())
 
     session$setInputs(other_courses = "answer",
-                      programming_experience = "answer")
+                      programming_experience = "answer",
+                      `tr-i_love_chocolate` = "Agree")
 
     # expect true because all required questions have been answered
     expect_true(toggle_button())
   })
 
 })
+
+test_that("server works with required matrix questions and others", {
+
+  server <- function(input, output, session) {
+
+    required_vec <- getRequired_internal(
+      listUniqueQuestions(
+        ds_plus_matrix
+      )
+    )
+
+    toggle_button <- reactive({checkRequired_internal(input = input, required_inputs_vector = required_vec)})
+
+  }
+
+  shiny::testServer(server, {
+    session$setInputs(name = "answer",
+                      advisor = "answer",
+                      interests = "answer",
+                      goals = "answer",
+                      current_understanding = "answer",
+                      experience_with_r = "answer"
+
+    )
+
+    # expect false because not all required questions have been answered
+    expect_false(toggle_button())
+
+    session$setInputs(other_courses = "answer",
+                      programming_experience = "answer",
+                      matId = "answer")
+
+    # expect true because all required questions have been answered
+    expect_true(toggle_button())
+  })
+
+})
+
 
 
 test_that("server works when all questions are required", {
@@ -214,5 +230,34 @@ test_that("server works with dependency questions - multiple choice", {
     session$setInputs(gender = "Prefer to self describe")
     expect_true(show_dependency())
   })
+
+})
+
+
+test_that("input type error catch works", {
+
+  no_error <- data.frame(question = "Question about input types",
+                   option = NA,
+                   input_type = "select",
+                   # Note the input IDs are specific for the language option
+                   input_id = "testing-input-error",
+                   dependence = NA,
+                   dependence_value = NA,
+                   required = TRUE)
+
+  error <- no_error
+  error$input_type <- "unknown-input-type"
+
+  expect_silent(
+    ui <- shiny::fluidPage(
+      surveyOutput(no_error)
+    )
+  )
+
+  expect_error(
+    ui <- shiny::fluidPage(
+      surveyOutput(error)
+    )
+  )
 
 })

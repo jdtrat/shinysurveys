@@ -1,3 +1,6 @@
+# Create a new environment for access within a survey
+survey_env <- base::new.env(parent = base::emptyenv())
+
 #' Extract user ID from query string
 #'
 #'
@@ -21,7 +24,7 @@ base_extract_user_id <- function(query_list) {
 #'
 get_questions <- function(df) {
 
-  output <- split(df, factor(df$question, levels = unique(df$question)))
+  output <- split(df, factor(df$input_id, levels = unique(df$input_id)))
   names(output) <- NULL
   return(output)
 
@@ -61,37 +64,98 @@ pluck_by_index <- function(list, index) {
   list[[index]]
 }
 
-#' Create rank UI for individual options
+
+
+#' Wrap Questions in the Appropriate Page Divider
 #'
-#' @param df Individual option rows of the df
-#' @param num_ranks The number of ranking
+#' @param question_df The data frame of questions supplied by the user,
+#' split in \code{\link{multipaged_ui}}.
+#' @param page_id The page ID
+#'
 #' @keywords internal
 #'
-#' @return UI for individual rank elements
+#' @return UI for a "page" of questions
 #'
-rank_ui_internal <- function(df, num_ranks) {
-  shiny::radioButtons(inputId = base::unique(df$input_id),
-                      label = addRequiredUI_internal(df),
-                      selected = base::character(0),
-                      choices = seq(1, num_ranks, by = 1),
-                      inline = TRUE)
-}
+addPages <- function(question_df, page_id) {
 
-
-#' Parse the number of ranks to include for rank questions
-#'
-#' @param input_type The input type
-#' @keywords internal
-#'
-#' @return Numeric to be used for determining number of ranks
-#'
-parse_num_ranks <- function(input_type) {
-
-  as.numeric(
-    regmatches(input_type, gregexpr(pattern = "(?<={{).*(?=}})",
-                                    text = input_type, perl = T))[[1]]
-  )
+  shiny::div(class = ifelse(page_id != "1", "page page-hidden", "page page-visible"),
+             id = paste0("page-", page_id),
+             title_placeholder(page = page_id),
+             lapply(question_df, surveyOutput_individual),
+             button_placeholders(page = page_id))
 
 }
 
+#' Control Title UI Placement for Multi-paged Surveys
+#'
+#' @param page
+#'
+#' @keywords internal
+#'
+#' @return UI for title if applicable
+#'
+title_placeholder <- function(page) {
+  if (page == "1") {
+    check_survey_metadata(survey_description = survey_env$description,
+                          survey_title = survey_env$title)
+  } else {
+    NULL
+  }
+}
 
+#' Button placement on each page of questions
+#'
+#' @param page Current page to define UI for. Specified in \code{\link{multipaged_ui}}
+#'
+#' @keywords internal
+#'
+#' @return UI for "Next", "Previous", and "Submit" buttons
+#'
+button_placeholders <- function(page) {
+
+  # If there's only one page, just display submit button
+  if (page == "1" && length(unique(survey_env$question_df$page)) == 1) {
+    shiny::div(class = "survey-buttons",
+               shiny::actionButton("submit", "Submit")
+    )
+
+  } else if (page == "1" && length(unique(survey_env$question_df$page)) != 1) {
+    shiny::div(class = "survey-buttons",
+               shiny::actionButton(paste0("next-", page), "Next", `page-action` = "next")
+    )
+  } else if (page != "1" && page != as.character(survey_env$num_pages)) {
+    shiny::div(class = "survey-buttons",
+               shiny::actionButton(paste0("previous-", page), "Previous", `page-action` = "previous"),
+               shiny::actionButton(paste0("next-", page), "Next", `page-action` = "next")
+    )
+  } else if (page == as.character(survey_env$num_pages)) {
+    shiny::div(class = "survey-buttons",
+               shiny::actionButton(paste0("previous-", page), "Previous", `page-action` = "previous"),
+               shiny::actionButton("submit", "Submit")
+    )
+  }
+}
+
+#' Place survey questions on multiple pages
+#'
+#' @param df The data frame of questions supplied by the user
+#'
+#' @keywords internal
+#'
+#' @return UI for all pages
+#'
+multipaged_ui <- function(df) {
+
+  paged <- split(df, factor(df$page, levels = unique(df$page)))
+  paged <- lapply(paged, listUniqueQuestions)
+  # Keep track of number of pages for controlling button behavior
+  survey_env$num_pages <- length(names(paged))
+  # convert all page indicators to ordered list
+  names(paged) <- as.character(seq(1:length(names(paged))))
+  class(paged) <- c("list", "paged")
+  output <- mapply(FUN = addPages,
+                   question_df = paged,
+                   page_id = names(paged),
+                   SIMPLIFY = FALSE)
+  return(output)
+}

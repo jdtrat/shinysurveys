@@ -73,31 +73,35 @@ label {
   font-size: 1.5rem;
 }
 
-.container-fluid {
-  background-color: $little_light;
+.required {
+  color: red;
+}
 
-  .grid {
-    display: grid;
-    width: 100%;
-    height: 100%;
-    grid-template-columns: repeat(8, 1fr);
-    background-color: $light;
-    padding-bottom: 200px;
+.container-fluid {
 
     .survey {
       padding: 20px;
-      grid-column-start: 3;
-      grid-column-end: 7;
-      position: center;
-      background-color: transparent;
+      padding-left: 20%;
+      padding-right: 20%;
+
+      @media (max-width: 1195px) {
+        padding-left: 15%;
+        padding-right: 15%;
+      }
+
+      @media (max-width: 992px) {
+        padding-left: 12.5%;
+        padding-right: 12.5%;
+      }
 
       @media (max-width: 767px) {
-        grid-column-start: 2;
-        grid-column-end: 8;
+        padding-left: 10%;
+        padding-right: 10%;
       }
+
       @media (max-width: 575px) {
-        grid-column-start: 1;
-        grid-column-end: 9;
+        padding-left: 7.5%;
+        padding-right: 7.5%;
       }
 
       .title-description {
@@ -112,14 +116,20 @@ label {
         margin-bottom: 12px;
 
         #survey-description {
+          text-align: center;
           margin: 2px;
           font-size: 1.8rem;
         }
 
         #survey-title {
+          text-align: center;
           margin-top: 20px;
           margin-bottom: 12px;
         }
+      }
+
+      .page-hidden {
+        display: none;
       }
 
       .questions {
@@ -137,35 +147,6 @@ label {
           display: none;
         }
 
-
-        .ranking{
-
-          .ranking-title {
-          margin-bottom: 10px;
-          font-size: 1.5rem;
-          display: inline-block;
-          font-weight: 700;
-        }
-
-          .shiny-options-group{
-            display: inline;
-          }
-
-          .control-label{
-            color: black;
-            margin-right: 5px;
-            border-right: 1px solid $dark;
-            border-bottom: 1px groove $dark;
-            text-align: center;
-            width: 15%;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            vertical-align: top;
-          }
-
-        }
-
         .question-input {
           margin: auto;
           width: 100%;
@@ -174,12 +155,8 @@ label {
             width: 100%;
             padding: 0;
 
-            .required {
-              color: red;
-            }
           }
         }
       }
     }
   }
-}
