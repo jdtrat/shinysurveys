@@ -70,7 +70,7 @@ check_length <- function(.input) {
 #'    renderSurvey()
 #'    # Upon submission, print a data frame with participant responses
 #'    observeEvent(input$submit, {
-#'      print(get_survey_data())
+#'      print(getSurveyData())
 #'    })
 #'  }
 #'
@@ -78,7 +78,7 @@ check_length <- function(.input) {
 #'
 #'  }
 #'
-get_survey_data <- function(custom_id = NULL) {
+getSurveyData <- function(custom_id = NULL) {
 
   session <- shiny::getDefaultReactiveDomain()
 

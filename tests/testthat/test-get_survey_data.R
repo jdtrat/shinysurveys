@@ -86,7 +86,7 @@ df <- data.frame(
 ui <- fluidPage(
   surveyOutput(df,
                survey_title = "{shinysurveys} Automatic Response Aggregation Example",
-               survey_description = "The function `get_survey_data()` takes into account dependencies,
+               survey_description = "The function `getSurveyData()` takes into account dependencies,
                and will only include questions that participants saw when aggregating responses."
                )
 )
@@ -95,7 +95,7 @@ server <- function(input, output, session) {
   renderSurvey()
 
   observeEvent(input$submit, {
-    print(get_survey_data())
+    print(getSurveyData())
   })
 }
 

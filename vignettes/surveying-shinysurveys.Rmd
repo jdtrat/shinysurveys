@@ -223,7 +223,7 @@ Some people may wish to have survey questions appear on different pages. As of v
 
 ### Aggregate Response Data
 
-As of v0.2.0., users can automatically aggergate response data upon submission with the function `get_survey_data()`. Please see its documentation or dedicated article for more details.
+As of v0.2.0., users can automatically aggergate response data upon submission with the function `getSurveyData()`. Please see its documentation or dedicated article for more details.
 
 ### User Tracking
 

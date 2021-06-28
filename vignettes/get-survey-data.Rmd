@@ -1,8 +1,8 @@
 ---
-title: "Aggregate Responses with `get_survey_data()`"
+title: "Aggregate Responses with `getSurveyData()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Aggregate Responses with `get_survey_data()`}
+  %\VignetteIndexEntry{Aggregate Responses with `getSurveyData()`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

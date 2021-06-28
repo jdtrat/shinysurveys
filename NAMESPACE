@@ -2,7 +2,7 @@
 
 export(demo_survey)
 export(extendInputType)
-export(get_survey_data)
+export(getSurveyData)
 export(listInputExtensions)
 export(numberInput)
 export(radioMatrixInput)
