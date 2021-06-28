@@ -1,0 +1,21 @@
+---
+title: "Aggregate Responses with `get_survey_data()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Aggregate Responses with `get_survey_data()`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(shinysurveys)
+```
+
+Coming soon...

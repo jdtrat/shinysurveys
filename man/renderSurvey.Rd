@@ -8,11 +8,11 @@ renderSurvey(df, theme = "#63B8FF")
 }
 \arguments{
 \item{df}{\strong{Deprecated} \emph{please only place argument in
-\code{\link{renderSurvey}}.} A user supplied data frame in the format of
+\code{\link{surveyOutput}}.} A user supplied data frame in the format of
 teaching_r_questions.}
 
 \item{theme}{\strong{Deprecated} \emph{please place the theme argument in
-\code{\link{renderSurvey}}.} A valid R color: predefined such as "red" or
+\code{\link{surveyOutput}}.} A valid R color: predefined such as "red" or
 "blue"; hex colors such as #63B8FF (default). To customize the survey's
 appearance entirely, supply NULL.}
 }

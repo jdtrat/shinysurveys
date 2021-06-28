@@ -452,10 +452,10 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
 #'
 #'
 #' @param df **Deprecated** *please only place argument in
-#'   \code{\link{renderSurvey}}.* A user supplied data frame in the format of
+#'   \code{\link{surveyOutput}}.* A user supplied data frame in the format of
 #'   teaching_r_questions.
 #' @param theme **Deprecated** *please place the theme argument in
-#'   \code{\link{renderSurvey}}.* A valid R color: predefined such as "red" or
+#'   \code{\link{surveyOutput}}.* A valid R color: predefined such as "red" or
 #'   "blue"; hex colors such as #63B8FF (default). To customize the survey's
 #'   appearance entirely, supply NULL.
 #'

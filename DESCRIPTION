@@ -32,3 +32,8 @@ Imports:
     jsonlite
 Depends: 
     R (>= 2.10)
+Suggests: 
+    knitr,
+    rmarkdown,
+    tibble
+VignetteBuilder: knitr
