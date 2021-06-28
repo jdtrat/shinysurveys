@@ -12,12 +12,28 @@ authors:
 home:
   strip_header: true
 reference:
-- title: "Creating a Shiny Survey"
+- title: "Creating a Basic Shiny Survey"
   desc: >
-    Functions for creating a survey in Shiny.
+    Functions for creating a typical survey in Shiny.
   contents:
     - surveyOutput
     - renderSurvey
+- title: "Creating an Advanced Shiny Survey"
+  desc: >
+    Functions for stepping up your shiny survey game.
+  contents:
+    - getSurveyData
+    - extendInputType
+    - surveyID
+    - surveyLabel
+    - surveyOptions
+    - listInputExtensions
+- title: "Shinysurvey Inputs"
+  decc: >
+    Input types from shinysurveys to be used in shiny apps.
+  contents:
+    - radioMatrixInput
+    - numberInput
 - title: "Demo tools"
   desc: >
     Functions and data to help you get started with {shinysurveys}.
