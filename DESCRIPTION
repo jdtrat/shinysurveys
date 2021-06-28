@@ -1,6 +1,6 @@
 Package: shinysurveys
 Title: Create and Deploy Surveys in 'Shiny'
-Version: 0.1.2
+Version: 0.2.0
 Authors@R: 
     c(
     person(given = "Jonathan",
