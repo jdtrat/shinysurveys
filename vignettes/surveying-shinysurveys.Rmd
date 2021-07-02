@@ -23,7 +23,7 @@ library(shinysurveys)
 
 The ability to easily collect and analyze survey data is incredibly important. Many platforms provide user-friendly methods to do this. [Google Forms](https://www.google.com/forms/about/), [SurveyMonkey](https://www.surveymonkey.com/), and [Qualtrics](https://www.qualtrics.com/core-xm/survey-software/) are all popular options. However, these services don't always integrate easily with existing data analysis and/or research pipelines. Because of R's prevalence in academia and research, {shinysurveys} was developed to streamline the data collection and analysis process. 
 
-In this vignette, I provide an overview of the main features of shinysurveys.[^shinysurveys-1] Aligned with the basic structure of {shiny} applications, consisting of the user-interface and server components, this package has a function for each: `surveyOutput()` and `renderSurvey()`, respectively. The former accepts a data frame of questions that follow a specific format. To illustrate this, I will show a questionnaire from a recent study conducted by the [D'Agostino McGowan Data Science Lab](http://dmds.lucymcgowan.com/) that is built into the `shinysurveys` package.[^shinysurveys-3] The first ten (of 54) rows of this data frame look like:
+In this vignette, I provide an overview of the main features of shinysurveys.[^shinysurveys-1] Aligned with the basic structure of {shiny} applications, consisting of the user-interface and server components, this package has a function for each: `surveyOutput()` and `renderSurvey()`, respectively. The former accepts a data frame of questions that follow a specific format. To illustrate this, I will show a questionnaire from a recent study conducted by the [D'Agostino McGowan Data Science Lab](https://dmds.lucymcgowan.com/) that is built into the `shinysurveys` package.[^shinysurveys-3] The first ten (of 54) rows of this data frame look like:
 
 [^shinysurveys-1]: I assume familiarity with the basic layout of a Shiny application, as briefly outlined above. For additional information, please check out RStudio's [great resources](https://shiny.rstudio.com/tutorial/).
 
@@ -219,7 +219,7 @@ Survey designers can define questions that must be answered by adding the value 
 
 ### Multiple Pages
 
-Some people may wish to have survey questions appear on different pages. As of v0.2.0., users can add an additional column `page` to the data frame of questions. The column can either have numeric (e.g. `c(1, 1, 2, 3)` or character (`c("intro", "intro", "middle", "final")`) values. For detailed examples, please visit my [blog post](https://jdtrat.com/blog/multi-paged-shinysurvey/) on the matter.
+Some people may wish to have survey questions appear on different pages. As of v0.2.0., users can add an additional column `page` to the data frame of questions. The column can either have numeric (e.g. `c(1, 1, 2, 3)` or character (`c("intro", "intro", "middle", "final")`) values. For detailed examples, please visit my [blog post](https://www.jdtrat.com/blog/multi-paged-shinysurvey/) on the matter.
 
 ### Aggregate Response Data
 
