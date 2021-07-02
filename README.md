@@ -105,7 +105,7 @@ shinyApp(ui, server)
 
 ## Further Reading
 
-For a more in-depth explanation of {shinysurveys}, please see the vignette [*A survey of {shinysurveys}*](https://www.jdtrat.com/packages/shinysurveys/articles/surveying-shinysurveys.html).
+For a more in-depth explanation of {shinysurveys}, please see the vignette [*A survey of {shinysurveys}*](https://shinysurveys.jdtrat.com/articles/surveying-shinysurveys.html).
 
 ## Feedback
 
