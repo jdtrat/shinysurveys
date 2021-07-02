@@ -39,4 +39,5 @@ reference:
     Functions and data to help you get started with {shinysurveys}.
   contents:
     - demo_survey
+    - demo_survey_multipage
     - teaching_r_questions
