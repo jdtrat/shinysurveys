@@ -4,14 +4,39 @@
 \alias{getSurveyData}
 \title{Get survey data}
 \usage{
-getSurveyData(custom_id = NULL)
+getSurveyData(
+  custom_id = NULL,
+  include_dependencies = TRUE,
+  dependency_string = "HIDDEN-QUESTION"
+)
 }
 \arguments{
 \item{custom_id}{A unique identifier for the survey's respondents. NULL by
 default, and the built-in {shinysurveys} userID will be used.}
+
+\item{include_dependencies}{LOGICAL: TRUE (default) and all dependency
+questions will be returned, regardless of if the individual respondent saw
+it. For respondents who did not see a specific question, the 'response'
+will take on the value from the \code{dependency_string} argument. If FALSE, the
+output will have variable rows depending on which questions a given
+participant answered.}
+
+\item{dependency_string}{A character string to be imputed for dependency
+questions that a respondent did not see. Default is "HIDDEN-QUESTION".}
 }
 \value{
-A participant's responses.
+A data frame with four columns containing information about the
+participant's survey responses: The 'subject_id' column can be used for
+identifying respondents. By default, it utilizes shinysurveys URL-based
+user tracking feature. The 'question_id' and 'question_type' columns
+correspond to  'input_id' and 'input_type' from the original data frame of
+questions. The 'response' column is the participant's answer.
+
+The number of rows, corresponding to the questions an individual saw,
+depends on the \code{include_dependencies} argument. If TRUE, by default, then
+the resulting data frame will have one row per unique input ID. If FALSE,
+the data frame may have variable length depending on which questions a
+given individual answers.
 }
 \description{
 Get a participant's responses.
