@@ -103,6 +103,10 @@ shinyApp(ui, server)
 
 -   **URL-based user tracking** functionality lets you keep track of participants easily and systematically. If you deploy your survey on [shinyapps.io](https://www.shinyapps.io/), or run it locally in a browser, you can add a URL parameter after the backslash as follows: `?user_id=UNIQUE_ID`. A live demo can be found here: <a>https://jdtrat-apps.shinyapps.io/shinysurveys_user_tracking/?user_id=hadley</a>
 
+- **Multi-paged surveys** can be used to better organize questions and make it easier for people to complete. As of v0.2.0., users can add an additional column page to the data frame of questions. The column can either have numeric (e.g. `c(1, 1, 2, 3`) or character (`c("intro", "intro", "middle", "final")`) values. For more documentation, see my [blog post](https://www.jdtrat.com/blog/multi-paged-shinysurvey/).
+
+- **Automatic response aggregation** to easily gather participant's data upon submission with `getSurveyData()`. See the [official vignette](https://shinysurveys.jdtrat.com/articles/get-survey-data.html) for more details.
+
 ## Further Reading
 
 For a more in-depth explanation of {shinysurveys}, please see the vignette [*A survey of {shinysurveys}*](https://shinysurveys.jdtrat.com/articles/surveying-shinysurveys.html).
