@@ -187,11 +187,11 @@ shiny::shinyApp(ui = ui, server = server)
 
 This creates a functioning survey that looks like this:
 
-![](graphics/survey-of-shinysurveys/minimal-survey.png){style="display: block; margin: 1em auto" width="500"}
+![](graphics/survey-of-shinysurveys/minimal-survey.png)
 
 However, when a participant submits their results, nothing happens. By design, {shinysurveys} is minimalist. An extension of this is not imposing any requirements for submission actions, but rather allowing the survey designer to customize them.
 
-More specifically, the user-interface includes a "submit" button (not shown in the above picture) that requires the programmer to define what happens when it is pressed. Some examples would be saving or displaying user responses, or displaying a message as seen on the [gif here.](https://www.jdtrat.com/packages/shinysurveys/index.html#demos)
+More specifically, the user-interface includes a "submit" button (not shown in the above picture) that requires the programmer to define what happens when it is pressed. Some examples would be saving or displaying user responses, or displaying a message as seen on the [gif here.](https://www.jdtrat.com/project/shinysurveys/shinysurveys-final-demo.gif).
 
 ## Advanced Features
 
