@@ -89,7 +89,7 @@ When I answer the survey and click submit, the following data frame is printed t
 
 In order to generalize `getSurveyData()`, it has to account for input types that may return multiple values. For example, shiny's `checkboxGroupInput` returns a character vector whose values correspond to the checked boxes. In order to ensure that this, and other custom input extensions,[^3] work with `getSurveyData()`, I collapse responses into a single character vector separated by commas. Consider the following application:
 
-[^3]: If you are unfamiliar with custom input types, please see [my blog post](https://jdtrat.com/blog/extending-shinysurveys/) introducing them or the [documentation](https://shinysurveys.jdtrat.com/articles/custom-input-extensions.html).
+[^3]: If you are unfamiliar with custom input types, please see [my blog post](https://www.jdtrat.com/blog/extending-shinysurveys/) introducing them or the [documentation](https://shinysurveys.jdtrat.com/articles/custom-input-extensions.html).
 
 ```{r complex-example, eval = FALSE}
 # Load packages
