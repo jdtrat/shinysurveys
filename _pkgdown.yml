@@ -11,6 +11,10 @@ authors:
     href: "https://lucymcgowan.com"
 home:
   strip_header: true
+news:
+ releases:
+ - text: "shinysurveys 0.2.0"
+   href: https://www.jdtrat.com/blog/shinysurveys-0-2-0/
 reference:
 - title: "Creating a Basic Shiny Survey"
   desc: >
