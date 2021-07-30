@@ -413,7 +413,7 @@ getRequired_internal <- function(questions) {
 #' @return TRUE if the input has a value; false otherwise.
 #'
 checkIndividual <- function(input = input, input_id) {
-  if (!is.null(input[[input_id]]) && input[[input_id]] != "" && !is.na(input[[input_id]])) {
+  if (!is.null(input[[input_id]]) && as.character(input[[input_id]]) != "" && !is.na(input[[input_id]])) {
     TRUE
   } else {
     FALSE
