@@ -22,6 +22,10 @@
       $el.removeClass("disabled");
     });
     
+    Shiny.addCustomMessageHandler('hideSurvey', function(_) {
+      $('.survey').hide();
+    });
+    
     
     $(document).ready(function() {
       // When one of the buttons are clicked, get the current page
@@ -553,6 +557,10 @@
       $el.removeClass("disabled");
     });
     
+    Shiny.addCustomMessageHandler('hideSurvey', function(_) {
+      $('.survey').hide();
+    });
+    
     
     $(document).ready(function() {
       // When one of the buttons are clicked, get the current page
@@ -988,6 +996,10 @@
       $el = $("#" + params.input_id);
       $el.prop("disabled", false);
       $el.removeClass("disabled");
+    });
+    
+    Shiny.addCustomMessageHandler('hideSurvey', function(_) {
+      $('.survey').hide();
     });
     
     

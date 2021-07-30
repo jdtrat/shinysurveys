@@ -22,6 +22,10 @@
       $el.removeClass("disabled");
     });
     
+    Shiny.addCustomMessageHandler('hideSurvey', function(_) {
+      $('.survey').hide();
+    });
+    
     
     $(document).ready(function() {
       // When one of the buttons are clicked, get the current page
