@@ -1,5 +1,9 @@
 # shinysurveys (development version)
 
+## Minor improvements and fixes
+
+- Made input checks more robust for required questions -- necessary for some custom input types (#32).
+
 # shinysurveys 0.2.0
 
 ## Breaking changes
