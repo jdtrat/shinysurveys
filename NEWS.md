@@ -1,5 +1,9 @@
 # shinysurveys (development version)
 
+## New features
+
+- Added a function `hideSurvey()` for easily hiding the survey. This may be useful for, as an example, displaying results upon submission.
+
 ## Minor improvements and fixes
 
 - Made input checks more robust for required questions -- necessary for some custom input types (#32).
