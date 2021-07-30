@@ -21,6 +21,8 @@ Description: Easily create and deploy surveys in 'Shiny'. This package includes
     a minimalistic framework similar to 'Google Forms' that allows for url-based
     user tracking, customizable submit actions, easy survey-theming, and more.
 License: MIT + file LICENSE
+URL: https://shinysurveys.jdtrat.com, https://github.com/jdtrat/shinysurveys
+BugReports:https://github.com/jdtrat/shinysurveys/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
