@@ -92,14 +92,14 @@ enable_element <- function(.id) {
 #'
 #'   server <- function(input, output, session) {
 #'     renderSurvey()
-#'     observeEvent(input$submit, hide_survey())
+#'     observeEvent(input$submit, hideSurvey())
 #'   }
 #'
 #'   shinyApp(ui, server)
 #'
 #' }
 #'
-hide_survey <- function() {
+hideSurvey <- function() {
   session <- shiny::getDefaultReactiveDomain()
   session$sendCustomMessage('hideSurvey', list())
 }
