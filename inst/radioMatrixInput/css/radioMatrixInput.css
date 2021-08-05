@@ -4,6 +4,7 @@
 }
 
 .radioMatrixInput table {
+  width: 97.5%;
   border-collapse: separate;
   -webkit-border-vertical-spacing: 1rem;
   -webkit-border-horizontal-spacing: 0.5rem;
