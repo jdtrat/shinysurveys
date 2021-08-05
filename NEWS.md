@@ -7,6 +7,7 @@
 ## Minor improvements and fixes
 
 - Made input checks more robust for required questions -- necessary for some custom input types (#32).
+- Updated CSS for matrix questions to ensure their width covers the entire question container. This was a problem for some users with Google Chrome and Safari.
 
 # shinysurveys 0.2.0
 
