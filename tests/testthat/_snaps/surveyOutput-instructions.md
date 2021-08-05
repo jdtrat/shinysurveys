@@ -31,7 +31,6 @@
       // When one of the buttons are clicked, get the current page
       // from the button ID.
       $('.survey-buttons .btn').on('click', function(e) {
-        console.log("Hello");
         current_id = $(e.target).attr('id');
         current_page = parseInt(current_id.split('-')[1]);
     
@@ -566,7 +565,6 @@
       // When one of the buttons are clicked, get the current page
       // from the button ID.
       $('.survey-buttons .btn').on('click', function(e) {
-        console.log("Hello");
         current_id = $(e.target).attr('id');
         current_page = parseInt(current_id.split('-')[1]);
     
@@ -1007,7 +1005,6 @@
       // When one of the buttons are clicked, get the current page
       // from the button ID.
       $('.survey-buttons .btn').on('click', function(e) {
-        console.log("Hello");
         current_id = $(e.target).attr('id');
         current_page = parseInt(current_id.split('-')[1]);
     
