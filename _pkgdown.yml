@@ -62,6 +62,14 @@ navbar:
         - text: "shinysurveys 0.2.0"
           href: https://www.jdtrat.com/blog/shinysurveys-0-2-0/
 
+articles:
+  - title: Vignettes
+navbar: ~
+  contents:
+  - surveying-shinysurveys
+  - custom-input-extensions
+  - get-survey-data
+
 reference:
 - title: "Creating a Basic Shiny Survey"
   desc: >
