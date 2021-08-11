@@ -1,8 +1,8 @@
 ---
-title: "shinysurveys"
+title: "Learn shinysurveys"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{shinysurveys}
+  %\VignetteIndexEntry{Learn shinysurveys}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
 
 # Introduction
 

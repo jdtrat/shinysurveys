@@ -28,7 +28,9 @@ development:
 
 home:
   strip_header: true
-
+  links:
+  - text: Learn more
+    href: ""
 
 # structure of website themed with jdtdown
 # based on structure of jdtdown
@@ -40,12 +42,16 @@ navbar:
     right: [reference, news, github]
   components:
     home:
+    articles:
+      text: Articles
+      menu:
+        - text: "No Article"
     reference:
       text: Reference
       href: reference/index.html
     github:
       icon: fab fa-github fa-lg
-      href: https://github.com/jdtrat/ghee
+      href: https://github.com/jdtrat/shinysurveys
     news:
       text: News
       menu:
@@ -55,15 +61,6 @@ navbar:
         - text: "Blog posts"
         - text: "shinysurveys 0.2.0"
           href: https://www.jdtrat.com/blog/shinysurveys-0-2-0/
-
-articles:
-  - title: Vignettes
-    navbar: ~
-    contents:
-    - surveying-shinysurveys
-    - custom-input-extensions
-    - get-survey-data
-
 
 reference:
 - title: "Creating a Basic Shiny Survey"
@@ -95,4 +92,3 @@ reference:
     - demo_survey
     - demo_survey_multipage
     - teaching_r_questions
-
