@@ -23,9 +23,6 @@ authors:
   Lucy D'Agostino McGowan:
     href: "https://lucymcgowan.com"
 
-development:
-  mode: auto
-
 home:
   strip_header: true
   links:
