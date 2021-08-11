@@ -42,10 +42,6 @@ navbar:
     right: [reference, news, github]
   components:
     home:
-    articles:
-      text: Articles
-      menu:
-        - text: "No Article"
     reference:
       text: Reference
       href: reference/index.html
@@ -64,11 +60,11 @@ navbar:
 
 articles:
   - title: Vignettes
-navbar: ~
-  contents:
-  - surveying-shinysurveys
-  - custom-input-extensions
-  - get-survey-data
+    navbar: ~
+    contents:
+    - surveying-shinysurveys
+    - custom-input-extensions
+    - get-survey-data
 
 reference:
 - title: "Creating a Basic Shiny Survey"
