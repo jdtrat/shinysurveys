@@ -1,0 +1,61 @@
+.navbar-default {
+  border-color: transparent;
+}
+
+.navbar-default .navbar-link {
+  color: #00449e;
+}
+
+.label-default {
+  background-color: #00449e;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #00449e;
+    background-color: transparent;
+    text-transform: uppercase;
+    border-bottom: 1px solid #001b44;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #00449e;
+  text-transform: uppercase;
+}
+
+pre {
+  border: 1px solid #1a57a885;
+  background-color: #ddf0fc;
+  border-radius: 0.75rem;
+}
+
+pre, code {
+  background-color: #ddf0fc;
+}
+
+.page-header {
+  border-bottom: 1px solid #1a57a885;
+}
+
+hr {
+  border-top: 1px solid #1a57a885;
+}
+
+/* Make background for pkgdown just a little lighter than normal website. */
+.bg-lightest-blue, nav#SectionTableOfContents ul details li.active, nav#SectionTableOfContents ul li.active, nav#SeriesTableOfContents ul li.active, details#PageTableOfContents nav#TableOfContents ul li:hover, body, .headroom {
+    background-color: #cdecff36;
+}
+
+.headroom {
+  opacity: 0.95;
+  background-color: #cdecff;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #001b44;
+    border-bottom: #001b44;
+}
+
