@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 library(tibble)
 ```
 
-```{r setup}
+```{r setup, include = FALSE}
 library(shinysurveys)
 ```
 

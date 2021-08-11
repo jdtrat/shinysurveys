@@ -1,0 +1,88 @@
+---
+title: "shinysurveys"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{shinysurveys}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+{shinysurveys} provides easy-to-use, minimalistic code for creating and deploying surveys in R. It extends the {shiny} package and converts a table of questions into an interactive web-based application. Administering surveys with this package allows users to combine the computational tools of R with the interactivity of web applications. This helps bridge the gap between data collection and data analysis. 
+
+## Installation
+
+You can install {shinysurveys} via CRAN or GitHub and load it as follows:
+
+```r
+# Install released version from CRAN
+install.packages("shinysurveys")
+
+# Or, install the development version from GitHub
+remotes::install_github("jdtrat/shinysurveys")
+
+# Load package
+library(shinysurveys)
+```
+
+## Basic Survey
+
+{shinysurveys} exports two functions: `surveyOutput()` and `renderSurvey()`. The former goes in the UI portion of a Shiny app, and the latter goes in the server portion. To create a survey, you can build a data frame with your questions. The following columns are required.
+
+-   *question*: The question to be asked.
+-   *option*: A possible response to the question. In multiple choice questions, for example, this would be the possible answers. For questions without discrete answers, such as a numeric input, this would be the default option shown on the input. For text inputs, it is the placeholder value.
+-   *input_type*: What type of response is expected? Currently supported types include `numeric`, `mc` for multiple choice, `text`, `select`, and `y/n` for yes/no questions.
+-   *input_id*: The id for Shiny inputs.
+-   *dependence*: Does this question (row) depend on another? That is, should it only appear if a different question has a specific value? This column contains the input_id of whatever question this one depends upon.
+-   *dependence_value*: This column contains the specific value that the dependence question must take for this question (row) to be shown.
+-   *required*: logical TRUE/FALSE signifying if a question is required. Surveys can only be submitted when all required questions are answered.
+
+A demo survey can be created as follows:
+
+```r
+library(shiny)
+library(shinysurveys)
+
+df <- data.frame(question = "What is your favorite food?",
+                 option = "Your Answer",
+                 input_type = "text",
+                 input_id = "favorite_food",
+                 dependence = NA,
+                 dependence_value = NA,
+                 required = F)
+
+ui <- fluidPage(
+  surveyOutput(df = df,
+               survey_title = "Hello, World!",
+               survey_description = "Welcome! This is a demo survey showing off the {shinysurveys} package.")
+)
+
+server <- function(input, output, session) {
+  renderSurvey()
+  
+  observeEvent(input$submit, {
+    showModal(modalDialog(
+      title = "Congrats, you completed your first shinysurvey!",
+      "You can customize what actions happen when a user finishes a survey using input$submit."
+    ))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+In the browser, this looks like:
+
+![](https://www.jdtrat.com/project/shinysurveys/shinysurveys-final-demo.gif)
+
+## Further Reading
+
+For a more in-depth explanation of {shinysurveys}, please see the vignette [*A survey of {shinysurveys}*](https://shinysurveys.jdtrat.com/articles/surveying-shinysurveys.html).

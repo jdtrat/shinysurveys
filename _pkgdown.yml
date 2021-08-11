@@ -1,20 +1,70 @@
+destination: docs
+
 url: https://shinysurveys.jdtrat.com
 repo:
     home: https://github.com/jdtrat/shinysurveys/
     source: https://github.com/jdtrat/shinysurveys/blob/master/
     issue: https://github.com/jdtrat/shinysurveys/issues/
     user: https://github.com/jdtrat/
+
+template:
+  package: jdtdown
+  opengraph:
+    image:
+      src: man/figures/logo.png
+      alt: "shinysurveys package"
+    twitter:
+      creator: "@jdtrat"
+      card: summary
+
 authors:
   Jonathan Trattner:
     href: "https://jdtrat.com"
   Lucy D'Agostino McGowan:
     href: "https://lucymcgowan.com"
+
+development:
+  mode: auto
+
 home:
   strip_header: true
-news:
- releases:
- - text: "shinysurveys 0.2.0"
-   href: https://www.jdtrat.com/blog/shinysurveys-0-2-0/
+
+
+# structure of website themed with jdtdown
+# based on structure of jdtdown
+navbar:
+  title: ~
+  type: default
+  structure:
+    left:  [intro, examples, articles]
+    right: [reference, news, github]
+  components:
+    home:
+    reference:
+      text: Reference
+      href: reference/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/jdtrat/ghee
+    news:
+      text: News
+      menu:
+        - text: "Changelog"
+          href: news/index.html
+        - text: "------------------"
+        - text: "Blog posts"
+        - text: "shinysurveys 0.2.0"
+          href: https://www.jdtrat.com/blog/shinysurveys-0-2-0/
+
+articles:
+  - title: Vignettes
+    navbar: ~
+    contents:
+    - surveying-shinysurveys
+    - custom-input-extensions
+    - get-survey-data
+
+
 reference:
 - title: "Creating a Basic Shiny Survey"
   desc: >
@@ -45,3 +95,4 @@ reference:
     - demo_survey
     - demo_survey_multipage
     - teaching_r_questions
+

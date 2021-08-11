@@ -30,7 +30,7 @@
 
 You can install {shinysurveys} via CRAN or GitHub and load it as follows:
 
-``` {.r}
+```r
 # Install released version from CRAN
 install.packages("shinysurveys")
 
@@ -63,7 +63,7 @@ Aside from `demo_survey()`, {shinysurveys} exports two functions: `surveyOutput(
 
 Our demo survey can be created as follows:
 
-``` {.r}
+```r
 library(shiny)
 library(shinysurveys)
 
