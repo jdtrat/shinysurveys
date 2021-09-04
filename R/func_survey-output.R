@@ -95,7 +95,7 @@ surveyOutput_individual <- function(df) {
 
     output <- shiny::div(
       class = "instructions-only",
-      df$question
+      shiny::markdown(df$question)
     )
 
   } else if (inputType %in% survey_env$input_type) {
