@@ -157,7 +157,10 @@ checkRequired_internal <- function(input = input, required_inputs_vector) {
     required_inputs_vector <- required_inputs_vector[!is.na(required_inputs_vector)]
   }
 
-  instructions_id <- survey_env$question_df[which(survey_env$question_df$input_type == "instructions"), "input_id", drop = FALSE]$input_id
+  instructions_id <- do.call(c, lapply(survey_env$unique_questions, function(question) {
+    if (all(question$input_type == "instructions")) unique(question$input_id)
+  }))
+
   required_inputs_vector <- required_inputs_vector[which(!required_inputs_vector %in% c(input$shinysurveysHiddenInputs, instructions_id))]
 
   all(vapply(required_inputs_vector, checkIndividual, input = input, FUN.VALUE = logical(1), USE.NAMES = FALSE))
