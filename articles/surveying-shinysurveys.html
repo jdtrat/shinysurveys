@@ -179,9 +179,9 @@
 <a href="#numeric-input" class="anchor"></a>Numeric Input</h3>
 <p>A good example of a numeric input is the first question: “What’s your age?”:</p>
 <pre><code>#&gt; # A tibble: 1 × 7
-#&gt;   question         option input_type input_id dependence dependence_value required
-#&gt;   &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
-#&gt; 1 What's your age? 25     numeric    age      &lt;NA&gt;       &lt;NA&gt;             TRUE</code></pre>
+#&gt;   question       option input_type input_id dependence dependence_value required
+#&gt;   &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
+#&gt; 1 What's your a… 25     numeric    age      &lt;NA&gt;       &lt;NA&gt;             TRUE</code></pre>
 <p>As seen above, this row corresponds to the question “What’s your age?”. I know to expect a numeric response by looking at the <code>input_type</code> column, and the default value is equal to 25 according to the <code>option</code> column.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 <p>I can also tell that there are no dependency questions. This means that no matter what value is entered, no follow-up question will appear. Lastly, I know it is a required question.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
 <p><img src="graphics/survey-of-shinysurveys/numeric_example.png" style="display: block; margin: 1em auto" width="300"></p>
