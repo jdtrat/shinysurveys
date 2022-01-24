@@ -66,8 +66,15 @@ showDependence <- function(input = input, df) {
     # check that the input of that question's dependence
     # is equal to its dependence value. If so,
     # show the question.
-    if (input[[df$dependence[1]]] == df$dependence_value[1]) {
-      remove_class(.id = paste0(df$input_id[1], "-question"),
+    print("df$dependence[1]:")
+    print(df$dependence[1])
+    print("df$dependence_value[1]:")
+    print(df$dependence_value[1])
+    print("input[[df$dependence[1]]]:")
+    print(input[[df$dependence[1]]])
+    # if (input[[df$dependence[1]]] == df$dependence_value[1]) {
+    if (any(input[[df$dependence[1]]] == df$dependence_value[1])) {
+        remove_class(.id = paste0(df$input_id[1], "-question"),
                    .class = "dependence")
       df$required <- TRUE
     } else {
