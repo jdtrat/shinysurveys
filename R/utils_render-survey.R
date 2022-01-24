@@ -63,16 +63,11 @@ showDependence <- function(input = input, df) {
 
   # if there is a dependence
   if (!base::is.na(df$dependence[1])) {
-    # check that the input of that question's dependence
+    # check that (one of) the input(s) of that question's dependence
+    # (could have multiple inputs when extendInputType() "check"
+    #  is used with shiny::checkboxGroupInput)
     # is equal to its dependence value. If so,
     # show the question.
-    print("df$dependence[1]:")
-    print(df$dependence[1])
-    print("df$dependence_value[1]:")
-    print(df$dependence_value[1])
-    print("input[[df$dependence[1]]]:")
-    print(input[[df$dependence[1]]])
-    # if (input[[df$dependence[1]]] == df$dependence_value[1]) {
     if (any(input[[df$dependence[1]]] == df$dependence_value[1])) {
         remove_class(.id = paste0(df$input_id[1], "-question"),
                    .class = "dependence")
