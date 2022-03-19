@@ -57,7 +57,7 @@ toggle_element <- function(id, condition) {
 #'
 showDependence <- function(input = input, df) {
 
-  if(is.na(df$dependence_value[1]) || is.null(input[[df$dependence[1]]])) {
+  if(is.na(df$dependence_value[1])) {
     return()
   }
 
