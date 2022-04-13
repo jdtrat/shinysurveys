@@ -80,6 +80,7 @@ reference:
     - surveyLabel
     - surveyOptions
     - listInputExtensions
+    - hideSurvey
 - title: "Shinysurvey Inputs"
   decc: >
     Input types from shinysurveys to be used in shiny apps.
