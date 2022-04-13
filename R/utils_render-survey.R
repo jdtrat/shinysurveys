@@ -57,27 +57,26 @@ toggle_element <- function(id, condition) {
 #'
 showDependence <- function(input = input, df) {
 
-  if(is.na(df$dependence_value[1]) || is.null(input[[df$dependence[1]]])) {
-    return()
-  }
+  # Are there any dependencies?
+  if (any(!is.na(df$dependence_value))) {
 
-  # if there is a dependence
-  if (!base::is.na(df$dependence[1])) {
-    # check that (one of) the input(s) of that question's dependence
-    # (could have multiple inputs when extendInputType() "check"
-    #  is used with shiny::checkboxGroupInput)
-    # is equal to its dependence value. If so,
-    # show the question.
+    # Using the first dependence value for a question
+    # assumes all dependence values per question are equal
     if (any(input[[df$dependence[1]]] == df$dependence_value[1])) {
-        remove_class(.id = paste0(df$input_id[1], "-question"),
-                   .class = "dependence")
+        remove_class(
+          .id = paste0(df$input_id[1], "-question"),
+          .class = "dependence"
+          )
       df$required <- TRUE
     } else {
-      add_class(.id = paste0(df$input_id[1], "-question"),
-                .class = "dependence")
+      add_class(
+        .id = paste0(df$input_id[1], "-question"),
+        .class = "dependence"
+        )
       df$required <- FALSE
     }
   }
+
 }
 
 
