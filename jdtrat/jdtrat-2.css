@@ -36,6 +36,10 @@ pre, code {
   background-color: #ddf0fc;
 }
 
+pre code {
+  background-color: transparent;
+}
+
 .page-header {
   border-bottom: 1px solid #1a57a885;
 }

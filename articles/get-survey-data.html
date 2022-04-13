@@ -24,6 +24,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,14 +39,14 @@
 
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinysurveys</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0.9000</span>
       </span>
 
       <!--<div class="navbar-brand-container">
         <a class="navbar-brand" href="../index.html">shinysurveys</a>
         <div class="info hidden-xs hidden-sm">
           <span class="partof">part of  <a href=""></a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0.9000</span>
         </div>
       </div>-->
     </div>
@@ -55,7 +57,7 @@
   <a href="../articles/shinysurveys.html">Get started</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -76,7 +78,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
@@ -86,14 +88,15 @@
       <a href="../news/index.html">Changelog</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Blog posts</li>
+    </li>
+<li class="dropdown-header">Blog posts</li>
     <li>
-      <a href="https://www.jdtrat.com/blog/shinysurveys-0-2-0/">shinysurveys 0.2.0</a>
+      <a href="https://www.jdtrat.com/blog/shinysurveys-0-2-0/" class="external-link">shinysurveys 0.2.0</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="https://github.com/jdtrat/shinysurveys">
+  <a href="https://github.com/jdtrat/shinysurveys" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -115,44 +118,44 @@
 </h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/jdtrat/shinysurveys/blob/master/vignettes/get-survey-data.Rmd"><code>vignettes/get-survey-data.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jdtrat/shinysurveys/blob/HEAD/vignettes/get-survey-data.Rmd" class="external-link"><code>vignettes/get-survey-data.Rmd</code></a></small>
       <div class="hidden name"><code>get-survey-data.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>shinysurveys was developed, in large part, to automate data collection and analysis. In this vignette, I demonstrate the use of <code><a href="../reference/getSurveyData.html">getSurveyData()</a></code> to easily aggregate survey responses and help you, the designer, more quickly gain insights of the results. The output always follows the same structure, inspired by tidy data, where each row is an observation (question) and each column is a variable.</p>
 <p>The ‘subject_id’ column can be used for identifying respondents. By default, it utilizes shinysurveys <a href="https://shinysurveys.jdtrat.com/articles/surveying-shinysurveys.html#user-tracking">URL-based user tracking feature</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The ‘question_id’ and ‘question_type’ columns correspond to ‘input_id’ and ‘input_type’ from the original data frame of questions. The ‘response’ column is the participant’s answer.</p>
 </div>
-<div id="basic-example" class="section level1">
-<h1 class="hasAnchor">
-<a href="#basic-example" class="anchor"></a>Basic Example</h1>
+<div class="section level2">
+<h2 id="basic-example">Basic Example<a class="anchor" aria-label="anchor" href="#basic-example"></a>
+</h2>
 <p>As an example, consider the following shiny survey, containing questions about your favorite food and your name.</p>
 <p>A “Submit” button is built into any shiny survey, but – by default – no actions are defined. So, when a user completes the survey, the app designer can specify what happens upon submission. In this case, I’ll simply print a user’s responses.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> The code for this is below:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Load packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
 
 <span class="co"># Define questions in the format of a shinysurvey</span>
-<span class="va">survey_questions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
-  question <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"What is your favorite food?"</span>,
+<span class="va">survey_questions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
+  question <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"What is your favorite food?"</span>,
                <span class="st">"What's your name?"</span><span class="op">)</span>,
   option <span class="op">=</span> <span class="cn">NA</span>,
   input_type <span class="op">=</span> <span class="st">"text"</span>,
-  input_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"favorite_food"</span>, <span class="st">"name"</span><span class="op">)</span>,
+  input_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"favorite_food"</span>, <span class="st">"name"</span><span class="op">)</span>,
   dependence <span class="op">=</span> <span class="cn">NA</span>,
   dependence_value <span class="op">=</span> <span class="cn">NA</span>,
-  required <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>
+  required <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="co"># Define shiny UI</span>
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/surveyOutput.html">surveyOutput</a></span><span class="op">(</span><span class="va">survey_questions</span>,
                survey_title <span class="op">=</span> <span class="st">"Hello, World!"</span>,
                survey_description <span class="op">=</span> <span class="st">"A demo survey"</span><span class="op">)</span>
@@ -162,15 +165,15 @@
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="../reference/renderSurvey.html">renderSurvey</a></span><span class="op">(</span><span class="op">)</span>
   
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">submit</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">submit</span>, <span class="op">{</span>
     <span class="va">response_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getSurveyData.html">getSurveyData</a></span><span class="op">(</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">response_data</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">response_data</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
   
 <span class="op">}</span>
 
 <span class="co"># Run the shiny application</span>
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>In the browser, the survey looks like this:</p>
 <p><img src="graphics/get-survey-data/demo-survey-screenshot.png"></p>
 <p>When I answer the survey and click submit, the following data frame is printed to the console, following the format described in the introduction.</p>
@@ -197,18 +200,18 @@
 </tbody>
 </table>
 </div>
-<div id="complex-example" class="section level1">
-<h1 class="hasAnchor">
-<a href="#complex-example" class="anchor"></a>Complex Example</h1>
+<div class="section level2">
+<h2 id="complex-example">Complex Example<a class="anchor" aria-label="anchor" href="#complex-example"></a>
+</h2>
 <p>In order to generalize <code><a href="../reference/getSurveyData.html">getSurveyData()</a></code>, it has to account for input types that may return multiple values. For example, shiny’s <code>checkboxGroupInput</code> returns a character vector whose values correspond to the checked boxes. In order to ensure that this, and other custom input extensions,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> work with <code><a href="../reference/getSurveyData.html">getSurveyData()</a></code>, I collapse responses into a single character vector separated by commas. Consider the following application:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
 
 <span class="co"># Register a "check" input type</span>
 <span class="fu"><a href="../reference/extendInputType.html">extendInputType</a></span><span class="op">(</span><span class="st">"check"</span>, <span class="op">{</span>
-  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html">checkboxGroupInput</a></span><span class="op">(</span>
+  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html" class="external-link">checkboxGroupInput</a></span><span class="op">(</span>
     inputId <span class="op">=</span> <span class="fu"><a href="../reference/surveyID.html">surveyID</a></span><span class="op">(</span><span class="op">)</span>,
     label <span class="op">=</span> <span class="fu"><a href="../reference/surveyLabel.html">surveyLabel</a></span><span class="op">(</span><span class="op">)</span>,
     choices <span class="op">=</span> <span class="fu"><a href="../reference/surveyOptions.html">surveyOptions</a></span><span class="op">(</span><span class="op">)</span>, 
@@ -216,9 +219,9 @@
 <span class="op">}</span><span class="op">)</span>
 
 <span class="co"># Define question in the format of a shinysurvey</span>
-<span class="va">ice_cream_question</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+<span class="va">ice_cream_question</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
   question <span class="op">=</span> <span class="st">"Please indicate which of the following are your top three favorite ice cream flavors."</span>,
-  option <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chocolate"</span>, <span class="st">"Vanilla"</span>, <span class="st">"Strawberry"</span>, 
+  option <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Chocolate"</span>, <span class="st">"Vanilla"</span>, <span class="st">"Strawberry"</span>, 
              <span class="st">"Mint Chocolate Chip"</span>, <span class="st">"Rocky Road"</span>, <span class="st">"Cookie Batter"</span>,
              <span class="st">"Hazelnut"</span>, <span class="st">"Cookies N' Cream"</span>, <span class="st">"Pistachio"</span><span class="op">)</span>,
   input_type <span class="op">=</span> <span class="st">"check"</span>,
@@ -229,7 +232,7 @@
 <span class="op">)</span>
 
 <span class="co"># Define shiny UI</span>
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/surveyOutput.html">surveyOutput</a></span><span class="op">(</span><span class="va">ice_cream_question</span>,
                survey_title <span class="op">=</span> <span class="st">"Hello, World!"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -238,15 +241,15 @@
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="../reference/renderSurvey.html">renderSurvey</a></span><span class="op">(</span><span class="op">)</span>
   
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">submit</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">submit</span>, <span class="op">{</span>
     <span class="va">response_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getSurveyData.html">getSurveyData</a></span><span class="op">(</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">response_data</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">response_data</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
   
 <span class="op">}</span>
 
 <span class="co"># Run the shiny application</span>
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>When I answer the survey and click submit, the following data frame is printed to the console.</p>
 <table class="table">
 <thead><tr class="header">
@@ -263,11 +266,11 @@
 </tr></tbody>
 </table>
 </div>
-<div id="dependency-example" class="section level1">
-<h1 class="hasAnchor">
-<a href="#dependency-example" class="anchor"></a>Dependency Example</h1>
+<div class="section level2">
+<h2 id="dependency-example">Dependency Example<a class="anchor" aria-label="anchor" href="#dependency-example"></a>
+</h2>
 <p><code><a href="../reference/getSurveyData.html">getSurveyData()</a></code> only aggregates data from questions that participants have actually seen. As mentioned in the introduction, this function returns one row per question. This is true by default, however, there are some features specific for dealing with dependency questions.</p>
-<p>Consider the question set built into the package from a recent study by the <a href="https://dmds.lucymcgowan.com/">D’Agostino McGowan Data Science Lab</a>. There are 14 unique questions, but some will only be asked if a specific answer is provided.</p>
+<p>Consider the question set built into the package from a recent study by the <a href="https://dmds.lucymcgowan.com/" class="external-link">D’Agostino McGowan Data Science Lab</a>. There are 14 unique questions, but some will only be asked if a specific answer is provided.</p>
 <p>For example, people who answer “Yes” to the question “Have you ever learned to program in R?” will be shown a numeric input question asking how many years they have been using R. If no, the next question – about a programming language other than R – will (continue) to be shown.</p>
 <p>Consider the following survey, showing a subset of the built-in questions:</p>
 <p><img src="graphics/get-survey-data/dependency-survey-screenshot.png"></p>
@@ -275,14 +278,14 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Load packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
 
 <span class="co"># Define questions in the format of a shinysurvey</span>
-<span class="va">dep_questions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">teaching_r_questions</span>, <span class="fl">12</span><span class="op">)</span>
+<span class="va">dep_questions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">teaching_r_questions</span>, <span class="fl">12</span><span class="op">)</span>
 
 <span class="co"># Define shiny UI</span>
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/surveyOutput.html">surveyOutput</a></span><span class="op">(</span><span class="va">dep_questions</span>,
                survey_title <span class="op">=</span> <span class="st">"Hello, World!"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -291,15 +294,15 @@
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="../reference/renderSurvey.html">renderSurvey</a></span><span class="op">(</span><span class="op">)</span>
   
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">submit</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">submit</span>, <span class="op">{</span>
     <span class="va">response_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getSurveyData.html">getSurveyData</a></span><span class="op">(</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">response_data</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">response_data</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
   
 <span class="op">}</span>
 
 <span class="co"># Run the shiny application</span>
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>When I answer “No” to all questions and click submit, the following data frame is printed to the console:</p>
 <table class="table">
 <thead><tr class="header">
@@ -347,8 +350,8 @@
 </tr>
 </tbody>
 </table>
-<p>This is notable for a few reasons. Firstly, I never saw the questions asking about how long I used R, how long I used another programming language, or how many data analyses I completed. The default behavior is to include all dependency questions and imputing “HIDDEN-QUESTION” for the response value. This will keep the data structure the same for all respondents, controlling for variability in participant responses. The imputed value can be changed with the <code>dependency_string</code> argument, e.g. <code><a href="../reference/getSurveyData.html">getSurveyData(dependency_string = "NOT-SEEN")</a></code>.</p>
-<p>Dependency questions can also be excluded from the output as follows: <code><a href="../reference/getSurveyData.html">getSurveyData(include_dependencies = FALSE)</a></code>. This may result in the output having different number of rows depending on which questions a person answers. For example, if I answered no to all questions and have <code>include_dependencies = FALSE)</code>, my data would be:</p>
+<p>This is notable for a few reasons. Firstly, I never saw the questions asking about how long I used R, how long I used another programming language, or how many data analyses I completed. The default behavior is to include all dependency questions and imputing “HIDDEN-QUESTION” for the response value. This will keep the data structure the same for all respondents, controlling for variability in participant responses. The imputed value can be changed with the <code>dependency_string</code> argument, e.g. <code>getSurveyData(dependency_string = "NOT-SEEN")</code>.</p>
+<p>Dependency questions can also be excluded from the output as follows: <code>getSurveyData(include_dependencies = FALSE)</code>. This may result in the output having different number of rows depending on which questions a person answers. For example, if I answered no to all questions and have <code>include_dependencies = FALSE)</code>, my data would be:</p>
 <table class="table">
 <thead><tr class="header">
 <th align="center">subject_id</th>
@@ -413,18 +416,18 @@
 </tbody>
 </table>
 </div>
-<div id="conclusion" class="section level1">
-<h1 class="hasAnchor">
-<a href="#conclusion" class="anchor"></a>Conclusion</h1>
-<p>In this vignette, I highlighted the use of <code><a href="../reference/getSurveyData.html">getSurveyData()</a></code> to easily aggregate survey responses. I hope you find this feature as useful as I have! It is especially powerful when implementing data collection and analysis pipelines. As a necessary disclaimer, <em>please test this on your survey before using it in a deployed application</em>. Although I have tested <code><a href="../reference/getSurveyData.html">getSurveyData()</a></code> in a variety of situations, I have not exhausted all custom input types and you may run into errors. If that happens, please file a <a href="https://github.com/jdtrat/shinysurveys/issues">GitHub Issue</a> with a minimal app to reproduce the bug.</p>
+<div class="section level2">
+<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</h2>
+<p>In this vignette, I highlighted the use of <code><a href="../reference/getSurveyData.html">getSurveyData()</a></code> to easily aggregate survey responses. I hope you find this feature as useful as I have! It is especially powerful when implementing data collection and analysis pipelines. As a necessary disclaimer, <em>please test this on your survey before using it in a deployed application</em>. Although I have tested <code><a href="../reference/getSurveyData.html">getSurveyData()</a></code> in a variety of situations, I have not exhausted all custom input types and you may run into errors. If that happens, please file a <a href="https://github.com/jdtrat/shinysurveys/issues" class="external-link">GitHub Issue</a> with a minimal app to reproduce the bug.</p>
 <p>Thanks for reading, and happy surveying!</p>
 </div>
 <div class="footnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Alternative IDs can be supplied with the <code>custom_id</code> argument, however. For example, <code><a href="../reference/getSurveyData.html">getSurveyData(custom_id = input$name)</a></code> would save ‘subject_id’ as a participant’s name – “JT” in this case.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Alternative IDs can be supplied with the <code>custom_id</code> argument, however. For example, <code>getSurveyData(custom_id = input$name)</code> would save ‘subject_id’ as a participant’s name – “JT” in this case.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>In practice, printing is not the end-goal. I use it here solely to demonstrate how easy it is to access response data.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>If you are unfamiliar with custom input types, please see <a href="https://www.jdtrat.com/blog/extending-shinysurveys/">my blog post</a> introducing them or the <a href="https://shinysurveys.jdtrat.com/articles/custom-input-extensions.html">documentation</a>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>If you are unfamiliar with custom input types, please see <a href="https://www.jdtrat.com/blog/extending-shinysurveys/" class="external-link">my blog post</a> introducing them or the <a href="https://shinysurveys.jdtrat.com/articles/custom-input-extensions.html">documentation</a>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p>The response for years_using_r is NA because I did not answer it.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
@@ -440,11 +443,18 @@
 
 
 
-      <footer></footer>
+      <footer><div class="author">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+</div>
+
+      </footer>
 </div>
 
   
 
+
+  
 
   </body>
 </html>

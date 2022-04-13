@@ -24,6 +24,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,14 +39,14 @@
 
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinysurveys</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0.9000</span>
       </span>
 
       <!--<div class="navbar-brand-container">
         <a class="navbar-brand" href="../index.html">shinysurveys</a>
         <div class="info hidden-xs hidden-sm">
           <span class="partof">part of  <a href=""></a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0.9000</span>
         </div>
       </div>-->
     </div>
@@ -55,7 +57,7 @@
   <a href="../articles/shinysurveys.html">Get started</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -76,7 +78,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
@@ -86,14 +88,15 @@
       <a href="../news/index.html">Changelog</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Blog posts</li>
+    </li>
+<li class="dropdown-header">Blog posts</li>
     <li>
-      <a href="https://www.jdtrat.com/blog/shinysurveys-0-2-0/">shinysurveys 0.2.0</a>
+      <a href="https://www.jdtrat.com/blog/shinysurveys-0-2-0/" class="external-link">shinysurveys 0.2.0</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="https://github.com/jdtrat/shinysurveys">
+  <a href="https://github.com/jdtrat/shinysurveys" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -114,7 +117,7 @@
       <h1 data-toc-skip>Extending shinysurveys with Custom Input Types</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/jdtrat/shinysurveys/blob/master/vignettes/custom-input-extensions.Rmd"><code>vignettes/custom-input-extensions.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jdtrat/shinysurveys/blob/HEAD/vignettes/custom-input-extensions.Rmd" class="external-link"><code>vignettes/custom-input-extensions.Rmd</code></a></small>
       <div class="hidden name"><code>custom-input-extensions.Rmd</code></div>
 
     </div>
@@ -122,26 +125,25 @@
     
     
 <blockquote>
-<p>Note: This is a pared down version of an article originally posted on <a href="https://www.jdtrat.com/blog/extending-shinysurveys/">my personal blog</a>. I plan to update documentation there more regularly than in the vignettes.</p>
+<p>Note: This is a pared down version of an article originally posted on <a href="https://www.jdtrat.com/blog/extending-shinysurveys/" class="external-link">my personal blog</a>. I plan to update documentation there more regularly than in the vignettes.</p>
 </blockquote>
-<div id="motivation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#motivation" class="anchor"></a>Motivation</h1>
-<p>The original idea for {shinysurveys} was to provide a select set of well-supported input types that are commonly used with surveys. However, shortly after the package was published on CRAN, additional input types were requested (see GitHub <a href="https://github.com/jdtrat/shinysurveys/issues/6">issue #6</a> or <a href="https://github.com/jdtrat/shinysurveys/issues/18">#18</a>).</p>
+<div class="section level2">
+<h2 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
+</h2>
+<p>The original idea for {shinysurveys} was to provide a select set of well-supported input types that are commonly used with surveys. However, shortly after the package was published on CRAN, additional input types were requested (see GitHub <a href="https://github.com/jdtrat/shinysurveys/issues/6" class="external-link">issue #6</a> or <a href="https://github.com/jdtrat/shinysurveys/issues/18" class="external-link">#18</a>).</p>
 <p>In order to make the package as light-weight as possible (minimize dependence on external code), I did not wish to implement any input types not native to {shiny}. I also did not want to rewrite the internals of {shinysurveys} whenever a new input-type was requested. As a solution, I developed a framework for custom inputs to allow users to include different input types that meet their use case. In the next section, I outline two examples of how to add custom input types.</p>
 </div>
-<div id="examples" class="section level1">
-<h1 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h1>
-<div id="adding-a-sliderinput" class="section level2">
-<h2 class="hasAnchor">
-<a href="#adding-a-sliderinput" class="anchor"></a>Adding a <code>sliderInput</code>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
+<div class="section level3">
+<h3 id="adding-a-sliderinput">Adding a <code>sliderInput</code><a class="anchor" aria-label="anchor" href="#adding-a-sliderinput"></a>
+</h3>
 <p>Consider the question “On a scale from 1-10, how much do you love sushi?”. An ideal input type would be {shiny}’s <code>sliderInput</code>. However, this is not natively supported by {shinysurveys} as the slider input requires multiple arguments, including a minimum, maximum, and starting value. To get around this, we can define a new input type using a new function <code><a href="../reference/extendInputType.html">extendInputType()</a></code>. As in a typical shiny survey, we can define our question as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Define a question as normal with the `input_type` set to "slider", which is not natively supported by {shinysurveys}.</span>
 
-<span class="va">slider_question</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+<span class="va">slider_question</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
   question <span class="op">=</span> <span class="st">"On a scale from 1-10, how much do you love sushi?"</span>,
   option <span class="op">=</span> <span class="cn">NA</span>,
   input_type <span class="op">=</span> <span class="st">"slider"</span>,
@@ -151,16 +153,16 @@
   required <span class="op">=</span> <span class="cn">TRUE</span>
   <span class="op">)</span></code></pre></div>
 <p>This looks like:</p>
-<pre><code>#&gt;                                            question option input_type
-#&gt; 1 On a scale from 1-10, how much do you love sushi?     NA     slider
-#&gt;      input_id dependence dependence_value required
-#&gt; 1 sushi_scale         NA               NA     TRUE</code></pre>
+<pre><code><span class="co">#&gt;                                            question option input_type</span>
+<span class="co">#&gt; 1 On a scale from 1-10, how much do you love sushi?     NA     slider</span>
+<span class="co">#&gt;      input_id dependence dependence_value required</span>
+<span class="co">#&gt; 1 sushi_scale         NA               NA     TRUE</span></code></pre>
 <p>If we try to define the user-interface component of the shiny application, we will get the following error which most commonly occurs when {shinysurveys} doesn’t recognize an input type.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
 
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/surveyOutput.html">surveyOutput</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">slider_question</span>,
                survey_title <span class="op">=</span> <span class="st">"Testing the Slider Input"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -172,7 +174,7 @@
 <span class="co"># Register a slider input to {shinysurveys} with a custom minimum and maximum value.</span>
 
 <span class="fu"><a href="../reference/extendInputType.html">extendInputType</a></span><span class="op">(</span>input_type <span class="op">=</span> <span class="st">"slider"</span>, <span class="op">{</span>
-  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span>
+  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span>
     inputId <span class="op">=</span> <span class="fu"><a href="../reference/surveyID.html">surveyID</a></span><span class="op">(</span><span class="op">)</span>,
     label <span class="op">=</span> <span class="fu"><a href="../reference/surveyLabel.html">surveyLabel</a></span><span class="op">(</span><span class="op">)</span>,
     min <span class="op">=</span> <span class="fl">1</span>,
@@ -187,22 +189,21 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># By defining the input type above, this works! Yay!</span>
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/surveyOutput.html">surveyOutput</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">slider_question</span>,
                survey_title <span class="op">=</span> <span class="st">"Testing the Slider Input"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>When running the full application, we see the following survey:</p>
 <p><img src="graphics/custom-input-extensions/slider_input.png"></p>
 </div>
-<div id="adding-a-dateinput" class="section level2">
-<h2 class="hasAnchor">
-<a href="#adding-a-dateinput" class="anchor"></a>Adding a <code>dateInput</code>
-</h2>
-<p>As requested in issue <a href="https://github.com/jdtrat/shinysurveys/issues/18">#18</a>, a user needed a <code>dateInput</code> with special restrictions for possible values (dates). <a href="https://github.com/jdtrat/shinysurveys/issues/18#issue-856073749">The user’s reprex</a> showed the error we saw earlier, because {shinysurveys} does not natively support “date” inputs. Consider again the following question:</p>
+<div class="section level3">
+<h3 id="adding-a-dateinput">Adding a <code>dateInput</code><a class="anchor" aria-label="anchor" href="#adding-a-dateinput"></a>
+</h3>
+<p>As requested in issue <a href="https://github.com/jdtrat/shinysurveys/issues/18" class="external-link">#18</a>, a user needed a <code>dateInput</code> with special restrictions for possible values (dates). <a href="https://github.com/jdtrat/shinysurveys/issues/18#issue-856073749" class="external-link">The user’s reprex</a> showed the error we saw earlier, because {shinysurveys} does not natively support “date” inputs. Consider again the following question:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Define a question as normal with the `input_type` set to "date", which is not natively supported by {shinysurveys}.</span>
-<span class="va">date_question</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+<span class="va">date_question</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
   question <span class="op">=</span> <span class="st">"When do you graduate?"</span>,
   option <span class="op">=</span> <span class="cn">NA</span>,
   input_type <span class="op">=</span> <span class="st">"date"</span>,
@@ -212,16 +213,16 @@
   required <span class="op">=</span> <span class="cn">FALSE</span>
   <span class="op">)</span></code></pre></div>
 <p>This looks like:</p>
-<pre><code>#&gt;                question option input_type  input_id dependence dependence_value
-#&gt; 1 When do you graduate?     NA       date grad_date         NA               NA
-#&gt;   required
-#&gt; 1    FALSE</code></pre>
+<pre><code><span class="co">#&gt;                question option input_type  input_id dependence dependence_value</span>
+<span class="co">#&gt; 1 When do you graduate?     NA       date grad_date         NA               NA</span>
+<span class="co">#&gt;   required</span>
+<span class="co">#&gt; 1    FALSE</span></code></pre>
 <p>As in the slider example, if we try to define the user-interface component of the shiny application, we will get the following error which most commonly occurs when {shinysurveys} doesn’t recognize an input type.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
 
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/surveyOutput.html">surveyOutput</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">date_question</span>,
                survey_title <span class="op">=</span> <span class="st">"Testing the Date Input"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -233,12 +234,12 @@
 <span class="co"># Register a date input to {shinysurveys}, limiting possible dates to a twenty-day period.</span>
 
 <span class="fu"><a href="../reference/extendInputType.html">extendInputType</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="op">{</span>
-  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/dateInput.html">dateInput</a></span><span class="op">(</span>
+  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/dateInput.html" class="external-link">dateInput</a></span><span class="op">(</span>
     inputId <span class="op">=</span> <span class="fu"><a href="../reference/surveyID.html">surveyID</a></span><span class="op">(</span><span class="op">)</span>,
-    value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>,
+    value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>,
     label <span class="op">=</span> <span class="fu"><a href="../reference/surveyLabel.html">surveyLabel</a></span><span class="op">(</span><span class="op">)</span>,
-    min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">10</span>,
-    max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fl">10</span>
+    min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">10</span>,
+    max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fl">10</span>
   <span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt; Input Type "date" registered with {shinysurveys}. If the session restarts, you will need to re-register it.</span>
@@ -247,7 +248,7 @@
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># By defining the input type above, this works! Yay!</span>
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/surveyOutput.html">surveyOutput</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">date_question</span>,
                survey_title <span class="op">=</span> <span class="st">"Testing the Date Input"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
@@ -267,11 +268,18 @@
 
 
 
-      <footer></footer>
+      <footer><div class="author">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+</div>
+
+      </footer>
 </div>
 
   
 
+
+  
 
   </body>
 </html>

@@ -23,9 +23,15 @@
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><!-- from jdtdown: JS redirect for homepage --><script>
+  if (!/(\/|html?)$/.test(window.location.href)){
+    window.location.replace(window.location.href + '/');
+  }
+</script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,14 +45,14 @@
 
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">shinysurveys</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0.9000</span>
       </span>
 
       <!--<div class="navbar-brand-container">
         <a class="navbar-brand" href="index.html">shinysurveys</a>
         <div class="info hidden-xs hidden-sm">
           <span class="partof">part of  <a href=""></a></span>
-          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+          <span class="version version-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0.9000</span>
         </div>
       </div>-->
     </div>
@@ -57,7 +63,7 @@
   <a href="articles/shinysurveys.html">Get started</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -78,7 +84,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
@@ -88,14 +94,15 @@
       <a href="news/index.html">Changelog</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Blog posts</li>
+    </li>
+<li class="dropdown-header">Blog posts</li>
     <li>
-      <a href="https://www.jdtrat.com/blog/shinysurveys-0-2-0/">shinysurveys 0.2.0</a>
+      <a href="https://www.jdtrat.com/blog/shinysurveys-0-2-0/" class="external-link">shinysurveys 0.2.0</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="https://github.com/jdtrat/shinysurveys">
+  <a href="https://github.com/jdtrat/shinysurveys" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -112,21 +119,21 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="shinysurveys" class="section level1">
+<div class="section level1">
 
-<div id="easily-create-and-deploy-surveys-in-shiny" class="section level4">
-<h4 class="hasAnchor">
-<a href="#easily-create-and-deploy-surveys-in-shiny" class="anchor"></a>Easily Create and Deploy Surveys in Shiny</h4>
+<div class="section level4">
+<h4 id="easily-create-and-deploy-surveys-in-shiny">Easily Create and Deploy Surveys in Shiny<a class="anchor" aria-label="anchor" href="#easily-create-and-deploy-surveys-in-shiny"></a>
+</h4>
 <!-- badges: start -->
 
 <!-- badges: end -->
 <hr>
 <p><img src="https://jdtrat.com/project/shinysurveys/featured-hex.png" width="328" height="378" align="right"></p>
-<p>{shinysurveys} provides easy-to-use, minimalistic code for creating and deploying surveys in Shiny. Originally inspired by Dean Attali’s <a href="https://github.com/daattali/shinyforms">shinyforms</a>, our package provides a framework for robust surveys, similar to Google Forms, in R with <a href="https://github.com/rstudio/shiny/">Shiny</a>.</p>
+<p>{shinysurveys} provides easy-to-use, minimalistic code for creating and deploying surveys in Shiny. Originally inspired by Dean Attali’s <a href="https://github.com/daattali/shinyforms" class="external-link">shinyforms</a>, our package provides a framework for robust surveys, similar to Google Forms, in R with <a href="https://github.com/rstudio/shiny/" class="external-link">Shiny</a>.</p>
 </div>
-<div id="table-of-contents" class="section level2">
-<h2 class="hasAnchor">
-<a href="#table-of-contents" class="anchor"></a>Table of contents</h2>
+<div class="section level2">
+<h2 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
+</h2>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#demos">Demos</a></li>
@@ -138,30 +145,30 @@
 </ul>
 <hr>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install {shinysurveys} via CRAN or GitHub and load it as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install released version from CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"shinysurveys"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"shinysurveys"</span><span class="op">)</span>
 
 <span class="co"># Or, install the development version from GitHub</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"jdtrat/shinysurveys"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jdtrat/shinysurveys"</span><span class="op">)</span>
 
 <span class="co"># Load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="demos" class="section level2">
-<h2 class="hasAnchor">
-<a href="#demos" class="anchor"></a>Demos</h2>
+<div class="section level2">
+<h2 id="demos">Demos<a class="anchor" aria-label="anchor" href="#demos"></a>
+</h2>
 <p>A survey made with our package might look like this:</p>
 <p><img src="https://www.jdtrat.com/project/shinysurveys/shinysurveys-final-demo.gif"></p>
 <p>You can run a demo survey with the function <code><a href="reference/demo_survey.html">shinysurveys::demo_survey()</a></code>.</p>
 </div>
-<div id="getting-started" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting Started</h2>
+<div class="section level2">
+<h2 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
 <p>Aside from <code><a href="reference/demo_survey.html">demo_survey()</a></code>, {shinysurveys} exports two functions: <code><a href="reference/surveyOutput.html">surveyOutput()</a></code> and <code><a href="reference/renderSurvey.html">renderSurvey()</a></code>. The former goes in the UI portion of a Shiny app, and the latter goes in the server portion. To create a survey, you can build a data frame with your questions. The following columns are required.</p>
 <ul>
 <li>
@@ -181,10 +188,10 @@
 </ul>
 <p>Our demo survey can be created as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shinysurveys.jdtrat.com">shinysurveys</a></span><span class="op">)</span>
 
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>question <span class="op">=</span> <span class="st">"What is your favorite food?"</span>,
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>question <span class="op">=</span> <span class="st">"What is your favorite food?"</span>,
                  option <span class="op">=</span> <span class="st">"Your Answer"</span>,
                  input_type <span class="op">=</span> <span class="st">"text"</span>,
                  input_id <span class="op">=</span> <span class="st">"favorite_food"</span>,
@@ -192,7 +199,7 @@
                  dependence_value <span class="op">=</span> <span class="cn">NA</span>,
                  required <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
 
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="reference/surveyOutput.html">surveyOutput</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>,
                survey_title <span class="op">=</span> <span class="st">"Hello, World!"</span>,
                survey_description <span class="op">=</span> <span class="st">"Welcome! This is a demo survey showing off the {shinysurveys} package."</span><span class="op">)</span>
@@ -201,100 +208,114 @@
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="reference/renderSurvey.html">renderSurvey</a></span><span class="op">(</span><span class="op">)</span>
   
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">submit</span>, <span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/showModal.html">showModal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/modalDialog.html">modalDialog</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">submit</span>, <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/showModal.html" class="external-link">showModal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/modalDialog.html" class="external-link">modalDialog</a></span><span class="op">(</span>
       title <span class="op">=</span> <span class="st">"Congrats, you completed your first shinysurvey!"</span>,
       <span class="st">"You can customize what actions happen when a user finishes a survey using input$submit."</span>
     <span class="op">)</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="advanced-surveys" class="section level2">
-<h2 class="hasAnchor">
-<a href="#advanced-surveys" class="anchor"></a>Advanced Surveys</h2>
+<div class="section level2">
+<h2 id="advanced-surveys">Advanced Surveys<a class="anchor" aria-label="anchor" href="#advanced-surveys"></a>
+</h2>
 <ul>
 <li><p><strong>Dependencies</strong> can be added so a specific question will appear based on a participant’s answer to preceding questions. The <code>dependence</code> column takes an input_id of a preceding question and, if the participant answers with the value in <code>dependence_value</code>, the new question will be shown.</p></li>
 <li><p><strong>Required questions</strong> can be specified by adding the value <code>TRUE</code> to the <code>required</code> column. If a required question is not answered, the user will not be able to submit their responses.</p></li>
-<li><p><strong>URL-based user tracking</strong> functionality lets you keep track of participants easily and systematically. If you deploy your survey on <a href="https://www.shinyapps.io/">shinyapps.io</a>, or run it locally in a browser, you can add a URL parameter after the backslash as follows: <code>?user_id=UNIQUE_ID</code>. A live demo can be found here: <a>https://jdtrat-apps.shinyapps.io/shinysurveys_user_tracking/?user_id=hadley</a></p></li>
-<li><p><strong>Multi-paged surveys</strong> can be used to better organize questions and make it easier for people to complete. As of v0.2.0., users can add an additional column page to the data frame of questions. The column can either have numeric (e.g. <code>c(1, 1, 2, 3</code>) or character (<code><a href="https://rdrr.io/r/base/c.html">c("intro", "intro", "middle", "final")</a></code>) values. For more documentation, see my <a href="https://www.jdtrat.com/blog/multi-paged-shinysurvey/">blog post</a>.</p></li>
+<li><p><strong>URL-based user tracking</strong> functionality lets you keep track of participants easily and systematically. If you deploy your survey on <a href="https://www.shinyapps.io/" class="external-link">shinyapps.io</a>, or run it locally in a browser, you can add a URL parameter after the backslash as follows: <code>?user_id=UNIQUE_ID</code>. A live demo can be found here: <a>https://jdtrat-apps.shinyapps.io/shinysurveys_user_tracking/?user_id=hadley</a></p></li>
+<li><p><strong>Multi-paged surveys</strong> can be used to better organize questions and make it easier for people to complete. As of v0.2.0., users can add an additional column page to the data frame of questions. The column can either have numeric (e.g. <code>c(1, 1, 2, 3</code>) or character (<code>c("intro", "intro", "middle", "final")</code>) values. For more documentation, see my <a href="https://www.jdtrat.com/blog/multi-paged-shinysurvey/" class="external-link">blog post</a>.</p></li>
 <li><p><strong>Automatic response aggregation</strong> to easily gather participant’s data upon submission with <code><a href="reference/getSurveyData.html">getSurveyData()</a></code>. See the <a href="https://shinysurveys.jdtrat.com/articles/get-survey-data.html">official vignette</a> for more details.</p></li>
 </ul>
 </div>
-<div id="further-reading" class="section level2">
-<h2 class="hasAnchor">
-<a href="#further-reading" class="anchor"></a>Further Reading</h2>
+<div class="section level2">
+<h2 id="further-reading">Further Reading<a class="anchor" aria-label="anchor" href="#further-reading"></a>
+</h2>
 <p>For a more in-depth explanation of {shinysurveys}, please see the vignette <a href="https://shinysurveys.jdtrat.com/articles/surveying-shinysurveys.html"><em>A survey of {shinysurveys}</em></a>.</p>
 </div>
-<div id="feedback" class="section level2">
-<h2 class="hasAnchor">
-<a href="#feedback" class="anchor"></a>Feedback</h2>
-<p>If you want to see a feature, or report a bug, please <a href="https://github.com/jdtrat/shinysurveys/issues">file an issue</a> or open a <a href="https://github.com/jdtrat/shinysurveys/pulls">pull-request</a>! As this package is just getting off the ground, we welcome all feedback and contributions. See our <a href="https://github.com/jdtrat/shinysurveys/blob/main/.github/CONTRIBUTING.md">contribution guidelines</a> for more details on getting involved!</p>
+<div class="section level2">
+<h2 id="feedback">Feedback<a class="anchor" aria-label="anchor" href="#feedback"></a>
+</h2>
+<p>If you want to see a feature, or report a bug, please <a href="https://github.com/jdtrat/shinysurveys/issues" class="external-link">file an issue</a> or open a <a href="https://github.com/jdtrat/shinysurveys/pulls" class="external-link">pull-request</a>! As this package is just getting off the ground, we welcome all feedback and contributions. See our <a href="https://github.com/jdtrat/shinysurveys/blob/main/.github/CONTRIBUTING.md" class="external-link">contribution guidelines</a> for more details on getting involved!</p>
 </div>
-<div id="code-of-conduct" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
-<p>Please note that the shinysurveys project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the shinysurveys project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=shinysurveys">https://​cloud.r-project.org/​package=shinysurveys</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/jdtrat/shinysurveys/">https://​github.com/​jdtrat/​shinysurveys/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/jdtrat/shinysurveys/issues">https://​github.com/​jdtrat/​shinysurveys/​issues</a>
-</li>
-<li>Learn more at <br><a href=""></a>
-</li>
+<li><a href="https://cloud.r-project.org/package=shinysurveys" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/jdtrat/shinysurveys/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/jdtrat/shinysurveys/issues" class="external-link">Report a bug</a></li>
+<li><a href="">Learn more</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing shinysurveys</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://jdtrat.com">Jonathan Trattner</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1097-7603" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://jdtrat.com" class="external-link">Jonathan Trattner</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1097-7603" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>
-<a href="https://lucymcgowan.com">Lucy D'Agostino McGowan</a> <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<a href="https://lucymcgowan.com" class="external-link">Lucy D'Agostino McGowan</a> <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/jdtrat/shinysurveys/actions"><img src="https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://CRAN.R-project.org/package=shinysurveys"><img src="https://www.r-pkg.org/badges/version/shinysurveys" alt="CRAN status"></a></li>
+<li><a href="https://github.com/jdtrat/shinysurveys/actions" class="external-link"><img src="https://github.com/jdtrat/shinysurveys/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://CRAN.R-project.org/package=shinysurveys" class="external-link"><img src="https://www.r-pkg.org/badges/version/shinysurveys" alt="CRAN status"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
-      <footer></footer>
+      <footer><div class="author">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+</div>
+
+      </footer>
 </div>
 
   
 
+
+  
 
   </body>
 </html>

@@ -1,12 +1,12 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   custom-input-extensions: custom-input-extensions.html
   get-survey-data: get-survey-data.html
   shinysurveys: shinysurveys.html
   surveying-shinysurveys: surveying-shinysurveys.html
-last_built: 2021-10-23T17:48Z
+last_built: 2022-04-13T15:02Z
 urls:
   reference: https://shinysurveys.jdtrat.com/reference
   article: https://shinysurveys.jdtrat.com/articles
