@@ -73,19 +73,42 @@ radioMatHeader <- function(.choices, .required) {
 #'
 radioBody <- function(.responseItems, .choices, .selected = NULL) {
 
+
+
   shiny::tags$tbody(
     lapply(
       X = .responseItems, function(item, choice, select) {
+        itembu <- item
+        item <- strsplit(item,split =  "|",fixed = T)[[1]]
+
+        if(length(item)==1){
         shiny::tags$tr(class = "radio-matrix-buttons",
-                id = paste0("tr-", create_radio_input_id(item)),
+                id = paste0("tr-", create_radio_input_id(itembu)),
                 shiny::tags$td(class = "radio-matrix-buttons-label",
-                id = paste0("td-", create_radio_input_id(item)),
+                id = paste0("td-", create_radio_input_id(itembu)),
                   item
                 ),
-                radioMatrixButtons(inputId = create_radio_input_id(item),
+                radioMatrixButtons(inputId = create_radio_input_id(itembu),
                                     choices = choice,
                                     selected = select)
-        )
+        )} else {
+
+          shiny::tags$tr(class = "radio-matrix-buttons",
+                         id = paste0("tr-", create_radio_input_id(itembu)),
+                         shiny::tags$td(class = "radio-matrix-buttons-label",
+                                        id = paste0("td-", create_radio_input_id(itembu)),
+                                        item[1]
+                         ),
+                         radioMatrixButtons(inputId = create_radio_input_id(itembu),
+                                            choices = choice,
+                                            selected = select),
+                         shiny::tags$td(class = "radio-matrix-buttons-label",
+                                        id = paste0("td-", create_radio_input_id(itembu)),
+                                        item[2]
+                         )
+          )
+
+        }
       },
       choice = .choices,
       select = .selected
